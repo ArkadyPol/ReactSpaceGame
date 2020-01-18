@@ -3,44 +3,83 @@ class App extends React.Component {
     super(props);
     this.state = {
       rocketX: 400,
-      shots: []
+      shots: [],
+      arrowLeft: false,
+      arrowRight: false,
+      space: false,
+      readyToShoot: true,
+      velocity: 0
     };
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyPress);
+    document.addEventListener("keydown", this.handleKeyDown);
+    document.addEventListener("keyup", this.handleKeyUp);
     this.timerID = setInterval(() => this.updatePerFrame(), 25);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyPress);
+    document.removeEventListener("keydown", this.handleKeyDown);
+    document.removeEventListener("keyup", this.handleKeyUp);
     clearInterval(this.timerID);
   }
   updatePerFrame() {
     let shots = this.state.shots
-      .map(coords => [coords[0], coords[1] - 2])
+      .map(coords => [coords[0], coords[1] - 4])
       .filter(coords => coords[1] > 0);
-    this.setState({ shots: shots });
+    let rocketX = this.state.rocketX;
+    let velocity = this.state.velocity;
+    if (Math.abs(velocity) < 0.15) velocity = 0;
+    if (velocity > 0) velocity -= 0.15;
+    if (velocity < 0) velocity += 0.15;
+    if (this.state.arrowLeft) {
+      velocity -= 0.4;
+    }
+    if (this.state.arrowRight) {
+      velocity += 0.4;
+    }
+    rocketX += velocity;
+    if (rocketX < 15) {
+      rocketX = 15;
+      velocity = 0;
+    }
+    if (rocketX > 785) {
+      rocketX = 785;
+      velocity = 0;
+    }
+    let readyToShoot = this.state.readyToShoot;
+    if (this.state.space && readyToShoot) {
+      shots.push([rocketX, 400]);
+      readyToShoot = false;
+      setTimeout(() => this.setState({ readyToShoot: true }), 100);
+    }
+    this.setState({ shots, rocketX, readyToShoot, velocity });
   }
 
-  handleKeyPress(e) {
+  handleKeyDown(e) {
     switch (e.code) {
       case "ArrowLeft":
-        this.setState(state => {
-          if (state.rocketX == 10) return;
-          return { rocketX: state.rocketX - 10 };
-        });
+        this.setState({ arrowLeft: true });
         break;
       case "ArrowRight":
-        this.setState(state => {
-          if (state.rocketX == 790) return;
-          return { rocketX: state.rocketX + 10 };
-        });
+        this.setState({ arrowRight: true });
         break;
       case "Space":
-        this.setState(state => {
-          return { shots: [...state.shots, [state.rocketX, 400]] };
-        });
+        this.setState({ space: true });
+        break;
+    }
+  }
+  handleKeyUp(e) {
+    switch (e.code) {
+      case "ArrowLeft":
+        this.setState({ arrowLeft: false });
+        break;
+      case "ArrowRight":
+        this.setState({ arrowRight: false });
+        break;
+      case "Space":
+        this.setState({ space: false });
         break;
     }
   }
