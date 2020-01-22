@@ -29,16 +29,7 @@ class App extends React.Component {
       .map(coords => [coords[0], coords[1] - 4])
       .filter(coords => coords[1] > 0);
     let rocketX = this.state.rocketX;
-    let velocity = this.state.velocity;
-    if (Math.abs(velocity) < 0.15) velocity = 0;
-    if (velocity > 0) velocity -= 0.15;
-    if (velocity < 0) velocity += 0.15;
-    if (this.state.arrowLeft) {
-      velocity -= 0.4;
-    }
-    if (this.state.arrowRight) {
-      velocity += 0.4;
-    }
+    let velocity = calculateVelocity(this.state);
     rocketX += velocity;
     if (rocketX < 15) {
       rocketX = 15;
@@ -128,3 +119,15 @@ class Shot extends React.Component {
   }
 }
 ReactDOM.render(<App />, document.getElementById("root"));
+function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
+  if (Math.abs(velocity) < 0.15) velocity = 0;
+  if (velocity > 0) velocity -= 0.15;
+  if (velocity < 0) velocity += 0.15;
+  if (arrowLeft) {
+    velocity -= 0.4;
+  }
+  if (arrowRight) {
+    velocity += 0.4;
+  }
+  return velocity;
+}
