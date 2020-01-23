@@ -1,3 +1,6 @@
+import React, { Component } from "react";
+
+import "../styles/App.css";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -118,7 +121,6 @@ class Shot extends React.Component {
     return <circle cx={x} cy={y} r="5" fill="#00af00" />;
   }
 }
-ReactDOM.render(<App />, document.getElementById("root"));
 function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
   if (Math.abs(velocity) < 0.15) velocity = 0;
   if (velocity > 0) velocity -= 0.15;
@@ -131,3 +133,4 @@ function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
   }
   return velocity;
 }
+export default App;
