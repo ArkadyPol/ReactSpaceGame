@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-
+import Shot from "./Shot.js";
+import Rocket from "./Rocket";
 import "../styles/App.css";
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -80,8 +81,8 @@ class App extends React.Component {
   render() {
     const width = 800;
     const height = 500;
-    const shots = this.state.shots.map(coords => (
-      <Shot x={coords[0]} y={coords[1]} />
+    const shots = this.state.shots.map((coords, index) => (
+      <Shot key={index} x={coords[0]} y={coords[1]} />
     ));
     return (
       <svg width={width} height={height}>
@@ -89,36 +90,6 @@ class App extends React.Component {
         <Rocket x={this.state.rocketX} />
       </svg>
     );
-  }
-}
-class Rocket extends React.Component {
-  render() {
-    const x = this.props.x;
-    return (
-      <React.Fragment>
-        <ellipse cx={x} cy="440" rx="12" ry="37" fill="#ff0000" />
-        <circle cx={x} cy="420" r="5" fill="#ffff00" />
-        <circle cx={x} cy="440" r="5" fill="#ffff00" />
-        <circle cx={x} cy="460" r="5" fill="#ffff00" />
-        <path
-          d={`M${x - 7} 470 q -10 10 -10 20 q 0 -10 14 -16 Q ${x - 4} 475 ${x -
-            7} 470`}
-          fill="#ffff00"
-        />
-        <path
-          d={`M${x + 7} 470 q 10 10 10 20 q 0 -10 -14 -16 Q ${x + 4} 475 ${x +
-            7} 470`}
-          fill="#ffff00"
-        />
-      </React.Fragment>
-    );
-  }
-}
-class Shot extends React.Component {
-  render() {
-    const x = this.props.x;
-    const y = this.props.y;
-    return <circle cx={x} cy={y} r="5" fill="#00af00" />;
   }
 }
 function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
