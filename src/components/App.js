@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rocketX: 400,
+      rocketX: 704,
       shots: [],
       arrowLeft: false,
       arrowRight: false,
@@ -39,13 +39,13 @@ class App extends Component {
       rocketX = 15;
       velocity = 0;
     }
-    if (rocketX > 785) {
-      rocketX = 785;
+    if (rocketX > 1169) {
+      rocketX = 1169;
       velocity = 0;
     }
     let readyToShoot = this.state.readyToShoot;
     if (this.state.space && readyToShoot) {
-      shots.push([rocketX, 400]);
+      shots.push([rocketX, 625]);
       readyToShoot = false;
       setTimeout(() => this.setState({ readyToShoot: true }), 100);
     }
@@ -79,8 +79,8 @@ class App extends Component {
     }
   }
   render() {
-    const width = 800;
-    const height = 500;
+    const width = 1184;
+    const height = 740;
     const shots = this.state.shots.map((coords, index) => (
       <Shot key={index} x={coords[0]} y={coords[1]} />
     ));
