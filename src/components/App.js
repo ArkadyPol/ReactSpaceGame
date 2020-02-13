@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Shot from "./Shot.js";
-import Star from "./Star.js";
-import Rocket from "./Rocket";
+import shot from "./Shot.js";
+import star from "./Star.js";
+import rocket from "./Rocket";
 import "../styles/App.css";
 class App extends Component {
   constructor(props) {
@@ -14,7 +14,8 @@ class App extends Component {
       space: false,
       readyToShoot: true,
       velocity: 0,
-      stars: []
+      stars: [],
+      fps: 0
     };
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
@@ -23,7 +24,11 @@ class App extends Component {
     document.addEventListener("keydown", this.handleKeyDown);
     document.addEventListener("keyup", this.handleKeyUp);
     this.timerID = setInterval(() => this.updatePerFrame(), 25);
-    this.timerStars = setInterval(() => this.generateNewStars(), 250);
+    this.timerStars = setInterval(() => this.generateNewStars(), 300);
+    this.timerFPS = setInterval(() => {
+      console.log(this.state.fps);
+      this.setState({ fps: 0 });
+    }, 1000);
   }
 
   componentWillUnmount() {
@@ -31,6 +36,7 @@ class App extends Component {
     document.removeEventListener("keyup", this.handleKeyUp);
     clearInterval(this.timerID);
     clearInterval(this.timerStars);
+    clearInterval(this.timerFPS);
   }
   updatePerFrame() {
     let shots = this.state.shots
@@ -56,10 +62,13 @@ class App extends Component {
       readyToShoot = false;
       setTimeout(() => this.setState({ readyToShoot: true }), 100);
     }
-    this.setState({ stars, shots, rocketX, readyToShoot, velocity });
+    let fps = this.state.fps + 1;
+    this.setState({ stars, shots, rocketX, readyToShoot, velocity, fps });
+    const ctx = this.refs.canvas.getContext("2d");
+    updateCanvas(ctx, this.state);
   }
   generateNewStars() {
-    let quantity = randomInteger(2, 5);
+    let quantity = randomInteger(2, 7);
     let stars = this.state.stars.map(params => [
       params[0],
       params[1],
@@ -99,19 +108,7 @@ class App extends Component {
   render() {
     const width = 1184;
     const height = 740;
-    const shots = this.state.shots.map((coords, index) => (
-      <Shot key={index} x={coords[0]} y={coords[1]} />
-    ));
-    const stars = this.state.stars.map((params, index) => (
-      <Star key={index} x={params[0]} y={params[1]} size={params[2]} />
-    ));
-    return (
-      <svg width={width} height={height}>
-        {stars}
-        {shots}
-        <Rocket x={this.state.rocketX} />
-      </svg>
-    );
+    return <canvas ref="canvas" width={width} height={height} />;
   }
 }
 function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
@@ -133,14 +130,23 @@ function randomInteger(min, max) {
 function generateStar() {
   let x = randomInteger(8, 1176);
   let y = randomInteger(-10, -19);
-  let percent = randomInteger(0, 99);
+  let percent = randomInteger(0, 199);
   let size;
-  if (percent < 25) size = 2;
-  else if (percent < 45) size = 3;
-  else if (percent < 62) size = 4;
-  else if (percent < 77) size = 5;
-  else if (percent < 90) size = 6;
-  else size = 7;
+  if (percent < 81) size = 2;
+  else if (percent < 130) size = 3;
+  else if (percent < 160) size = 4;
+  else if (percent < 178) size = 5;
+  else if (percent < 189) size = 6;
+  else if (percent < 196) size = 7;
+  else size = 8;
   return [x, y, size];
+}
+function updateCanvas(ctx, state) {
+  ctx.clearRect(0, 0, 1184, 740);
+  ctx.fillStyle = "#09011a";
+  ctx.fillRect(0, 0, 1184, 740);
+  state.stars.forEach(params => star(ctx, params[0], params[1], params[2]));
+  state.shots.forEach(coords => shot(ctx, coords[0], coords[1]));
+  rocket(ctx, state.rocketX);
 }
 export default App;

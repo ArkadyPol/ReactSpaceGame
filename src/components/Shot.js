@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-class Shot extends Component {
-  render() {
-    const x = this.props.x;
-    const y = this.props.y;
-    return <circle cx={x} cy={y} r="5" fill="#00af00" />;
-  }
+function shot(ctx, x, y) {
+  ctx.beginPath();
+  ctx.arc(x, y, 5, 0, 2 * Math.PI);
+  ctx.fillStyle = "#00af00";
+  ctx.fill();
 }
-export default Shot;
+export default shot;

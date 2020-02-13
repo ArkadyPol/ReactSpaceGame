@@ -1,25 +1,21 @@
-import React, { Component } from "react";
-class Rocket extends Component {
-  render() {
-    const x = this.props.x;
-    return (
-      <React.Fragment>
-        <ellipse cx={x} cy="665" rx="12" ry="37" fill="#ff0000" />
-        <circle cx={x} cy="645" r="5" fill="#ffff00" />
-        <circle cx={x} cy="665" r="5" fill="#ffff00" />
-        <circle cx={x} cy="685" r="5" fill="#ffff00" />
-        <path
-          d={`M${x - 7} 695 q -10 10 -10 20 q 0 -10 14 -16 Q ${x - 4} 700 ${x -
-            7} 695`}
-          fill="#ffff00"
-        />
-        <path
-          d={`M${x + 7} 695 q 10 10 10 20 q 0 -10 -14 -16 Q ${x + 4} 700 ${x +
-            7} 695`}
-          fill="#ffff00"
-        />
-      </React.Fragment>
-    );
-  }
+function rocket(ctx, x) {
+  ctx.beginPath();
+  ctx.ellipse(x, 665, 12, 37, 0, 0, 2 * Math.PI);
+  ctx.fillStyle = "#ff0000";
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(x, 645, 5, 0, 2 * Math.PI);
+  ctx.arc(x, 665, 5, 0, 2 * Math.PI);
+  ctx.arc(x, 685, 5, 0, 2 * Math.PI);
+  ctx.fillStyle = "#ffff00";
+  ctx.fill();
+  let p = new Path2D(
+    `M${x - 7} 695 q -10 10 -10 20 q 0 -10 14 -16 Q ${x - 4} 700 ${x - 7} 695`
+  );
+  ctx.fill(p);
+  let p2 = new Path2D(
+    `M${x + 7} 695 q 10 10 10 20 q 0 -10 -14 -16 Q ${x + 4} 700 ${x + 7} 695`
+  );
+  ctx.fill(p2);
 }
-export default Rocket;
+export default rocket;
