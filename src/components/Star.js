@@ -1,4 +1,4 @@
-function star(ctx, x, y, size) {
+function star(ctx, [x, y, size]) {
   ctx.beginPath();
   let p = new Path2D(
     `M${x -

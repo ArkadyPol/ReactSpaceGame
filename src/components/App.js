@@ -145,8 +145,8 @@ function updateCanvas(ctx, state) {
   ctx.clearRect(0, 0, 1184, 740);
   ctx.fillStyle = "#09011a";
   ctx.fillRect(0, 0, 1184, 740);
-  state.stars.forEach(params => star(ctx, params[0], params[1], params[2]));
-  state.shots.forEach(coords => shot(ctx, coords[0], coords[1]));
+  state.stars.forEach(params => star(ctx, params));
+  state.shots.forEach(coords => shot(ctx, coords));
   rocket(ctx, state.rocketX);
 }
 export default App;
