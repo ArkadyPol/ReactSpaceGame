@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import shot from "./Shot.js";
 import star from "./Star.js";
-import rocket from "./Rocket";
+import rocket from "./Rocket.js";
 import "../styles/App.css";
 class App extends Component {
   constructor(props) {
