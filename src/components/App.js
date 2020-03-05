@@ -26,7 +26,7 @@ class App extends Component {
     this.timerID = setInterval(() => this.updatePerFrame(), 25);
     this.timerStars = setInterval(() => this.generateNewStars(), 300);
     this.timerFPS = setInterval(() => {
-      console.log(this.state.fps);
+      console.log("fps", this.state.fps);
       this.setState({ fps: 0 });
     }, 1000);
   }
