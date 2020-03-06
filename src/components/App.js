@@ -15,7 +15,8 @@ class App extends Component {
       readyToShoot: true,
       velocity: 0,
       stars: [],
-      fps: 0
+      fps: 0,
+      shotMagazine: 10
     };
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
@@ -27,7 +28,11 @@ class App extends Component {
     this.timerStars = setInterval(() => this.generateNewStars(), 300);
     this.timerFPS = setInterval(() => {
       console.log("fps", this.state.fps);
-      this.setState({ fps: 0 });
+      let shotMagazine = this.state.shotMagazine;
+      if (shotMagazine < 10) {
+        shotMagazine += 1;
+      }
+      this.setState({ fps: 0, shotMagazine });
     }, 1000);
   }
 
@@ -45,7 +50,7 @@ class App extends Component {
     let stars = this.state.stars
       .map(params => [params[0], params[1] + 1, params[2]])
       .filter(params => params[1] < 750);
-    let rocketX = this.state.rocketX;
+    let { rocketX, readyToShoot, shotMagazine, space } = this.state;
     let velocity = calculateVelocity(this.state);
     rocketX += velocity;
     if (rocketX < 15) {
@@ -56,14 +61,22 @@ class App extends Component {
       rocketX = 1169;
       velocity = 0;
     }
-    let readyToShoot = this.state.readyToShoot;
-    if (this.state.space && readyToShoot) {
+    if (space && readyToShoot && shotMagazine > 0) {
       shots.push([rocketX, 625]);
       readyToShoot = false;
+      shotMagazine -= 1;
       setTimeout(() => this.setState({ readyToShoot: true }), 100);
     }
     let fps = this.state.fps + 1;
-    this.setState({ stars, shots, rocketX, readyToShoot, velocity, fps });
+    this.setState({
+      stars,
+      shots,
+      rocketX,
+      readyToShoot,
+      velocity,
+      fps,
+      shotMagazine
+    });
     const ctx = this.refs.canvas.getContext("2d");
     updateCanvas(ctx, this.state);
   }
