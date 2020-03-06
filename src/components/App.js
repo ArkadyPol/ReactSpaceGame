@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import shot from "./Shot.js";
 import star from "./Star.js";
 import rocket from "./Rocket.js";
+import shotMagazine from "./ShotMagazine.js";
 import "../styles/App.css";
 class App extends Component {
   constructor(props) {
@@ -161,5 +162,6 @@ function updateCanvas(ctx, state) {
   state.stars.forEach(params => star(ctx, params));
   state.shots.forEach(coords => shot(ctx, coords));
   rocket(ctx, state.rocketX);
+  shotMagazine(ctx, state.shotMagazine);
 }
 export default App;
