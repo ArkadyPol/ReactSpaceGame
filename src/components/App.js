@@ -4,23 +4,12 @@ import star from "./Star.js";
 import rocket from "./Rocket.js";
 import shotMagazine from "./ShotMagazine.js";
 import healthBar from "./HealthBar.js";
+import initialState from "../InitialState";
 import "../styles/App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      rocketX: 592,
-      shots: [],
-      arrowLeft: false,
-      arrowRight: false,
-      space: false,
-      readyToShoot: true,
-      velocity: 0,
-      stars: [],
-      fps: 0,
-      shotMagazine: 10,
-      health: 100
-    };
+    this.state = initialState;
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
   }

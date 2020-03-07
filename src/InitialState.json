@@ -1,0 +1,13 @@
+{
+    "rocketX": 592,
+    "shots": [],
+    "arrowLeft": false,
+    "arrowRight": false,
+    "space": false,
+    "readyToShoot": true,
+    "velocity": 0,
+    "stars": [],
+    "fps": 0,
+    "shotMagazine": 10,
+    "health": 100
+}
