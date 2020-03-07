@@ -3,6 +3,7 @@ import shot from "./Shot.js";
 import star from "./Star.js";
 import rocket from "./Rocket.js";
 import shotMagazine from "./ShotMagazine.js";
+import healthBar from "./HealthBar.js";
 import "../styles/App.css";
 class App extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class App extends Component {
       velocity: 0,
       stars: [],
       fps: 0,
-      shotMagazine: 10
+      shotMagazine: 10,
+      health: 100
     };
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
@@ -163,5 +165,6 @@ function updateCanvas(ctx, state) {
   state.shots.forEach(coords => shot(ctx, coords));
   rocket(ctx, state.rocketX);
   shotMagazine(ctx, state.shotMagazine);
+  healthBar(ctx, state.health);
 }
 export default App;
