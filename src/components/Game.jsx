@@ -121,10 +121,10 @@ function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
   if (velocity > 0) velocity -= 0.15;
   if (velocity < 0) velocity += 0.15;
   if (arrowLeft) {
-    velocity -= 0.4;
+    velocity -= 0.35;
   }
   if (arrowRight) {
-    velocity += 0.4;
+    velocity += 0.35;
   }
   return velocity;
 }
