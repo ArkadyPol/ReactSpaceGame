@@ -3,7 +3,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   context: path.join(__dirname, "/src"),
-  entry: { main: "./index.js", game: ["@babel/polyfill", "./game.jsx"] },
+  entry: {
+    main: ["@babel/polyfill", "./index.jsx"],
+    game: ["@babel/polyfill", "./game.jsx"]
+  },
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "[name]_bundle.js"

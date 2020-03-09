@@ -6,7 +6,7 @@ import shotMagazine from "./ShotMagazine.js";
 import healthBar from "./HealthBar.js";
 import initialState from "../InitialState.json";
 import stars from "../Stars.json";
-import "../styles/Game.css";
+import "../styles/App.css";
 class Game extends Component {
   constructor(props) {
     super(props);
