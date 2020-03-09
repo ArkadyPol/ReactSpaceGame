@@ -5,8 +5,8 @@ import rocket from "./Rocket.js";
 import shotMagazine from "./ShotMagazine.js";
 import healthBar from "./HealthBar.js";
 import initialState from "../InitialState";
-import "../styles/App.css";
-class App extends Component {
+import "../styles/Game.css";
+class Game extends Component {
   constructor(props) {
     super(props);
     this.state = initialState;
@@ -156,4 +156,4 @@ function updateCanvas(ctx, state) {
   shotMagazine(ctx, state.shotMagazine);
   healthBar(ctx, state.health);
 }
-export default App;
+export default Game;
