@@ -2,3 +2,9 @@
   width: 1184px;
   height: 740px;
 }
+.button {
+  font-size: 32px;
+  position: absolute;
+  padding: 10px;
+  background-color: orange;
+}
