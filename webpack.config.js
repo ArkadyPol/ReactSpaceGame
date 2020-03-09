@@ -38,7 +38,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      filename: "index.html",
+      template: "./index.html",
+      chunks: ["main"]
+    }),
+    new HtmlWebpackPlugin({
+      filename: "game.html",
+      template: "./index.html",
+      chunks: ["game"]
     })
   ]
 };
