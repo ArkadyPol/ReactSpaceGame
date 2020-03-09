@@ -4,12 +4,15 @@ import star from "./Star.js";
 import rocket from "./Rocket.js";
 import shotMagazine from "./ShotMagazine.js";
 import healthBar from "./HealthBar.js";
-import initialState from "../InitialState";
+import initialState from "../InitialState.json";
+import stars from "../Stars.json";
 import "../styles/Game.css";
 class Game extends Component {
   constructor(props) {
     super(props);
-    this.state = initialState;
+    let state = initialState;
+    state.stars = stars;
+    this.state = state;
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
   }
