@@ -117,14 +117,14 @@ class Game extends Component {
   }
 }
 function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
-  if (Math.abs(velocity) < 0.15) velocity = 0;
-  if (velocity > 0) velocity -= 0.15;
-  if (velocity < 0) velocity += 0.15;
+  if (Math.abs(velocity) < 0.14) velocity = 0;
+  if (velocity > 0) velocity -= 0.14;
+  if (velocity < 0) velocity += 0.14;
   if (arrowLeft) {
-    velocity -= 0.35;
+    velocity -= 0.36;
   }
   if (arrowRight) {
-    velocity += 0.35;
+    velocity += 0.36;
   }
   return velocity;
 }
