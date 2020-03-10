@@ -19,24 +19,13 @@ class Game extends Component {
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyDown);
     document.addEventListener("keyup", this.handleKeyUp);
-    this.timerID = setInterval(() => this.updatePerFrame(), 25);
-    this.timerStars = setInterval(() => this.generateNewStars(), 300);
-    this.timerFPS = setInterval(() => {
-      console.log("fps", this.state.fps);
-      let shotMagazine = this.state.shotMagazine;
-      if (shotMagazine < 10) {
-        shotMagazine += 1;
-      }
-      this.setState({ fps: 0, shotMagazine });
-    }, 1000);
+    runTimers.call(this);
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyDown);
     document.removeEventListener("keyup", this.handleKeyUp);
-    clearInterval(this.timerID);
-    clearInterval(this.timerStars);
-    clearInterval(this.timerFPS);
+    stopTimers.call(this);
   }
   updatePerFrame() {
     let shots = this.state.shots
@@ -87,6 +76,14 @@ class Game extends Component {
     }
     this.setState({ stars });
   }
+  runFPS() {
+    console.log("fps", this.state.fps);
+    let shotMagazine = this.state.shotMagazine;
+    if (shotMagazine < 10) {
+      shotMagazine += 1;
+    }
+    this.setState({ fps: 0, shotMagazine });
+  }
   handleKeyDown(e) {
     switch (e.code) {
       case "ArrowLeft":
@@ -97,6 +94,9 @@ class Game extends Component {
         break;
       case "Space":
         this.setState({ space: true });
+        break;
+      case "Escape":
+        stopTimers.call(this);
         break;
     }
   }
@@ -158,5 +158,16 @@ function updateCanvas(ctx, state) {
   rocket(ctx, state.rocketX);
   shotMagazine(ctx, state.shotMagazine);
   healthBar(ctx, state.health);
+}
+
+function runTimers() {
+  this.timerID = setInterval(() => this.updatePerFrame(), 25);
+  this.timerStars = setInterval(() => this.generateNewStars(), 300);
+  this.timerFPS = setInterval(() => this.runFPS(), 1000);
+}
+function stopTimers() {
+  clearInterval(this.timerID);
+  clearInterval(this.timerStars);
+  clearInterval(this.timerFPS);
 }
 export default Game;
