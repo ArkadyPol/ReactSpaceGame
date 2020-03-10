@@ -4,6 +4,7 @@
     "arrowLeft": false,
     "arrowRight": false,
     "space": false,
+    "escape": false,
     "readyToShoot": true,
     "velocity": 0,
     "fps": 0,

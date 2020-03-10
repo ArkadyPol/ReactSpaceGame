@@ -96,7 +96,10 @@ class Game extends Component {
         this.setState({ space: true });
         break;
       case "Escape":
-        stopTimers.call(this);
+        let escape = this.state.escape;
+        if (escape) runTimers.call(this);
+        else stopTimers.call(this);
+        this.setState({ escape: !escape });
         break;
     }
   }
