@@ -15,13 +15,21 @@ class Game extends Component {
     this.state = state;
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyDown);
     document.addEventListener("keyup", this.handleKeyUp);
     runTimers.call(this);
   }
-
+  componentDidUpdate() {
+    if (this.refs.returnBack) {
+      let returnBack = this.refs.returnBack;
+      let { width, height } = returnBack.getBoundingClientRect();
+      returnBack.style.top = 370 - height / 2 + "px";
+      returnBack.style.left = 592 - width / 2 + "px";
+    }
+  }
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyDown);
     document.removeEventListener("keyup", this.handleKeyUp);
@@ -84,6 +92,9 @@ class Game extends Component {
     }
     this.setState({ fps: 0, shotMagazine });
   }
+  handleClick() {
+    window.location.href = "/";
+  }
   handleKeyDown(e) {
     switch (e.code) {
       case "ArrowLeft":
@@ -98,7 +109,10 @@ class Game extends Component {
       case "Escape":
         let escape = this.state.escape;
         if (escape) runTimers.call(this);
-        else stopTimers.call(this);
+        else {
+          stopTimers.call(this);
+          this.setState({ fps: 0 });
+        }
         this.setState({ escape: !escape });
         break;
     }
@@ -119,7 +133,28 @@ class Game extends Component {
   render() {
     const width = 1184;
     const height = 740;
-    return <canvas ref="canvas" width={width} height={height} />;
+    if (this.state.escape) {
+      return (
+        <React.Fragment>
+          <canvas ref="canvas" width={width} height={height} />
+          <button
+            className="button"
+            ref="returnBack"
+            onClick={this.handleClick}
+          >
+            Вернуться в главное меню
+          </button>
+        </React.Fragment>
+      );
+    }
+    return (
+      <canvas
+        ref="canvas"
+        width={width}
+        height={height}
+        onClick={this.handleClick}
+      />
+    );
   }
 }
 function calculateVelocity({ velocity, arrowLeft, arrowRight }) {

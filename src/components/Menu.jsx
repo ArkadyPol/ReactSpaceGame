@@ -13,8 +13,9 @@ class Menu extends Component {
     ctx.fillRect(0, 0, 1184, 740);
     stars.forEach(params => star(ctx, params));
     let newGame = this.refs.newGame;
-    newGame.style.top = 370 - newGame.clientHeight / 2 + "px";
-    newGame.style.left = 592 - newGame.clientWidth / 2 + "px";
+    let { width, height } = newGame.getBoundingClientRect();
+    newGame.style.top = 370 - height / 2 + "px";
+    newGame.style.left = 592 - width / 2 + "px";
   }
   handleClick() {
     window.location.href = "/game";
@@ -26,8 +27,8 @@ class Menu extends Component {
       <React.Fragment>
         <canvas ref="canvas" width={width} height={height} />
         <button className="button" ref="newGame" onClick={this.handleClick}>
-        Новая игра
-      </button>
+          Новая игра
+        </button>
       </React.Fragment>
     );
   }
