@@ -26,8 +26,14 @@ class Game extends Component {
     if (this.refs.returnBack) {
       let returnBack = this.refs.returnBack;
       let { width, height } = returnBack.getBoundingClientRect();
-      returnBack.style.top = 370 - height / 2 + "px";
+      returnBack.style.top = 493 - height / 2 + "px";
       returnBack.style.left = 592 - width / 2 + "px";
+    }
+    if (this.refs.saveGame) {
+      let saveGame = this.refs.saveGame;
+      let { width, height } = saveGame.getBoundingClientRect();
+      saveGame.style.top = 247 - height / 2 + "px";
+      saveGame.style.left = 592 - width / 2 + "px";
     }
   }
   componentWillUnmount() {
@@ -92,8 +98,15 @@ class Game extends Component {
     }
     this.setState({ fps: 0, shotMagazine });
   }
-  handleClick() {
-    window.location.href = "/";
+  handleClick(e) {
+    switch (e.target.id) {
+      case "returnBack":
+        window.location.href = "/";
+        break;
+      case "saveGame":
+        console.log(this.state);
+        break;
+    }
   }
   handleKeyDown(e) {
     switch (e.code) {
@@ -138,11 +151,20 @@ class Game extends Component {
         <React.Fragment>
           <canvas ref="canvas" width={width} height={height} />
           <button
+            id="returnBack"
             className="button"
             ref="returnBack"
             onClick={this.handleClick}
           >
             Вернуться в главное меню
+          </button>
+          <button
+            id="saveGame"
+            className="button"
+            ref="saveGame"
+            onClick={this.handleClick}
+          >
+            Сохранить игру
           </button>
         </React.Fragment>
       );
