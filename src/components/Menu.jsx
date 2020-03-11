@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import star from "./Star.js";
+import star from "../canvas/Star.js";
 import stars from "../Stars.json";
 import "../styles/App.css";
 class Menu extends Component {

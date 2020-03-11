@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import shot from "./Shot.js";
-import star from "./Star.js";
-import rocket from "./Rocket.js";
-import shotMagazine from "./ShotMagazine.js";
-import healthBar from "./HealthBar.js";
+import shot from "../canvas/Shot.js";
+import star from "../canvas/Star.js";
+import rocket from "../canvas/Rocket.js";
+import shotMagazine from "../canvas/ShotMagazine.js";
+import healthBar from "../canvas/HealthBar.js";
 import initialState from "../InitialState.json";
 import stars from "../Stars.json";
 import "../styles/App.css";
