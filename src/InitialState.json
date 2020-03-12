@@ -10,5 +10,6 @@
     "fps": 0,
     "shotMagazine": 10,
     "health": 100,
-    "displayForm": false
+    "displayForm": false,
+    "saves": []
 }

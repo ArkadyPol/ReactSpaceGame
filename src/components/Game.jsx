@@ -105,8 +105,7 @@ class Game extends Component {
       case "saveGame":
         this.refs.returnBack.style.display = "none";
         this.refs.saveGame.style.display = "none";
-        getSaves();
-        this.setState({ dispayForm: true });
+        getSaves.call(this);
         break;
     }
   }
@@ -133,7 +132,7 @@ class Game extends Component {
           this.refs.saveGame.style.display = "block";
           this.setState({ fps: 0 });
         }
-        this.setState({ escape: !escape, dispayForm: false });
+        this.setState({ escape: !escape, displayForm: false });
         break;
     }
   }
@@ -173,7 +172,7 @@ class Game extends Component {
         >
           Сохранить игру
         </button>
-        <Form display={this.state.dispayForm} />
+        <Form display={this.state.displayForm} saves={this.state.saves} />
       </React.Fragment>
     );
   }
@@ -232,6 +231,6 @@ function stopTimers() {
 async function getSaves() {
   let response = await fetch("/saves");
   let saves = await response.json();
-  console.log(saves);
+  this.setState({ saves, displayForm: true });
 }
 export default Game;
