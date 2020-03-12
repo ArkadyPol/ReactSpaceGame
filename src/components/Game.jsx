@@ -105,6 +105,7 @@ class Game extends Component {
         break;
       case "saveGame":
         console.log(this.state);
+        fetch("/saves");
         break;
     }
   }
