@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Form from "./Form.jsx";
 import shot from "../canvas/Shot.js";
 import star from "../canvas/Star.js";
 import rocket from "../canvas/Rocket.js";
@@ -21,19 +22,17 @@ class Game extends Component {
     document.addEventListener("keydown", this.handleKeyDown);
     document.addEventListener("keyup", this.handleKeyUp);
     runTimers.call(this);
-  }
-  componentDidUpdate() {
-    if (this.refs.returnBack) {
-      let returnBack = this.refs.returnBack;
-      let { width, height } = returnBack.getBoundingClientRect();
-      returnBack.style.top = 493 - height / 2 + "px";
-      returnBack.style.left = 592 - width / 2 + "px";
-    }
-    if (this.refs.saveGame) {
-      let saveGame = this.refs.saveGame;
+    let returnBack = this.refs.returnBack;
+    let { width, height } = returnBack.getBoundingClientRect();
+    returnBack.style.top = 493 - height / 2 + "px";
+    returnBack.style.left = 592 - width / 2 + "px";
+    returnBack.style.display = "none";
+    let saveGame = this.refs.saveGame;
+    {
       let { width, height } = saveGame.getBoundingClientRect();
       saveGame.style.top = 247 - height / 2 + "px";
       saveGame.style.left = 592 - width / 2 + "px";
+      saveGame.style.display = "none";
     }
   }
   componentWillUnmount() {
@@ -104,8 +103,10 @@ class Game extends Component {
         window.location.href = "/";
         break;
       case "saveGame":
-        console.log(this.state);
-        fetch("/saves");
+        this.refs.returnBack.style.display = "none";
+        this.refs.saveGame.style.display = "none";
+        getSaves();
+        this.setState({ dispayForm: true });
         break;
     }
   }
@@ -122,12 +123,17 @@ class Game extends Component {
         break;
       case "Escape":
         let escape = this.state.escape;
-        if (escape) runTimers.call(this);
-        else {
+        if (escape) {
+          this.refs.returnBack.style.display = "none";
+          this.refs.saveGame.style.display = "none";
+          runTimers.call(this);
+        } else {
           stopTimers.call(this);
+          this.refs.returnBack.style.display = "block";
+          this.refs.saveGame.style.display = "block";
           this.setState({ fps: 0 });
         }
-        this.setState({ escape: !escape });
+        this.setState({ escape: !escape, dispayForm: false });
         break;
     }
   }
@@ -147,36 +153,28 @@ class Game extends Component {
   render() {
     const width = 1184;
     const height = 740;
-    if (this.state.escape) {
-      return (
-        <React.Fragment>
-          <canvas ref="canvas" width={width} height={height} />
-          <button
-            id="returnBack"
-            className="button"
-            ref="returnBack"
-            onClick={this.handleClick}
-          >
-            Вернуться в главное меню
-          </button>
-          <button
-            id="saveGame"
-            className="button"
-            ref="saveGame"
-            onClick={this.handleClick}
-          >
-            Сохранить игру
-          </button>
-        </React.Fragment>
-      );
-    }
+
     return (
-      <canvas
-        ref="canvas"
-        width={width}
-        height={height}
-        onClick={this.handleClick}
-      />
+      <React.Fragment>
+        <canvas ref="canvas" width={width} height={height} />
+        <button
+          id="returnBack"
+          className="button"
+          ref="returnBack"
+          onClick={this.handleClick}
+        >
+          Вернуться в главное меню
+        </button>
+        <button
+          id="saveGame"
+          className="button"
+          ref="saveGame"
+          onClick={this.handleClick}
+        >
+          Сохранить игру
+        </button>
+        <Form display={this.state.dispayForm} />
+      </React.Fragment>
     );
   }
 }
@@ -230,5 +228,10 @@ function stopTimers() {
   clearInterval(this.timerID);
   clearInterval(this.timerStars);
   clearInterval(this.timerFPS);
+}
+async function getSaves() {
+  let response = await fetch("/saves");
+  let saves = await response.json();
+  console.log(saves);
 }
 export default Game;

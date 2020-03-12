@@ -10,3 +10,22 @@
   top: 0px;
   left: 0px;
 }
+.save {
+  display: none;
+  position: absolute;
+  background-color: #c7a6a6;
+  top: 220px;
+  left: 482px;
+  font-size: 20px;
+  width: 220px;
+}
+.save-overflow {
+  overflow: auto;
+  height: 300px;
+}
+.save-button {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  background-color: rgb(35, 179, 236);
+}
