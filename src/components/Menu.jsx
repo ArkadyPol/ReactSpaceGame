@@ -9,8 +9,10 @@ class Menu extends Component {
       saves: []
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
   componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyDown);
     const ctx = this.refs.canvas.getContext("2d");
     ctx.fillStyle = "#09011a";
     ctx.fillRect(0, 0, 1184, 740);
@@ -26,8 +28,26 @@ class Menu extends Component {
       loadGame.style.left = 592 - width / 2 + "px";
     }
   }
-  handleClick() {
-    window.location.href = "/game";
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyDown);
+  }
+  handleKeyDown(e) {
+    if (e.code == "Escape") {
+      this.refs.newGame.style.display = "block";
+      this.refs.loadGame.style.display = "block";
+    }
+  }
+  handleClick(e) {
+    switch (e.target.id) {
+      case "newGame":
+        window.location.href = "/game";
+        break;
+      case "loadGame":
+        this.refs.newGame.style.display = "none";
+        this.refs.loadGame.style.display = "none";
+        console.log("load game");
+        break;
+    }
   }
   render() {
     const width = 1184;
