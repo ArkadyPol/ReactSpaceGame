@@ -5,6 +5,9 @@ import "../styles/App.css";
 class Menu extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      saves: []
+    };
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
@@ -14,8 +17,14 @@ class Menu extends Component {
     stars.forEach(params => star(ctx, params));
     let newGame = this.refs.newGame;
     let { width, height } = newGame.getBoundingClientRect();
-    newGame.style.top = 370 - height / 2 + "px";
+    newGame.style.top = 247 - height / 2 + "px";
     newGame.style.left = 592 - width / 2 + "px";
+    let loadGame = this.refs.loadGame;
+    {
+      let { width, height } = loadGame.getBoundingClientRect();
+      loadGame.style.top = 493 - height / 2 + "px";
+      loadGame.style.left = 592 - width / 2 + "px";
+    }
   }
   handleClick() {
     window.location.href = "/game";
@@ -26,8 +35,21 @@ class Menu extends Component {
     return (
       <React.Fragment>
         <canvas ref="canvas" width={width} height={height} />
-        <button className="button" ref="newGame" onClick={this.handleClick}>
+        <button
+          id="newGame"
+          className="button"
+          ref="newGame"
+          onClick={this.handleClick}
+        >
           Новая игра
+        </button>
+        <button
+          id="loadGame"
+          className="button"
+          ref="loadGame"
+          onClick={this.handleClick}
+        >
+          Загрузить игру
         </button>
       </React.Fragment>
     );
