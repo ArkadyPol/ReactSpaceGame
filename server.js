@@ -18,10 +18,16 @@ app.listen(3000, () => {
 });
 function getSaves() {
   let saves = fs.readdirSync("saves", "utf8");
-  saves = saves.map(file => file.split(".")[0]);
+  saves = saves
+    .sort((a, b) => getTime(`saves/${b}`) - getTime(`saves/${a}`))
+    .map(file => file.split(".")[0]);
   return saves;
 }
 function createSave(save) {
-  let name = save.save.input;
+  let name = save.input;
   fs.writeFileSync(`saves/${name}.json`, JSON.stringify(save, null, 4));
+}
+function getTime(path) {
+  let stats = fs.statSync(path);
+  return stats.mtime;
 }

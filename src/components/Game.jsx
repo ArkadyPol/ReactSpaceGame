@@ -165,7 +165,7 @@ class Game extends Component {
       headers: {
         "Content-Type": "application/json;charset=utf-8"
       },
-      body: JSON.stringify({ date: new Date(), save })
+      body: JSON.stringify(save)
     };
     fetch("/saves", options);
     this.setState({ displayForm: false, escape: false });
