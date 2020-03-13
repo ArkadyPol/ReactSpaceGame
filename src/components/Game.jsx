@@ -17,6 +17,9 @@ class Game extends Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClickForm = this.handleClickForm.bind(this);
   }
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyDown);
@@ -149,6 +152,35 @@ class Game extends Component {
         break;
     }
   }
+  handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.input == "") return;
+    if (e.target.id != "save") return;
+    let save = this.state;
+    save.saves = [];
+    save.escape = false;
+    save.displayForm = false;
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body: JSON.stringify({ date: new Date(), save })
+    };
+    fetch("/saves", options);
+    this.setState({ displayForm: false, escape: false });
+    runTimers.call(this);
+  }
+  handleChange(e) {
+    this.setState({
+      input: e.target.value
+    });
+  }
+  handleClickForm(e) {
+    this.setState({
+      input: e.target.textContent
+    });
+  }
   render() {
     const width = 1184;
     const height = 740;
@@ -172,7 +204,14 @@ class Game extends Component {
         >
           Сохранить игру
         </button>
-        <Form display={this.state.displayForm} saves={this.state.saves} />
+        <Form
+          display={this.state.displayForm}
+          saves={this.state.saves}
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          handleClick={this.handleClickForm}
+          input={this.state.input}
+        />
       </React.Fragment>
     );
   }

@@ -11,5 +11,6 @@
     "shotMagazine": 10,
     "health": 100,
     "displayForm": false,
-    "saves": []
+    "saves": [],
+    "input": ""
 }
