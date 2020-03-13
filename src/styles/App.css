@@ -17,11 +17,11 @@
   top: 220px;
   left: 482px;
   font-size: 20px;
-  width: 220px;
 }
 .save-overflow {
   overflow: auto;
   height: 300px;
+  width: 220px;
 }
 .save-button {
   display: block;
