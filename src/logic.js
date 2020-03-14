@@ -35,12 +35,10 @@ export function generateStar() {
 }
 export function runTimers() {
   this.timerID = setInterval(() => this.updatePerFrame(), 25);
-  this.timerStars = setInterval(() => this.generateNewStars(), 300);
   this.timerFPS = setInterval(() => this.runFPS(), 1000);
 }
 export function stopTimers() {
   clearInterval(this.timerID);
-  clearInterval(this.timerStars);
   clearInterval(this.timerFPS);
 }
 export function updateCanvas(ctx, state) {

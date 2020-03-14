@@ -59,7 +59,14 @@ class Game extends Component {
     let stars = this.state.stars
       .map(params => [params[0], params[1] + 1, params[2]])
       .filter(params => params[1] < 750);
-    let { rocketX, readyToShoot, shotMagazine, space } = this.state;
+    let {
+      rocketX,
+      readyToShoot,
+      shotMagazine,
+      space,
+      fps,
+      passedPath
+    } = this.state;
     let velocity = calculateVelocity(this.state);
     rocketX += velocity;
     if (rocketX < 15) {
@@ -76,7 +83,14 @@ class Game extends Component {
       shotMagazine -= 1;
       setTimeout(() => this.setState({ readyToShoot: true }), 100);
     }
-    let fps = this.state.fps + 1;
+    fps += 1;
+    if (passedPath % 10 == 0) this.generateNewStars(stars);
+    if (passedPath % 80 == 0) {
+      if (shotMagazine < 10) {
+        shotMagazine += 1;
+      }
+    }
+    passedPath += 1;
     this.setState({
       stars,
       shots,
@@ -84,30 +98,21 @@ class Game extends Component {
       readyToShoot,
       velocity,
       fps,
-      shotMagazine
+      shotMagazine,
+      passedPath
     });
     const ctx = this.refs.canvas.getContext("2d");
     updateCanvas(ctx, this.state);
   }
-  generateNewStars() {
-    let quantity = randomInteger(2, 7);
-    let stars = this.state.stars.map(params => [
-      params[0],
-      params[1],
-      params[2]
-    ]);
+  generateNewStars(stars) {
+    let quantity = randomInteger(2, 8);
     for (let i = 0; i < quantity; i++) {
       stars.push(generateStar());
     }
-    this.setState({ stars });
   }
   runFPS() {
     console.log("fps", this.state.fps);
-    let shotMagazine = this.state.shotMagazine;
-    if (shotMagazine < 10) {
-      shotMagazine += 1;
-    }
-    this.setState({ fps: 0, shotMagazine });
+    this.setState({ fps: 0 });
   }
   handleClick(e) {
     switch (e.target.id) {

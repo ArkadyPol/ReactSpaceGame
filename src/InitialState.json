@@ -12,5 +12,6 @@
     "health": 100,
     "displayForm": false,
     "saves": [],
-    "input": ""
+    "input": "",
+    "passedPath": 0
 }
