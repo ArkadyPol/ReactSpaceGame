@@ -11,7 +11,8 @@ import {
   generateStar,
   getSaves,
   updateCanvas,
-  loadSave
+  loadSave,
+  generateAsteroid
 } from "../logic.js";
 class Game extends Component {
   constructor(props) {
@@ -59,6 +60,12 @@ class Game extends Component {
     let stars = this.state.stars
       .map(params => [params[0], params[1] + 1, params[2]])
       .filter(params => params[1] < 750);
+    let asteroids = this.state.asteroids
+      .map(params => {
+        params.y += params.speed;
+        return params;
+      })
+      .filter(params => params.y < 850);
     let {
       rocketX,
       readyToShoot,
@@ -90,6 +97,9 @@ class Game extends Component {
         shotMagazine += 1;
       }
     }
+    if (passedPath % 100 == 0) {
+      asteroids.push(generateAsteroid());
+    }
     passedPath += 1;
     this.setState({
       stars,
@@ -99,7 +109,8 @@ class Game extends Component {
       velocity,
       fps,
       shotMagazine,
-      passedPath
+      passedPath,
+      asteroids
     });
     const ctx = this.refs.canvas.getContext("2d");
     updateCanvas(ctx, this.state);

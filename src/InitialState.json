@@ -13,5 +13,6 @@
     "displayForm": false,
     "saves": [],
     "input": "",
-    "passedPath": 0
+    "passedPath": 0,
+    "asteroids": []
 }
