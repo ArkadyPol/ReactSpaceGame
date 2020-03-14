@@ -42,11 +42,11 @@ export function generateAsteroid() {
   return { x, y, size, speed };
 }
 export function runTimers() {
-  this.timerID = setInterval(() => this.updatePerFrame(), 25);
+  this.requestID = requestAnimationFrame(this.updatePerFrame);
   this.timerFPS = setInterval(() => this.runFPS(), 1000);
 }
 export function stopTimers() {
-  clearInterval(this.timerID);
+  cancelAnimationFrame(this.requestID);
   clearInterval(this.timerFPS);
 }
 export function updateCanvas(ctx, state) {

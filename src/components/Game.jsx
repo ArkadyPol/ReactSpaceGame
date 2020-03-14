@@ -30,6 +30,7 @@ class Game extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClickForm = this.handleClickForm.bind(this);
+    this.updatePerFrame = this.updatePerFrame.bind(this);
   }
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyDown);
@@ -54,6 +55,7 @@ class Game extends Component {
     stopTimers.call(this);
   }
   updatePerFrame() {
+    this.requestID = requestAnimationFrame(this.updatePerFrame);
     let shots = this.state.shots
       .map(coords => [coords[0], coords[1] - 4])
       .filter(coords => coords[1] > 0);
