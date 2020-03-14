@@ -7,5 +7,6 @@ function star(ctx, [x, y, size]) {
   );
   ctx.fillStyle = "#ffffff";
   ctx.fill(p);
+  ctx.closePath();
 }
 export default star;
