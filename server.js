@@ -6,6 +6,9 @@ app.use(express.json());
 app.get("/game", (req, res) => {
   res.sendFile(__dirname + "/dist/game.html");
 });
+app.get("/save", (req, res) => {
+  res.json(loadSave(req.query));
+});
 app.get("/saves", (req, res) => {
   res.json(getSaves());
 });
@@ -22,6 +25,10 @@ function getSaves() {
     .sort((a, b) => getTime(`saves/${b}`) - getTime(`saves/${a}`))
     .map(file => file.split(".")[0]);
   return saves;
+}
+function loadSave(query) {
+  let save = JSON.parse(fs.readFileSync(`saves/${query.save}.json`, "utf8"));
+  return save;
 }
 function createSave(save) {
   let name = save.input;

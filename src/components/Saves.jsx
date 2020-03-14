@@ -10,7 +10,11 @@ class Saves extends Component {
         {save}
       </button>
     ));
-    return <div className="save-overflow">{buttons}</div>;
+    return (
+      <div style={this.props.style} className="save-overflow">
+        {buttons}
+      </div>
+    );
   }
 }
 export default Saves;

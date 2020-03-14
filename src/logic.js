@@ -43,11 +43,6 @@ export function stopTimers() {
   clearInterval(this.timerStars);
   clearInterval(this.timerFPS);
 }
-export async function getSaves() {
-  let response = await fetch("/saves");
-  let saves = await response.json();
-  this.setState({ saves, displayForm: true });
-}
 export function updateCanvas(ctx, state) {
   ctx.clearRect(0, 0, 1184, 740);
   ctx.fillStyle = "#09011a";
@@ -57,4 +52,14 @@ export function updateCanvas(ctx, state) {
   rocket(ctx, state.rocketX);
   shotMagazine(ctx, state.shotMagazine);
   healthBar(ctx, state.health);
+}
+export async function getSaves() {
+  let response = await fetch("/saves");
+  let saves = await response.json();
+  this.setState({ saves, displayForm: true });
+}
+export async function loadSave(query) {
+  let response = await fetch(`/save?${query}`);
+  let save = await response.json();
+  this.setState(save);
 }

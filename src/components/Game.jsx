@@ -10,13 +10,18 @@ import {
   randomInteger,
   generateStar,
   getSaves,
-  updateCanvas
+  updateCanvas,
+  loadSave
 } from "../logic.js";
 class Game extends Component {
   constructor(props) {
     super(props);
     let state = initialState;
     state.stars = stars;
+    let query = window.location.href.split("?")[1];
+    if (query != undefined) {
+      loadSave.call(this, query);
+    }
     this.state = state;
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
@@ -164,6 +169,7 @@ class Game extends Component {
     save.saves = [];
     save.escape = false;
     save.displayForm = false;
+    save.fps = 0;
     const options = {
       method: "POST",
       headers: {

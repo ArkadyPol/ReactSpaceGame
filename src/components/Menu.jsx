@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import Saves from "./Saves.jsx";
 import star from "../canvas/Star.js";
 import stars from "../Stars.json";
 import "../styles/App.css";
+import { getSaves } from "../logic.js";
 class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      saves: []
+      saves: [],
+      displayForm: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -35,6 +38,7 @@ class Menu extends Component {
     if (e.code == "Escape") {
       this.refs.newGame.style.display = "block";
       this.refs.loadGame.style.display = "block";
+      this.setState({ displayForm: false });
     }
   }
   handleClick(e) {
@@ -45,9 +49,13 @@ class Menu extends Component {
       case "loadGame":
         this.refs.newGame.style.display = "none";
         this.refs.loadGame.style.display = "none";
-        console.log("load game");
+        getSaves.call(this);
         break;
     }
+  }
+  handleClickForm(e) {
+    let save = e.target.textContent;
+    window.location.href = `/game?save=${save}`;
   }
   render() {
     const width = 1184;
@@ -71,6 +79,13 @@ class Menu extends Component {
         >
           Загрузить игру
         </button>
+        {this.state.displayForm && (
+          <Saves
+            style={{ left: 482, top: 220, position: "absolute" }}
+            saves={this.state.saves}
+            handleClick={this.handleClickForm}
+          />
+        )}
       </React.Fragment>
     );
   }
