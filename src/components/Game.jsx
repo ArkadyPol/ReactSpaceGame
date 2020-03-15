@@ -12,7 +12,8 @@ import {
   getSaves,
   updateCanvas,
   loadSave,
-  generateAsteroid
+  generateAsteroid,
+  collision
 } from "../logic.js";
 class Game extends Component {
   constructor(props) {
@@ -57,17 +58,33 @@ class Game extends Component {
   updatePerFrame() {
     this.requestID = requestAnimationFrame(this.updatePerFrame);
     let shots = this.state.shots
-      .map(coords => [coords[0], coords[1] - 4])
+      .map(coords => [coords[0], coords[1] - 5])
       .filter(coords => coords[1] > 0);
     let stars = this.state.stars
       .map(params => [params[0], params[1] + 1, params[2]])
       .filter(params => params[1] < 750);
     let asteroids = this.state.asteroids
       .map(params => {
-        params.y += params.speed;
+        params.x += params.vX;
+        params.y += params.vY;
         return params;
       })
       .filter(params => params.y < 850);
+    asteroids.forEach((asteroid, indexAsteroid) => {
+      let { x, y, size, vY } = asteroid;
+      shots.forEach((shot, indexShot) => {
+        if (collision([x, y, size], [shot[0], shot[1], 5])) {
+          shots.splice(indexShot, 1);
+          asteroids.splice(indexAsteroid, 1);
+          if (asteroid.size >= 10) {
+            let newSize = Math.floor(size / 2);
+            let newVY = 0.9 * vY;
+            asteroids.push({ x, y, size: newSize, vX: newVY, vY: newVY });
+            asteroids.push({ x, y, size: newSize, vX: -newVY, vY: newVY });
+          }
+        }
+      });
+    });
     let {
       rocketX,
       readyToShoot,

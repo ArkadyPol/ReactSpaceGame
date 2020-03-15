@@ -38,8 +38,16 @@ export function generateAsteroid() {
   let x = randomInteger(20, 1164);
   let y = -200;
   let size = randomInteger(5, 100);
-  let speed = randomInteger(4, 10);
-  return { x, y, size, speed };
+  let vX = randomInteger(-2, 2);
+  let vY = randomInteger(4, 10);
+  return { x, y, size, vX, vY };
+}
+export function collision([x, y, R], [x2, y2, R2]) {
+  let dx = Math.abs(x - x2);
+  let dy = Math.abs(y - y2);
+  let d = R + R2;
+  if (dx * dx + dy * dy > d * d) return false;
+  return true;
 }
 export function runTimers() {
   this.requestID = requestAnimationFrame(this.updatePerFrame);
