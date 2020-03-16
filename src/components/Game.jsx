@@ -12,9 +12,12 @@ import {
   getSaves,
   updateCanvas,
   loadSave,
-  generateAsteroid,
-  collision
+  generateAsteroid
 } from "../logic.js";
+import {
+  findCollisionsWithRocket,
+  findCollisionsWithShots
+} from "../collisions.js";
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -70,29 +73,17 @@ class Game extends Component {
         return params;
       })
       .filter(params => params.y < 850);
-    asteroids.forEach((asteroid, indexAsteroid) => {
-      let { x, y, size, vY } = asteroid;
-      shots.forEach((shot, indexShot) => {
-        if (collision([x, y, size], [shot[0], shot[1], 5])) {
-          shots.splice(indexShot, 1);
-          asteroids.splice(indexAsteroid, 1);
-          if (asteroid.size >= 10) {
-            let newSize = Math.floor(size / 2);
-            let newVY = 0.9 * vY;
-            asteroids.push({ x, y, size: newSize, vX: newVY, vY: newVY });
-            asteroids.push({ x, y, size: newSize, vX: -newVY, vY: newVY });
-          }
-        }
-      });
-    });
+    findCollisionsWithShots(asteroids, shots);
     let {
       rocketX,
       readyToShoot,
       shotMagazine,
       space,
       fps,
-      passedPath
+      passedPath,
+      health
     } = this.state;
+    health = findCollisionsWithRocket(asteroids, rocketX, health);
     let velocity = calculateVelocity(this.state);
     rocketX += velocity;
     if (rocketX < 15) {
@@ -111,7 +102,7 @@ class Game extends Component {
     }
     fps += 1;
     if (passedPath % 10 == 0) this.generateNewStars(stars);
-    if (passedPath % 80 == 0) {
+    if (passedPath % 75 == 0) {
       if (shotMagazine < 10) {
         shotMagazine += 1;
       }
@@ -120,6 +111,9 @@ class Game extends Component {
       asteroids.push(generateAsteroid());
     }
     passedPath += 1;
+    if (health <= 0) {
+      window.location.href = "/";
+    }
     this.setState({
       stars,
       shots,
@@ -128,6 +122,7 @@ class Game extends Component {
       velocity,
       fps,
       shotMagazine,
+      health,
       passedPath,
       asteroids
     });
