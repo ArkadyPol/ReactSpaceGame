@@ -101,7 +101,7 @@ class Game extends Component {
       setTimeout(() => this.setState({ readyToShoot: true }), 100);
     }
     fps += 1;
-    if (passedPath % 10 == 0) this.generateNewStars(stars);
+    if (passedPath % 12 == 0) this.generateNewStars(stars);
     if (passedPath % 75 == 0) {
       if (shotMagazine < 10) {
         shotMagazine += 1;
@@ -130,7 +130,7 @@ class Game extends Component {
     updateCanvas(ctx, this.state);
   }
   generateNewStars(stars) {
-    let quantity = randomInteger(2, 8);
+    let quantity = randomInteger(2, 7);
     for (let i = 0; i < quantity; i++) {
       stars.push(generateStar());
     }
