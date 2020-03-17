@@ -17,11 +17,12 @@ export function findCollisionsWithShots(asteroids, shots) {
 }
 export function findCollisionsWithRocket(asteroids, rocketX, health) {
   asteroids.forEach((asteroid, indexAsteroid) => {
-    let { x, y, size } = asteroid;
+    let { x, y, size, vY: speed } = asteroid;
     if (collisionCircleRectangle([x, y, size], [rocketX - 15, 627, 30, 85])) {
-      console.log(size);
       asteroids.splice(indexAsteroid, 1);
-      health -= Math.floor(size / 2);
+      let damage = Math.floor((size / 2) * (speed / 10));
+      console.log("damage:", damage);
+      health -= damage;
     }
   });
   return health;
