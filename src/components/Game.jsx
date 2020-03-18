@@ -64,7 +64,7 @@ class Game extends Component {
       .map(coords => [coords[0], coords[1] - 5])
       .filter(coords => coords[1] > 0);
     let stars = this.state.stars
-      .map(params => [params[0], params[1] + 1, params[2]])
+      .map(params => [params[0], params[1] + 0.5, params[2]])
       .filter(params => params[1] < 750);
     let asteroids = this.state.asteroids
       .map(params => {
@@ -101,7 +101,7 @@ class Game extends Component {
       setTimeout(() => this.setState({ readyToShoot: true }), 100);
     }
     fps += 1;
-    if (passedPath % 12 == 0) this.generateNewStars(stars);
+    if (passedPath % 25 == 0) this.generateNewStars(stars);
     if (passedPath % 75 == 0) {
       if (shotMagazine < 10) {
         shotMagazine += 1;
