@@ -244,14 +244,15 @@ class Game extends Component {
         >
           Сохранить игру
         </button>
-        <Form
-          display={this.state.displayForm}
-          saves={this.state.saves}
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          handleClick={this.handleClickForm}
-          input={this.state.input}
-        />
+        {this.state.displayForm && (
+          <Form
+            saves={this.state.saves}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            handleClick={this.handleClickForm}
+            input={this.state.input}
+          />
+        )}
       </React.Fragment>
     );
   }
