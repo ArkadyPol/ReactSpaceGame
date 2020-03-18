@@ -1,26 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import Saves from "./Saves.jsx";
-class Form extends Component {
-  render() {
-    let display = this.props.display ? "block" : "none";
-    return (
-      <form
-        className="save"
-        style={{ display }}
-        onSubmit={this.props.handleSubmit}
-      >
-        <Saves handleClick={this.props.handleClick} saves={this.props.saves} />
-        <input
-          style={{ width: 133 }}
-          type="text"
-          onChange={this.props.handleChange}
-          value={this.props.input}
-        />
-        <button id="save" type="submit" onClick={this.props.handleSubmit}>
-          Сохранить
-        </button>
-      </form>
-    );
-  }
+function Form(props) {
+  let display = props.display ? "block" : "none";
+  return (
+    <form className="save" style={{ display }} onSubmit={props.handleSubmit}>
+      <Saves handleClick={props.handleClick} saves={props.saves} />
+      <input
+        style={{ width: 133 }}
+        type="text"
+        onChange={props.handleChange}
+        value={props.input}
+      />
+      <button id="save" type="submit" onClick={props.handleSubmit}>
+        Сохранить
+      </button>
+    </form>
+  );
 }
+
 export default Form;
