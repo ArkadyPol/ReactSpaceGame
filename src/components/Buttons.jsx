@@ -11,7 +11,11 @@ function Buttons(props) {
       >
         Новая игра
       </button>
-      <button id="loadGame" className="button" onClick={props.handleClick}>
+      <button
+        id="loadGame"
+        className="button"
+        onClick={() => props.handleClick(true)}
+      >
         Загрузить игру
       </button>
     </React.Fragment>
