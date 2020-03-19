@@ -2,6 +2,7 @@
   width: 1184px;
   height: 740px;
   background-color: #09011a;
+  position: relative;
 }
 .button {
   font-size: 32px;
