@@ -1,5 +1,8 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleDisplay } from "../redux/actions.js";
 function Buttons(props) {
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <button
@@ -14,7 +17,7 @@ function Buttons(props) {
       <button
         id="loadGame"
         className="button"
-        onClick={() => props.handleClick(true)}
+        onClick={() => dispatch(toggleDisplay(true))}
       >
         Загрузить игру
       </button>

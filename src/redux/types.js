@@ -1,1 +1,2 @@
 export const LOADSAVES = "LOADSAVES";
+export const TOGGLEDISPLAY = "TOGGLEDISPLAY";

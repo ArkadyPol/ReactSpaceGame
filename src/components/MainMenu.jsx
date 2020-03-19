@@ -4,9 +4,13 @@ import Buttons from "./Buttons.jsx";
 import star from "../canvas/Star.js";
 import stars from "../Stars.json";
 import { getSaves } from "../logic.js";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleDisplay } from "../redux/actions.js";
 import "../styles/App.css";
+
 function MainMenu() {
-  const [displayForm, setDisplayForm] = useState(false);
+  const displayForm = useSelector(state => state);
+  const dispatch = useDispatch();
   const [saves, setSaves] = useState([]);
   const width = 1184;
   const height = 740;
@@ -20,7 +24,7 @@ function MainMenu() {
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.code == "Escape") {
-        setDisplayForm(false);
+        dispatch(toggleDisplay(false));
       }
     }
     document.addEventListener("keydown", handleKeyDown);
@@ -36,7 +40,7 @@ function MainMenu() {
   return (
     <React.Fragment>
       <canvas ref={canvas} width={width} height={height} />
-      {!displayForm && <Buttons handleClick={setDisplayForm} />}
+      {!displayForm && <Buttons />}
       {displayForm && (
         <Saves
           style={{ left: 482, top: 220, position: "absolute" }}

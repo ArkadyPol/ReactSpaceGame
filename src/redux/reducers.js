@@ -1,9 +1,9 @@
-import { LOADSAVES } from "./types";
+import { TOGGLEDISPLAY } from "./types";
 
-function rootReducer(state = [], action) {
+function rootReducer(state = false, action) {
   switch (action.type) {
-    case LOADSAVES:
-      return state;
+    case TOGGLEDISPLAY:
+      return action.display;
     default:
       return state;
   }
