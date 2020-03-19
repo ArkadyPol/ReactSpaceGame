@@ -60,10 +60,11 @@ export function updateCanvas(ctx, state) {
   shotMagazine(ctx, state.shotMagazine);
   healthBar(ctx, state.health);
 }
-export async function getSaves() {
+export async function getSaves(setSaves) {
   let response = await fetch("/saves");
   let saves = await response.json();
-  this.setState({ saves, displayForm: true });
+  //this.setState({ saves, displayForm: true });
+  setSaves(saves);
 }
 export async function loadSave(query) {
   let response = await fetch(`/save?${query}`);
