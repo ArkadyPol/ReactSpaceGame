@@ -1,10 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Saves from "./Saves.jsx";
 import Buttons from "./Buttons.jsx";
 import star from "../canvas/Star.js";
 import stars from "../Stars.json";
-import { toggleDisplay, loadSaves } from "../redux/actions.js";
+import { toggleDisplay, getSaves } from "../redux/actions.js";
 import "../styles/App.css";
 
 function MainMenu() {
@@ -34,7 +34,7 @@ function MainMenu() {
     window.location.href = `/game?save=${save}`;
   }
   useEffect(() => {
-    dispatch(loadSaves());
+    dispatch(getSaves());
   }, []);
   return (
     <React.Fragment>

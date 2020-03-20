@@ -9,7 +9,6 @@ import {
   calculateVelocity,
   randomInteger,
   generateStar,
-  getSaves,
   updateCanvas,
   loadSave,
   generateAsteroid
@@ -147,7 +146,7 @@ class Game extends Component {
       case "saveGame":
         this.refs.returnBack.style.display = "none";
         this.refs.saveGame.style.display = "none";
-        getSaves.call(this);
+        //getSaves.call(this);
         break;
     }
   }

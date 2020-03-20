@@ -1,15 +1,15 @@
-import { LOAD_SAVES, TOGGLE_DISPLAY } from "./types";
-import { getSaves } from "../logic";
+import { GET_SAVES, TOGGLE_DISPLAY } from "./types";
 
-export function loadSaves() {
+export function getSaves() {
   return async dispatch => {
-    const saves = await getSaves();
-    dispatch({ type: LOAD_SAVES, saves });
+    const response = await fetch("/saves");
+    const saves = await response.json();
+    dispatch({ type: GET_SAVES, payload: saves });
   };
 }
 export function toggleDisplay(display) {
   return {
     type: TOGGLE_DISPLAY,
-    display
+    payload: display
   };
 }
