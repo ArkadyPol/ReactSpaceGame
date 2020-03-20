@@ -1,15 +1,15 @@
-import { LOADSAVES, TOGGLEDISPLAY } from "./types";
+import { LOAD_SAVES, TOGGLE_DISPLAY } from "./types";
 import { getSaves } from "../logic";
 
 export function loadSaves() {
   return async dispatch => {
     const saves = await getSaves();
-    dispatch({ type: LOADSAVES, saves });
+    dispatch({ type: LOAD_SAVES, saves });
   };
 }
 export function toggleDisplay(display) {
   return {
-    type: TOGGLEDISPLAY,
+    type: TOGGLE_DISPLAY,
     display
   };
 }

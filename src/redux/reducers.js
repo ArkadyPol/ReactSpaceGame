@@ -1,8 +1,8 @@
-import { TOGGLEDISPLAY, LOADSAVES } from "./types";
 import { combineReducers } from "redux";
+import { TOGGLE_DISPLAY, LOAD_SAVES } from "./types";
 function displayReducer(state = false, action) {
   switch (action.type) {
-    case TOGGLEDISPLAY:
+    case TOGGLE_DISPLAY:
       return action.display;
     default:
       return state;
@@ -10,7 +10,7 @@ function displayReducer(state = false, action) {
 }
 function savesReducer(state = [], action) {
   switch (action.type) {
-    case LOADSAVES:
+    case LOAD_SAVES:
       return action.saves;
     default:
       return state;
