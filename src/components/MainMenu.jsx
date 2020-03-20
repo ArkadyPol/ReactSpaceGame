@@ -5,13 +5,13 @@ import star from "../canvas/Star.js";
 import stars from "../Stars.json";
 import { getSaves } from "../logic.js";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleDisplay } from "../redux/actions.js";
+import { toggleDisplay, loadSaves } from "../redux/actions.js";
 import "../styles/App.css";
 
 function MainMenu() {
-  const displayForm = useSelector(state => state);
+  const displayForm = useSelector(state => state.display);
+  const saves = useSelector(state => state.saves);
   const dispatch = useDispatch();
-  const [saves, setSaves] = useState([]);
   const width = 1184;
   const height = 740;
   const canvas = useRef(null);
@@ -35,7 +35,7 @@ function MainMenu() {
     window.location.href = `/game?save=${save}`;
   }
   useEffect(() => {
-    getSaves(setSaves);
+    dispatch(loadSaves());
   }, []);
   return (
     <React.Fragment>
