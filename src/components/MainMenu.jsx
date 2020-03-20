@@ -1,10 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Saves from "./Saves.jsx";
 import Buttons from "./Buttons.jsx";
 import star from "../canvas/Star.js";
 import stars from "../Stars.json";
-import { getSaves } from "../logic.js";
-import { useSelector, useDispatch } from "react-redux";
 import { toggleDisplay, loadSaves } from "../redux/actions.js";
 import "../styles/App.css";
 
