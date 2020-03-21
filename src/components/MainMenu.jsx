@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "@reach/router";
 import Saves from "./Saves.jsx";
 import Buttons from "./Buttons.jsx";
 import star from "../canvas/Star.js";
@@ -11,6 +12,7 @@ function MainMenu() {
   const displayForm = useSelector(state => state.display);
   const saves = useSelector(state => state.saves);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const width = 1184;
   const height = 740;
   const canvas = useRef(null);
@@ -22,22 +24,22 @@ function MainMenu() {
 
   useEffect(() => {
     function handleKeyDown(e) {
-      if (e.code == "Escape") {
+      if (e.code == "Escape" && displayForm) {
         dispatch(toggleDisplay(false));
       }
     }
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [displayForm]);
   function handleClickForm(e) {
     let save = e.target.textContent;
-    window.location.href = `/game?save=${save}`;
+    navigate(`/game?save=${save}`);
   }
   useEffect(() => {
     dispatch(getSaves());
   }, []);
   return (
-    <React.Fragment>
+    <Fragment>
       <canvas ref={canvas} width={width} height={height} />
       {!displayForm && <Buttons />}
       {displayForm && (
@@ -47,7 +49,7 @@ function MainMenu() {
           handleClick={handleClickForm}
         />
       )}
-    </React.Fragment>
+    </Fragment>
   );
 }
 

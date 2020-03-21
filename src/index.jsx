@@ -1,12 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import MainMenu from "./components/MainMenu.jsx";
-import store from "./redux/store";
+import { render } from "react-dom";
 import { Provider } from "react-redux";
+import { Router } from "@reach/router";
+import MainMenu from "./components/MainMenu.jsx";
+import Game from "./components/Game.jsx";
+import store from "./redux/store";
 
-ReactDOM.render(
+const Root = ({ store }) => (
   <Provider store={store}>
-    <MainMenu />
-  </Provider>,
-  document.getElementById("root")
+    <Router>
+      <MainMenu path="/" />
+      <Game path="/game" />
+    </Router>
+  </Provider>
 );
+
+render(<Root store={store} />, document.getElementById("root"));

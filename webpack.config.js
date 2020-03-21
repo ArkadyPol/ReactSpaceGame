@@ -4,13 +4,10 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   context: path.join(__dirname, "/src"),
-  entry: {
-    main: ["@babel/polyfill", "./index.jsx"],
-    game: ["@babel/polyfill", "./game.jsx"]
-  },
+  entry: ["@babel/polyfill", "./index.jsx"],
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: "[name]_bundle.js"
+    filename: "index_bundle.js"
   },
   module: {
     rules: [
@@ -44,13 +41,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "./index.html",
-      chunks: ["main"]
-    }),
-    new HtmlWebpackPlugin({
-      filename: "game.html",
-      template: "./index.html",
-      chunks: ["game"]
+      template: "./index.html"
     })
   ]
 };

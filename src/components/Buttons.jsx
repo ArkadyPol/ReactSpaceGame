@@ -1,15 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "@reach/router";
 import { toggleDisplay } from "../redux/actions.js";
-function Buttons(props) {
+function Buttons() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
-    <React.Fragment>
+    <Fragment>
       <button
         id="newGame"
         className="button"
         onClick={() => {
-          window.location.href = "/game";
+          navigate("/game", { replace: false });
         }}
       >
         Новая игра
@@ -21,7 +23,7 @@ function Buttons(props) {
       >
         Загрузить игру
       </button>
-    </React.Fragment>
+    </Fragment>
   );
 }
 export default Buttons;
