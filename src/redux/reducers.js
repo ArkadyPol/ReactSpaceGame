@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { TOGGLE_DISPLAY, GET_SAVES, RESET } from "./types";
+import { TOGGLE_DISPLAY, GET_SAVES, RESET, NEW_GAME } from "./types";
 import stars from "../initial_state/stars.json";
 import keyboard from "../initial_state/keyboard.json";
 function displayReducer(state = false, action) {
@@ -22,6 +22,8 @@ function savesReducer(state = [], action) {
 }
 function gameReducer(state = { stars }, action) {
   switch (action.type) {
+    case NEW_GAME:
+      return { ...action.payload, stars };
     default:
       return state;
   }

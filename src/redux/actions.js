@@ -1,4 +1,4 @@
-import { GET_SAVES, TOGGLE_DISPLAY, RESET } from "./types";
+import { GET_SAVES, TOGGLE_DISPLAY, RESET, NEW_GAME } from "./types";
 
 export function getSaves() {
   return async dispatch => {
@@ -14,7 +14,10 @@ export function toggleDisplay(display) {
   };
 }
 export function startNewGame() {
-  return {
-    type: RESET
+  return async dispatch => {
+    const response = await fetch("/newGame");
+    const game = await response.json();
+    dispatch({ type: NEW_GAME, payload: game });
+    dispatch({ type: RESET });
   };
 }
