@@ -4,13 +4,13 @@ import { useNavigate } from "@reach/router";
 import Saves from "./Saves.jsx";
 import Buttons from "./Buttons.jsx";
 import star from "../canvas/Star.js";
-import stars from "../Stars.json";
 import { toggleDisplay, getSaves } from "../redux/actions.js";
 import "../styles/App.css";
 
 function MainMenu() {
   const displayForm = useSelector(state => state.display);
   const saves = useSelector(state => state.saves);
+  const stars = useSelector(state => state.game.stars);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const width = 1184;

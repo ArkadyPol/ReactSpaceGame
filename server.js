@@ -3,9 +3,6 @@ const fs = require("fs");
 const app = express();
 app.use(express.static(__dirname + "/dist"));
 app.use(express.json());
-/*app.get("/game", (req, res) => {
-  res.sendFile(__dirname + "/dist/game.html");
-});*/
 app.get("/save", (req, res) => {
   res.json(loadSave(req.query));
 });

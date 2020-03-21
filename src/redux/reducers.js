@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { TOGGLE_DISPLAY, GET_SAVES } from "./types";
+import stars from "../Stars.json";
 function displayReducer(state = false, action) {
   switch (action.type) {
     case TOGGLE_DISPLAY:
@@ -16,9 +17,16 @@ function savesReducer(state = [], action) {
       return state;
   }
 }
+function gameReducer(state = { stars }, action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
 const rootReducer = combineReducers({
   display: displayReducer,
-  saves: savesReducer
+  saves: savesReducer,
+  game: gameReducer
 });
 
 export default rootReducer;
