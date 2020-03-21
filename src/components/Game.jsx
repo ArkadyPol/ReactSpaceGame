@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "./Form.jsx";
 import initialState from "../InitialState.json";
-import stars from "../Stars.json";
+import stars from "../initial_state/stars.json";
 import "../styles/App.css";
 import {
   runTimers,

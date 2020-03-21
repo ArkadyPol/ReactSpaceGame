@@ -1,18 +1,11 @@
 {
-    "arrowLeft": false,
-    "arrowRight": false,
     "asteroids": [],
-    "displayForm": false,
-    "escape": false,
-    "fps": 0,
     "health": 100,
-    "input": "",
+    "nameSave": "",
     "passedPath": 0,
     "readyToShoot": true,
     "rocketX": 592,
-    "saves": [],
     "shotMagazine": 10,
     "shots": [],
-    "space": false,
     "velocity": 0
 }
