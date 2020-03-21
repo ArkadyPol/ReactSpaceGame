@@ -4,7 +4,8 @@ import {
   RESET,
   NEW_GAME,
   ADD_FPS,
-  CLEAR_FPS
+  CLEAR_FPS,
+  UPDATE_GAME
 } from "./types";
 
 export function getSaves() {
@@ -33,4 +34,7 @@ export function addFPS() {
 }
 export function clearFPS() {
   return { type: CLEAR_FPS };
+}
+export function updateGame(game) {
+  return { type: UPDATE_GAME, payload: game };
 }

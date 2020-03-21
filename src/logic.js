@@ -34,6 +34,12 @@ export function generateStar() {
   else size = 8;
   return [x, y, size];
 }
+export function generateNewStars(stars) {
+  let quantity = randomInteger(2, 7);
+  for (let i = 0; i < quantity; i++) {
+    stars.push(generateStar());
+  }
+}
 export function generateAsteroid() {
   let x = randomInteger(20, 1164);
   let y = -200;
@@ -41,15 +47,6 @@ export function generateAsteroid() {
   let vX = randomInteger(-2, 2);
   let vY = randomInteger(4, 10);
   return { x, y, size, vX, vY };
-}
-
-export function runTimers() {
-  this.requestID = requestAnimationFrame(this.updatePerFrame);
-  this.timerFPS = setInterval(() => this.runFPS(), 1000);
-}
-export function stopTimers() {
-  cancelAnimationFrame(this.requestID);
-  clearInterval(this.timerFPS);
 }
 export function updateCanvas(ctx, state) {
   if (state.shots == undefined) return;

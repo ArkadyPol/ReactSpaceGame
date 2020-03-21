@@ -5,7 +5,8 @@ import {
   RESET,
   NEW_GAME,
   ADD_FPS,
-  CLEAR_FPS
+  CLEAR_FPS,
+  UPDATE_GAME
 } from "./types";
 import stars from "../initial_state/stars.json";
 import keyboard from "../initial_state/keyboard.json";
@@ -31,6 +32,8 @@ function gameReducer(state = { stars }, action) {
   switch (action.type) {
     case NEW_GAME:
       return { ...action.payload, stars };
+    case UPDATE_GAME:
+      return { ...state, ...action.payload };
     default:
       return state;
   }

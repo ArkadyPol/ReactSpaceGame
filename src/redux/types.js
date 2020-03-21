@@ -4,3 +4,4 @@ export const RESET = "RESET";
 export const NEW_GAME = "NEW_GAME";
 export const ADD_FPS = "ADD_FPS";
 export const CLEAR_FPS = "CLEAR_FPS";
+export const UPDATE_GAME = "UPDATE_GAME"

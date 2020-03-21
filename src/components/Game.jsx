@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, batch } from "react-redux";
 import Form from "./Form.jsx";
 import "../styles/App.css";
-import { updateCanvas } from "../logic.js";
-import { addFPS, clearFPS } from "../redux/actions.js";
+import { updateCanvas, generateNewStars } from "../logic.js";
+import { addFPS, clearFPS, updateGame } from "../redux/actions.js";
 function Game() {
   const game = useSelector(state => state.game);
   const dispatch = useDispatch();
@@ -26,14 +26,22 @@ function Game() {
   }, []);
   function updatePerFrame() {
     requestID.current = requestAnimationFrame(updatePerFrame);
-    dispatch(addFPS());
+    let stars = game.stars
+      .map(params => [params[0], params[1] + 0.5, params[2]])
+      .filter(params => params[1] < 750);
+    let passedPath = game.passedPath + 1;
+    if (passedPath % 25 == 0) generateNewStars(stars);
+    batch(() => {
+      dispatch(updateGame({ stars, passedPath }));
+      dispatch(addFPS());
+    });
   }
   useEffect(() => {
     requestID.current = requestAnimationFrame(updatePerFrame);
     return () => {
       cancelAnimationFrame(requestID.current);
     };
-  }, []);
+  }, [game]);
   return <canvas ref={canvas} width={width} height={height} />;
 }
 export default Game;
