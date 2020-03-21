@@ -52,6 +52,7 @@ export function stopTimers() {
   clearInterval(this.timerFPS);
 }
 export function updateCanvas(ctx, state) {
+  if (state.shots == undefined) return;
   ctx.clearRect(0, 0, 1184, 740);
   state.stars.forEach(params => star(ctx, params));
   state.shots.forEach(coords => shot(ctx, coords));

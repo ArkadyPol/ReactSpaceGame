@@ -1,4 +1,11 @@
-import { GET_SAVES, TOGGLE_DISPLAY, RESET, NEW_GAME } from "./types";
+import {
+  GET_SAVES,
+  TOGGLE_DISPLAY,
+  RESET,
+  NEW_GAME,
+  ADD_FPS,
+  CLEAR_FPS
+} from "./types";
 
 export function getSaves() {
   return async dispatch => {
@@ -20,4 +27,10 @@ export function startNewGame() {
     dispatch({ type: NEW_GAME, payload: game });
     dispatch({ type: RESET });
   };
+}
+export function addFPS() {
+  return { type: ADD_FPS };
+}
+export function clearFPS() {
+  return { type: CLEAR_FPS };
 }
