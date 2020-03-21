@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
-import { TOGGLE_DISPLAY, GET_SAVES } from "./types";
+import { TOGGLE_DISPLAY, GET_SAVES, RESET } from "./types";
 import stars from "../initial_state/stars.json";
 import keyboard from "../initial_state/keyboard.json";
 function displayReducer(state = false, action) {
   switch (action.type) {
     case TOGGLE_DISPLAY:
       return action.payload;
+    case RESET:
+      return false;
     default:
       return state;
   }
@@ -26,12 +28,16 @@ function gameReducer(state = { stars }, action) {
 }
 function keyboardReducer(state = keyboard, action) {
   switch (action.type) {
+    case RESET:
+      return keyboard;
     default:
       return state;
   }
 }
 function fpsReducer(state = 0, action) {
   switch (action.type) {
+    case RESET:
+      return 0;
     default:
       return state;
   }
