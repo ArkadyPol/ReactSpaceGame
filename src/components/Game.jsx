@@ -2,7 +2,12 @@ import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import Form from "./Form.jsx";
 import "../styles/App.css";
-import { updateCanvas, generateNewStars, calculateVelocity } from "../logic.js";
+import {
+  updateCanvas,
+  generateNewStars,
+  calculateVelocity,
+  generateAsteroid
+} from "../logic.js";
 import {
   addFPS,
   clearFPS,
@@ -41,7 +46,8 @@ function Game() {
       rocketX,
       readyToShoot,
       shotMagazine,
-      shots
+      shots,
+      asteroids
     } = game;
     stars = game.stars
       .map(params => [params[0], params[1] + 0.5, params[2]])
@@ -50,6 +56,15 @@ function Game() {
       shots = shots
         .map(coords => [coords[0], coords[1] - 5])
         .filter(coords => coords[1] > 0);
+    }
+    if (asteroids) {
+      asteroids = asteroids
+        .map(params => {
+          params.x += params.vX;
+          params.y += params.vY;
+          return params;
+        })
+        .filter(params => params.y < 850);
     }
     velocity = calculateVelocity({
       velocity,
@@ -78,6 +93,9 @@ function Game() {
         shotMagazine += 1;
       }
     }
+    if (passedPath % 100 == 0) {
+      asteroids.push(generateAsteroid());
+    }
     batch(() => {
       dispatch(
         updateGame({
@@ -87,7 +105,8 @@ function Game() {
           rocketX,
           readyToShoot,
           shotMagazine,
-          shots
+          shots,
+          asteroids
         })
       );
       dispatch(addFPS());
