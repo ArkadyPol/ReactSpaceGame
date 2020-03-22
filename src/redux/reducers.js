@@ -6,7 +6,9 @@ import {
   NEW_GAME,
   ADD_FPS,
   CLEAR_FPS,
-  UPDATE_GAME
+  UPDATE_GAME,
+  TOGGLE_ARROW_LEFT,
+  TOGGLE_ARROW_RIGHT
 } from "./types";
 import stars from "../initial_state/stars.json";
 import keyboard from "../initial_state/keyboard.json";
@@ -42,6 +44,10 @@ function keyboardReducer(state = keyboard, action) {
   switch (action.type) {
     case RESET:
       return keyboard;
+    case TOGGLE_ARROW_LEFT:
+      return { ...state, arrowLeft: action.payload };
+    case TOGGLE_ARROW_RIGHT:
+      return { ...state, arrowRight: action.payload };
     default:
       return state;
   }

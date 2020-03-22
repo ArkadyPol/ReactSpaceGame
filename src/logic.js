@@ -5,14 +5,14 @@ import shotMagazine from "./canvas/ShotMagazine.js";
 import healthBar from "./canvas/HealthBar.js";
 import asteroid from "./canvas/Asteroid.js";
 export function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
-  if (Math.abs(velocity) < 0.14) velocity = 0;
-  if (velocity > 0) velocity -= 0.14;
-  if (velocity < 0) velocity += 0.14;
+  if (Math.abs(velocity) < 0.12) velocity = 0;
+  if (velocity > 0) velocity -= 0.12;
+  if (velocity < 0) velocity += 0.12;
   if (arrowLeft) {
-    velocity -= 0.36;
+    velocity -= 0.3;
   }
   if (arrowRight) {
-    velocity += 0.36;
+    velocity += 0.3;
   }
   return velocity;
 }
