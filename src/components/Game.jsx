@@ -16,6 +16,10 @@ import {
   toggleArrowRight,
   toggleSpace
 } from "../redux/actions.js";
+import {
+  findCollisionsWithRocket,
+  findCollisionsWithShots
+} from "../collisions.js";
 function Game() {
   const game = useSelector(state => state.game);
   const keyboard = useSelector(state => state.keyboard);
@@ -47,7 +51,8 @@ function Game() {
       readyToShoot,
       shotMagazine,
       shots,
-      asteroids
+      asteroids,
+      health
     } = game;
     stars = game.stars
       .map(params => [params[0], params[1] + 0.5, params[2]])
@@ -65,6 +70,10 @@ function Game() {
           return { ...params, x, y };
         })
         .filter(params => params.y < 850);
+    }
+    if (asteroids) {
+      findCollisionsWithShots(asteroids, shots, dispatch);
+      health = findCollisionsWithRocket(asteroids, rocketX, health);
     }
     velocity = calculateVelocity({
       velocity,
@@ -106,7 +115,8 @@ function Game() {
           readyToShoot,
           shotMagazine,
           shots,
-          asteroids
+          asteroids,
+          health
         })
       );
       dispatch(addFPS());
