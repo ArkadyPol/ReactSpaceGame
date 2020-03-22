@@ -7,7 +7,8 @@ import {
   CLEAR_FPS,
   UPDATE_GAME,
   TOGGLE_ARROW_RIGHT,
-  TOGGLE_ARROW_LEFT
+  TOGGLE_ARROW_LEFT,
+  TOGGLE_SPACE
 } from "./types";
 
 export function getSaves() {
@@ -49,6 +50,12 @@ export function toggleArrowLeft(key) {
 export function toggleArrowRight(key) {
   return {
     type: TOGGLE_ARROW_RIGHT,
+    payload: key
+  };
+}
+export function toggleSpace(key) {
+  return {
+    type: TOGGLE_SPACE,
     payload: key
   };
 }

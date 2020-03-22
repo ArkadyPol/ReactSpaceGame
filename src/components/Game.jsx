@@ -8,7 +8,8 @@ import {
   clearFPS,
   updateGame,
   toggleArrowLeft,
-  toggleArrowRight
+  toggleArrowRight,
+  toggleSpace
 } from "../redux/actions.js";
 function Game() {
   const game = useSelector(state => state.game);
@@ -33,10 +34,23 @@ function Game() {
   }, []);
   function updatePerFrame() {
     requestID.current = requestAnimationFrame(updatePerFrame);
-    let { stars, passedPath, velocity, rocketX } = game;
+    let {
+      stars,
+      passedPath,
+      velocity,
+      rocketX,
+      readyToShoot,
+      shotMagazine,
+      shots
+    } = game;
     stars = game.stars
       .map(params => [params[0], params[1] + 0.5, params[2]])
       .filter(params => params[1] < 750);
+    if (shots) {
+      shots = shots
+        .map(coords => [coords[0], coords[1] - 5])
+        .filter(coords => coords[1] > 0);
+    }
     velocity = calculateVelocity({
       velocity,
       arrowLeft: keyboard.arrowLeft,
@@ -51,10 +65,31 @@ function Game() {
       rocketX = 1169;
       velocity = 0;
     }
+    if (keyboard.space && readyToShoot && shotMagazine > 0) {
+      shots.push([rocketX, 625]);
+      readyToShoot = false;
+      shotMagazine -= 1;
+      setTimeout(() => dispatch(updateGame({ readyToShoot: true })), 100);
+    }
     passedPath += 1;
     if (passedPath % 25 == 0) generateNewStars(stars);
+    if (passedPath % 75 == 0) {
+      if (shotMagazine < 10) {
+        shotMagazine += 1;
+      }
+    }
     batch(() => {
-      dispatch(updateGame({ stars, passedPath, velocity, rocketX }));
+      dispatch(
+        updateGame({
+          stars,
+          passedPath,
+          velocity,
+          rocketX,
+          readyToShoot,
+          shotMagazine,
+          shots
+        })
+      );
       dispatch(addFPS());
     });
   }
@@ -72,6 +107,9 @@ function Game() {
       case "ArrowRight":
         dispatch(toggleArrowRight(true));
         break;
+      case "Space":
+        dispatch(toggleSpace(true));
+        break;
     }
   }
   function handleKeyUp(e) {
@@ -81,6 +119,9 @@ function Game() {
         break;
       case "ArrowRight":
         dispatch(toggleArrowRight(false));
+        break;
+      case "Space":
+        dispatch(toggleSpace(false));
         break;
     }
   }

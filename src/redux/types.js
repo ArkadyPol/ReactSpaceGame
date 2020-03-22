@@ -7,3 +7,4 @@ export const CLEAR_FPS = "CLEAR_FPS";
 export const UPDATE_GAME = "UPDATE_GAME";
 export const TOGGLE_ARROW_LEFT = "TOGGLE_ARROW_LEFT";
 export const TOGGLE_ARROW_RIGHT = "TOGGLE_ARROW_RIGHT";
+export const TOGGLE_SPACE = "TOGGLE_SPACE";
