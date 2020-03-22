@@ -60,9 +60,9 @@ function Game() {
     if (asteroids) {
       asteroids = asteroids
         .map(params => {
-          params.x += params.vX;
-          params.y += params.vY;
-          return params;
+          let x = params.x + params.vX;
+          let y = params.y + params.vY;
+          return { ...params, x, y };
         })
         .filter(params => params.y < 850);
     }
@@ -84,9 +84,9 @@ function Game() {
       shots.push([rocketX, 625]);
       readyToShoot = false;
       shotMagazine -= 1;
-      setTimeout(() => dispatch(updateGame({ readyToShoot: true })), 100);
     }
     passedPath += 1;
+    if (passedPath % 5 == 0 && !readyToShoot) readyToShoot = true;
     if (passedPath % 25 == 0) generateNewStars(stars);
     if (passedPath % 75 == 0) {
       if (shotMagazine < 10) {
