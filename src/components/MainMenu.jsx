@@ -2,7 +2,7 @@ import React, { useRef, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
 import Saves from "./Saves.jsx";
-import Buttons from "./Buttons.jsx";
+import { default as Buttons } from "./ButtonsMenu.jsx";
 import star from "../canvas/Star.js";
 import { toggleDisplay, getSaves } from "../redux/actions.js";
 import "../styles/App.css";

@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, Fragment } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import Form from "./Form.jsx";
+import { default as Buttons } from "./ButtonsGame.jsx";
 import "../styles/App.css";
 import {
   updateCanvas,
@@ -14,7 +15,8 @@ import {
   updateGame,
   toggleArrowLeft,
   toggleArrowRight,
-  toggleSpace
+  toggleSpace,
+  toggleEscape
 } from "../redux/actions.js";
 import {
   findCollisionsWithRocket,
@@ -139,6 +141,19 @@ function Game() {
       case "Space":
         dispatch(toggleSpace(true));
         break;
+      case "Escape":
+        if (keyboard.escape) {
+          requestID.current = requestAnimationFrame(updatePerFrame);
+          timerFPS.current = setInterval(() => {
+            dispatch(clearFPS());
+          }, 5000);
+        } else {
+          cancelAnimationFrame(requestID.current);
+          clearInterval(timerFPS.current);
+          dispatch(clearFPS());
+        }
+        dispatch(toggleEscape());
+        break;
     }
   }
   function handleKeyUp(e) {
@@ -161,7 +176,12 @@ function Game() {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, []);
-  return <canvas ref={canvas} width={width} height={height} />;
+  }, [keyboard]);
+  return (
+    <Fragment>
+      <canvas ref={canvas} width={width} height={height} />
+      {keyboard.escape && <Buttons />}
+    </Fragment>
+  );
 }
 export default Game;

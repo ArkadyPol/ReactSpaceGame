@@ -1,30 +1,30 @@
 import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
-import { toggleDisplay, startNewGame } from "../redux/actions.js";
-function Buttons() {
+//import { toggleDisplay, startNewGame } from "../redux/actions.js";
+function ButtonsMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
     <Fragment>
       <button
-        id="newGame"
+        id="saveGame"
         className="button"
-        onClick={() => {
+        /*onClick={() => {
           dispatch(startNewGame());
-          navigate("/game", { replace: false });
-        }}
+          navigate("/game");
+        }}*/
       >
-        Новая игра
+        Сохранить игру
       </button>
       <button
-        id="loadGame"
+        id="returnBack"
         className="button"
-        onClick={() => dispatch(toggleDisplay(true))}
+        /*onClick={() => dispatch(toggleDisplay(true))}*/
       >
-        Загрузить игру
+        Вернуться в главное меню
       </button>
     </Fragment>
   );
 }
-export default Buttons;
+export default ButtonsMenu;

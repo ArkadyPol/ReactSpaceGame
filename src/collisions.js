@@ -5,7 +5,7 @@ export function findCollisionsWithShots(asteroids, shots) {
       if (collisionCircles([x, y, size], [shot[0], shot[1], 5])) {
         shots.splice(indexShot, 1);
         asteroids.splice(indexAsteroid, 1);
-        if (asteroid.size >= 10) {
+        if (size >= 10) {
           let newSize = Math.floor(size / 2);
           let newVY = 0.9 * vY;
           asteroids.push({ x, y, size: newSize, vX: newVY, vY: newVY });

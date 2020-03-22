@@ -8,7 +8,8 @@ import {
   UPDATE_GAME,
   TOGGLE_ARROW_RIGHT,
   TOGGLE_ARROW_LEFT,
-  TOGGLE_SPACE
+  TOGGLE_SPACE,
+  TOGGLE_ESCAPE
 } from "./types";
 
 export function getSaves() {
@@ -57,5 +58,10 @@ export function toggleSpace(key) {
   return {
     type: TOGGLE_SPACE,
     payload: key
+  };
+}
+export function toggleEscape() {
+  return {
+    type: TOGGLE_ESCAPE
   };
 }

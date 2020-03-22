@@ -9,7 +9,8 @@ import {
   UPDATE_GAME,
   TOGGLE_ARROW_LEFT,
   TOGGLE_ARROW_RIGHT,
-  TOGGLE_SPACE
+  TOGGLE_SPACE,
+  TOGGLE_ESCAPE
 } from "./types";
 import stars from "../initial_state/stars.json";
 import keyboard from "../initial_state/keyboard.json";
@@ -51,6 +52,8 @@ function keyboardReducer(state = keyboard, action) {
       return { ...state, arrowRight: action.payload };
     case TOGGLE_SPACE:
       return { ...state, space: action.payload };
+    case TOGGLE_ESCAPE:
+      return { ...state, escape: !state.escape };
     default:
       return state;
   }
