@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
+import { reset } from "../redux/actions";
 //import { toggleDisplay, startNewGame } from "../redux/actions.js";
 function ButtonsMenu() {
   const dispatch = useDispatch();
@@ -20,7 +21,10 @@ function ButtonsMenu() {
       <button
         id="returnBack"
         className="button"
-        /*onClick={() => dispatch(toggleDisplay(true))}*/
+        onClick={() => {
+          navigate("/");
+          dispatch(reset());
+        }}
       >
         Вернуться в главное меню
       </button>

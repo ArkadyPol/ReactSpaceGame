@@ -143,6 +143,8 @@ function Game() {
         break;
       case "Escape":
         if (keyboard.escape) {
+          cancelAnimationFrame(requestID.current);
+          clearInterval(timerFPS.current);
           requestID.current = requestAnimationFrame(updatePerFrame);
           timerFPS.current = setInterval(() => {
             dispatch(clearFPS());

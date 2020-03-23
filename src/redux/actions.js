@@ -25,12 +25,16 @@ export function toggleDisplay(display) {
     payload: display
   };
 }
+export function reset() {
+  return dispatch => {
+    setTimeout(() => dispatch({ type: RESET }), 100);
+  };
+}
 export function startNewGame() {
   return async dispatch => {
     const response = await fetch("/newGame");
     const game = await response.json();
     dispatch({ type: NEW_GAME, payload: game });
-    dispatch({ type: RESET });
   };
 }
 export function addFPS() {

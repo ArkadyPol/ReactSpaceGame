@@ -38,6 +38,9 @@ function gameReducer(state = { stars }, action) {
       return { ...action.payload, stars };
     case UPDATE_GAME:
       return { ...state, ...action.payload };
+    case RESET: {
+      return { stars };
+    }
     default:
       return state;
   }

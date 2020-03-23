@@ -12,7 +12,9 @@ function ButtonsMenu() {
         className="button"
         onClick={() => {
           dispatch(startNewGame());
-          navigate("/game");
+          setTimeout(() => {
+            navigate("/game");
+          }, 50);
         }}
       >
         Новая игра
