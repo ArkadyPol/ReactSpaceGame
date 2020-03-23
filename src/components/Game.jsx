@@ -69,9 +69,6 @@ function Game() {
       case "Escape":
         if (keyboard.escape) {
           runTimers();
-          timerFPS.current = setInterval(() => {
-            dispatch(clearFPS());
-          }, 5000);
         } else {
           stopTimers();
           dispatch(clearFPS());
