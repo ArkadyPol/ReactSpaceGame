@@ -1,7 +1,6 @@
 {
     "asteroids": [],
     "health": 100,
-    "nameSave": "",
     "passedPath": 0,
     "readyToShoot": true,
     "rocketX": 592,

@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
 import { reset } from "../redux/actions";
-//import { toggleDisplay, startNewGame } from "../redux/actions.js";
+import { toggleDisplay } from "../redux/actions.js";
 function ButtonsMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -11,6 +11,7 @@ function ButtonsMenu() {
       <button
         id="saveGame"
         className="button"
+        onClick={() => dispatch(toggleDisplay(true))}
         /*onClick={() => {
           dispatch(startNewGame());
           navigate("/game");

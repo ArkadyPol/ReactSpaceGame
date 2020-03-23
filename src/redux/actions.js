@@ -9,7 +9,9 @@ import {
   TOGGLE_ARROW_RIGHT,
   TOGGLE_ARROW_LEFT,
   TOGGLE_SPACE,
-  TOGGLE_ESCAPE
+  TOGGLE_ESCAPE,
+  CHANGE_SAVE_NAME,
+  SAVE_GAME
 } from "./types";
 
 export function getSaves() {
@@ -65,7 +67,31 @@ export function toggleSpace(key) {
   };
 }
 export function toggleEscape() {
+  return dispatch => {
+    dispatch({ type: TOGGLE_ESCAPE });
+    dispatch(toggleDisplay(false));
+  };
+}
+export function changeSaveName(save) {
   return {
-    type: TOGGLE_ESCAPE
+    type: CHANGE_SAVE_NAME,
+    payload: save
+  };
+}
+export function saveGame(saveName) {
+  return (dispatch, getState) => {
+    let game = getState().game;
+    let save = { saveName, game };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body: JSON.stringify(save)
+    };
+    fetch("/saves", options);
+    dispatch({ type: SAVE_GAME, payload: save });
+    dispatch(getSaves());
+    dispatch(toggleEscape());
   };
 }

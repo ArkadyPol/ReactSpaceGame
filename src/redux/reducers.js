@@ -10,7 +10,8 @@ import {
   TOGGLE_ARROW_LEFT,
   TOGGLE_ARROW_RIGHT,
   TOGGLE_SPACE,
-  TOGGLE_ESCAPE
+  TOGGLE_ESCAPE,
+  CHANGE_SAVE_NAME
 } from "./types";
 import stars from "../initial_state/stars.json";
 import keyboard from "../initial_state/keyboard.json";
@@ -24,10 +25,12 @@ function displayReducer(state = false, action) {
       return state;
   }
 }
-function savesReducer(state = [], action) {
+function savesReducer(state = { saves: [], saveName: "" }, action) {
   switch (action.type) {
     case GET_SAVES:
-      return action.payload;
+      return { ...state, saves: action.payload };
+    case CHANGE_SAVE_NAME:
+      return { ...state, saveName: action.payload };
     default:
       return state;
   }

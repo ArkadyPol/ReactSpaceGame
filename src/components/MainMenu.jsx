@@ -9,7 +9,7 @@ import "../styles/App.css";
 
 function MainMenu() {
   const displayForm = useSelector(state => state.display);
-  const saves = useSelector(state => state.saves);
+  const saves = useSelector(state => state.saves.saves);
   const stars = useSelector(state => state.game.stars);
   const dispatch = useDispatch();
   const navigate = useNavigate();

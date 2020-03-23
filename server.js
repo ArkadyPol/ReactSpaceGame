@@ -40,8 +40,8 @@ function loadSave(query) {
   return save;
 }
 function createSave(save) {
-  let name = save.input;
-  fs.writeFileSync(`saves/${name}.json`, JSON.stringify(save, null, 4));
+  let name = save.saveName;
+  fs.writeFileSync(`saves/${name}.json`, JSON.stringify(save.game, null, 4));
 }
 function getTime(path) {
   let stats = fs.statSync(path);
