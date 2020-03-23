@@ -11,7 +11,8 @@ import {
   TOGGLE_SPACE,
   TOGGLE_ESCAPE,
   CHANGE_SAVE_NAME,
-  SAVE_GAME
+  SAVE_GAME,
+  LOAD_GAME
 } from "./types";
 
 export function getSaves() {
@@ -93,5 +94,20 @@ export function saveGame(saveName) {
     dispatch({ type: SAVE_GAME, payload: save });
     dispatch(getSaves());
     dispatch(toggleEscape());
+  };
+}
+export function loadGame(save) {
+  return async dispatch => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body: JSON.stringify({ name: save })
+    };
+    const response = await fetch("/save", options);
+    const game = await response.json();
+    dispatch({ type: LOAD_GAME, payload: game });
+    dispatch(toggleDisplay(false));
   };
 }

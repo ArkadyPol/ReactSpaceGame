@@ -11,7 +11,8 @@ import {
   TOGGLE_ARROW_RIGHT,
   TOGGLE_SPACE,
   TOGGLE_ESCAPE,
-  CHANGE_SAVE_NAME
+  CHANGE_SAVE_NAME,
+  LOAD_GAME
 } from "./types";
 import stars from "../initial_state/stars.json";
 import keyboard from "../initial_state/keyboard.json";
@@ -38,7 +39,9 @@ function savesReducer(state = { saves: [], saveName: "" }, action) {
 function gameReducer(state = { stars }, action) {
   switch (action.type) {
     case NEW_GAME:
-      return { ...action.payload, stars };
+      return { ...state, ...action.payload };
+    case LOAD_GAME:
+      return { ...action.payload };
     case UPDATE_GAME:
       return { ...state, ...action.payload };
     case RESET: {

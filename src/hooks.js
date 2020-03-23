@@ -5,7 +5,7 @@ import {
   calculateVelocity,
   generateAsteroid
 } from "./logic.js";
-import { addFPS, updateGame } from "./redux/actions.js";
+import { addFPS, updateGame, reset } from "./redux/actions.js";
 import {
   findCollisionsWithRocket,
   findCollisionsWithShots

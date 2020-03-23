@@ -4,7 +4,7 @@ import { useNavigate } from "@reach/router";
 import Saves from "./Saves.jsx";
 import { default as Buttons } from "./ButtonsMenu.jsx";
 import star from "../canvas/Star.js";
-import { toggleDisplay, getSaves } from "../redux/actions.js";
+import { toggleDisplay, getSaves, loadGame } from "../redux/actions.js";
 import "../styles/App.css";
 
 function MainMenu() {
@@ -33,7 +33,10 @@ function MainMenu() {
   }, [displayForm]);
   function handleClickForm(e) {
     let save = e.target.textContent;
-    navigate(`/game?save=${save}`);
+    dispatch(loadGame(save));
+    setTimeout(() => {
+      navigate("/game");
+    }, 50);
   }
   useEffect(() => {
     dispatch(getSaves());

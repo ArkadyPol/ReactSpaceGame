@@ -6,8 +6,8 @@ app.use(express.json());
 app.get("/newGame", (req, res) => {
   res.json(newGame());
 });
-app.get("/save", (req, res) => {
-  res.json(loadSave(req.query));
+app.post("/save", (req, res) => {
+  res.json(loadSave(req.body));
 });
 app.get("/saves", (req, res) => {
   res.json(getSaves());
@@ -35,8 +35,8 @@ function newGame() {
   );
   return game;
 }
-function loadSave(query) {
-  let save = JSON.parse(fs.readFileSync(`saves/${query.save}.json`, "utf8"));
+function loadSave(saveName) {
+  let save = JSON.parse(fs.readFileSync(`saves/${saveName.name}.json`, "utf8"));
   return save;
 }
 function createSave(save) {

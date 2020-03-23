@@ -11,3 +11,4 @@ export const TOGGLE_SPACE = "TOGGLE_SPACE";
 export const TOGGLE_ESCAPE = "TOGGLE_ESCAPE";
 export const CHANGE_SAVE_NAME = "CHANGE_SAVE_NAME";
 export const SAVE_GAME = "SAVE_GAME";
+export const LOAD_GAME = "LOAD_GAME";
