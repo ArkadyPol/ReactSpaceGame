@@ -1,11 +1,12 @@
 {
   "name": "react-space-game",
   "version": "1.0.0",
+  "main": "main.js",
   "description": "",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "electron .",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production"
   },
