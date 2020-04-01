@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "package": "electron-packager . "
   },
   "author": "Arkady",
   "license": "ISC",
