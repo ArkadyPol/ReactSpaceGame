@@ -23,7 +23,7 @@ app.listen(3000, () => {
   console.log("Port 3000 listen");
 });
 function getSaves() {
-  let saves = fs.readdirSync("saves", "utf8");
+  let saves = fs.readdirSync("saves", "utf-8");
   saves = saves
     .sort((a, b) => getTime(`saves/${b}`) - getTime(`saves/${a}`))
     .map(file => file.split(".")[0]);
@@ -36,7 +36,7 @@ function newGame() {
   return game;
 }
 function loadSave(saveName) {
-  let save = JSON.parse(fs.readFileSync(`saves/${saveName.name}.json`, "utf8"));
+  let save = JSON.parse(fs.readFileSync(`saves/${saveName.name}.json`, "utf-8"));
   return save;
 }
 function createSave(save) {
