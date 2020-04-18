@@ -3,12 +3,12 @@ import { useNavigate } from "@reach/router";
 import {
   generateNewStars,
   calculateVelocity,
-  generateAsteroid
+  generateAsteroid,
 } from "./logic.js";
 import { addFPS, updateGame, reset } from "./redux/actions.js";
 import {
   findCollisionsWithRocket,
-  findCollisionsWithShots
+  findCollisionsWithShots,
 } from "./collisions.js";
 export function useAnimate(requestID) {
   const dispatch = useDispatch();
@@ -28,27 +28,36 @@ export function useAnimate(requestID) {
       shotMagazine,
       shots,
       asteroids,
-      health
+      boxes,
+      health,
     } = game;
     stars = stars
-      .map(params => [params[0], params[1] + 0.5, params[2]])
-      .filter(params => params[1] < 750);
+      .map((params) => [params[0], params[1] + 0.5, params[2]])
+      .filter((params) => params[1] < 750);
     if (shots) {
       shots = shots
-        .map(coords => [coords[0], coords[1] - 5])
-        .filter(coords => coords[1] > 0);
+        .map((coords) => [coords[0], coords[1] - 5])
+        .filter((coords) => coords[1] > 0);
     }
     if (asteroids) {
       asteroids = asteroids
-        .map(params => {
+        .map((params) => {
           let x = params.x + params.vX;
           let y = params.y + params.vY;
           return { ...params, x, y };
         })
-        .filter(params => params.y < 850);
+        .filter((params) => params.y < 850);
+    }
+    if (boxes) {
+      boxes = boxes
+        .map((params) => {
+          let y = params.y + 2;
+          return { ...params, y };
+        })
+        .filter((params) => params.y < 800);
     }
     if (asteroids) {
-      findCollisionsWithShots(asteroids, shots, dispatch);
+      findCollisionsWithShots(asteroids, shots, boxes);
       health = findCollisionsWithRocket(asteroids, rocketX, health);
     }
     if (health <= 0) {
@@ -58,7 +67,7 @@ export function useAnimate(requestID) {
     velocity = calculateVelocity({
       velocity,
       arrowLeft: keyboard.arrowLeft,
-      arrowRight: keyboard.arrowRight
+      arrowRight: keyboard.arrowRight,
     });
     rocketX += velocity;
     if (rocketX < 15) {
@@ -96,7 +105,8 @@ export function useAnimate(requestID) {
           shotMagazine,
           shots,
           asteroids,
-          health
+          boxes,
+          health,
         })
       );
       dispatch(addFPS());

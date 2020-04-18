@@ -4,6 +4,7 @@ import rocket from "./canvas/Rocket.js";
 import shotMagazine from "./canvas/ShotMagazine.js";
 import healthBar from "./canvas/HealthBar.js";
 import asteroid from "./canvas/Asteroid.js";
+import box from "./canvas/Box.js";
 export function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
   if (Math.abs(velocity) < 0.12) velocity = 0;
   if (velocity > 0) velocity -= 0.12;
@@ -51,9 +52,10 @@ export function generateAsteroid() {
 export function updateCanvas(ctx, state) {
   if (state.shots == undefined) return;
   ctx.clearRect(0, 0, 1184, 740);
-  state.stars.forEach(params => star(ctx, params));
-  state.shots.forEach(coords => shot(ctx, coords));
-  state.asteroids.forEach(params => asteroid(ctx, params));
+  state.stars.forEach((params) => star(ctx, params));
+  state.shots.forEach((coords) => shot(ctx, coords));
+  state.asteroids.forEach((params) => asteroid(ctx, params));
+  state.boxes.forEach((params) => box(ctx, params));
   rocket(ctx, state.rocketX);
   shotMagazine(ctx, state.shotMagazine);
   healthBar(ctx, state.health);

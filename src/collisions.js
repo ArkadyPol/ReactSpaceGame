@@ -1,4 +1,4 @@
-export function findCollisionsWithShots(asteroids, shots) {
+export function findCollisionsWithShots(asteroids, shots, boxes) {
   asteroids.forEach((asteroid, indexAsteroid) => {
     let { x, y, size, vY } = asteroid;
     shots.forEach((shot, indexShot) => {
@@ -10,6 +10,7 @@ export function findCollisionsWithShots(asteroids, shots) {
           let newVY = 0.9 * vY;
           asteroids.push({ x, y, size: newSize, vX: newVY, vY: newVY });
           asteroids.push({ x, y, size: newSize, vX: -newVY, vY: newVY });
+          boxes.push({ x, y, color: "red" });
         }
       }
     });

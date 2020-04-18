@@ -6,5 +6,6 @@
     "rocketX": 592,
     "shotMagazine": 10,
     "shots": [],
-    "velocity": 0
+    "velocity": 0,
+    "boxes": []
 }
