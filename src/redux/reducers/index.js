@@ -13,9 +13,9 @@ import {
   TOGGLE_ESCAPE,
   CHANGE_SAVE_NAME,
   LOAD_GAME,
-} from "./types";
-import stars from "../initial_state/stars.json";
-import keyboard from "../initial_state/keyboard.json";
+} from "../types";
+import stars from "../../initial_state/stars.json";
+import keyboard from "../../initial_state/keyboard.json";
 const displayReducer = (state = false, action) => {
   switch (action.type) {
     case TOGGLE_DISPLAY:
