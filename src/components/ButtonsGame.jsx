@@ -12,10 +12,6 @@ function ButtonsMenu() {
         id="saveGame"
         className="button"
         onClick={() => dispatch(toggleDisplay(true))}
-        /*onClick={() => {
-          dispatch(startNewGame());
-          navigate("/game");
-        }}*/
       >
         Сохранить игру
       </button>
