@@ -14,7 +14,7 @@ export const useAnimate = (requestID) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const store = useStore();
-  return () => {
+  return function updatePerFrame() {
     requestID.current = requestAnimationFrame(updatePerFrame);
     const state = store.getState();
     const game = state.game;
