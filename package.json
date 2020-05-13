@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "npm-run-all -p dev-webpack nodemon",
-    "build": "webpack --mode production",
+    "build": "webpack --config prod.config.js",
     "nodemon": "nodemon server.js",
-    "dev-webpack": "webpack --mode development --watch"
+    "dev-webpack": "webpack --config dev.config.js"
   },
   "author": "Arkady",
   "license": "ISC",
