@@ -1,11 +1,11 @@
 {
     "asteroids": [],
+    "boxes": [],
     "health": 100,
     "passedPath": 0,
     "readyToShoot": true,
     "rocketX": 592,
     "shotMagazine": 10,
     "shots": [],
-    "velocity": 0,
-    "boxes": []
+    "velocity": 0
 }
