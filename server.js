@@ -16,9 +16,7 @@ app.post("/saves", (req, res) => {
   createSave(req.body);
   res.end();
 });
-app.get("/*", (req, res) => {
-  res.redirect("/");
-});
+
 app.listen(3000, () => {
   console.log("Port 3000 listen");
 });
