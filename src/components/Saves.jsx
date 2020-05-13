@@ -1,6 +1,6 @@
 import React from "react";
-function Saves(props) {
-  let buttons = props.saves.map(save => (
+const Saves = (props) => {
+  let buttons = props.saves.map((save) => (
     <button key={save} className="save-button" onClick={props.handleClick}>
       {save}
     </button>
@@ -10,5 +10,5 @@ function Saves(props) {
       {buttons}
     </div>
   );
-}
+};
 export default Saves;

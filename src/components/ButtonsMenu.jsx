@@ -2,11 +2,11 @@ import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
 import { toggleDisplay, startNewGame } from "../redux/actions.js";
-function ButtonsMenu() {
+const ButtonsMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
-    <Fragment>
+    <>
       <button
         id="newGame"
         className="button"
@@ -26,7 +26,7 @@ function ButtonsMenu() {
       >
         Загрузить игру
       </button>
-    </Fragment>
+    </>
   );
-}
+};
 export default ButtonsMenu;

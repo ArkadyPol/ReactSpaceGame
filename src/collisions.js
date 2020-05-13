@@ -1,4 +1,4 @@
-export function findCollisionsWithShots(asteroids, shots, boxes) {
+export const findCollisionsWithShots = (asteroids, shots, boxes) => {
   asteroids.forEach((asteroid, indexAsteroid) => {
     let { x, y, size, vY } = asteroid;
     shots.forEach((shot, indexShot) => {
@@ -15,8 +15,8 @@ export function findCollisionsWithShots(asteroids, shots, boxes) {
       }
     });
   });
-}
-export function findCollisionsWithRocket(asteroids, rocketX, health) {
+};
+export const findCollisionsWithRocket = (asteroids, rocketX, health) => {
   asteroids.forEach((asteroid, indexAsteroid) => {
     let { x, y, size, vY: speed } = asteroid;
     if (collisionCircleRectangle([x, y, size], [rocketX - 15, 627, 30, 85])) {
@@ -27,19 +27,19 @@ export function findCollisionsWithRocket(asteroids, rocketX, health) {
     }
   });
   return health;
-}
+};
 
-function findSquareDistance(x, y, x2, y2) {
+const findSquareDistance = (x, y, x2, y2) => {
   let dx = x - x2;
   let dy = y - y2;
   let sqDistance = dx * dx + dy * dy;
   return sqDistance;
-}
-function collisionCircles([x, y, r], [x2, y2, r2]) {
+};
+const collisionCircles = ([x, y, r], [x2, y2, r2]) => {
   let sqDistance = findSquareDistance(x, y, x2, y2);
   return sqDistance < Math.pow(r + r2, 2);
-}
-function collisionCircleRectangle([x, y, r], [x2, y2, width, height]) {
+};
+const collisionCircleRectangle = ([x, y, r], [x2, y2, width, height]) => {
   if (x < x2) {
     if (y < y2) {
       let sqDistance = findSquareDistance(x, y, x2, y2);
@@ -62,4 +62,4 @@ function collisionCircleRectangle([x, y, r], [x2, y2, width, height]) {
     return y - (y2 + height) < r;
   }
   return true;
-}
+};

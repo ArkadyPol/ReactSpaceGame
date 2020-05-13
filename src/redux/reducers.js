@@ -12,11 +12,11 @@ import {
   TOGGLE_SPACE,
   TOGGLE_ESCAPE,
   CHANGE_SAVE_NAME,
-  LOAD_GAME
+  LOAD_GAME,
 } from "./types";
 import stars from "../initial_state/stars.json";
 import keyboard from "../initial_state/keyboard.json";
-function displayReducer(state = false, action) {
+const displayReducer = (state = false, action) => {
   switch (action.type) {
     case TOGGLE_DISPLAY:
       return action.payload;
@@ -25,8 +25,8 @@ function displayReducer(state = false, action) {
     default:
       return state;
   }
-}
-function savesReducer(state = { saves: [], saveName: "" }, action) {
+};
+const savesReducer = (state = { saves: [], saveName: "" }, action) => {
   switch (action.type) {
     case GET_SAVES:
       return { ...state, saves: action.payload };
@@ -35,8 +35,8 @@ function savesReducer(state = { saves: [], saveName: "" }, action) {
     default:
       return state;
   }
-}
-function gameReducer(state = { stars }, action) {
+};
+const gameReducer = (state = { stars }, action) => {
   switch (action.type) {
     case NEW_GAME:
       return { ...state, ...action.payload };
@@ -50,8 +50,8 @@ function gameReducer(state = { stars }, action) {
     default:
       return state;
   }
-}
-function keyboardReducer(state = keyboard, action) {
+};
+const keyboardReducer = (state = keyboard, action) => {
   switch (action.type) {
     case RESET:
       return keyboard;
@@ -66,8 +66,8 @@ function keyboardReducer(state = keyboard, action) {
     default:
       return state;
   }
-}
-function fpsReducer(state = 0, action) {
+};
+const fpsReducer = (state = 0, action) => {
   switch (action.type) {
     case RESET:
       return 0;
@@ -79,13 +79,13 @@ function fpsReducer(state = 0, action) {
     default:
       return state;
   }
-}
+};
 const rootReducer = combineReducers({
   display: displayReducer,
   saves: savesReducer,
   game: gameReducer,
   keyboard: keyboardReducer,
-  fps: fpsReducer
+  fps: fpsReducer,
 });
 
 export default rootReducer;

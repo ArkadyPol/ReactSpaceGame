@@ -1,13 +1,13 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
 import { reset } from "../redux/actions";
 import { toggleDisplay } from "../redux/actions.js";
-function ButtonsMenu() {
+const ButtonsMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
-    <Fragment>
+    <>
       <button
         id="saveGame"
         className="button"
@@ -25,7 +25,7 @@ function ButtonsMenu() {
       >
         Вернуться в главное меню
       </button>
-    </Fragment>
+    </>
   );
-}
+};
 export default ButtonsMenu;

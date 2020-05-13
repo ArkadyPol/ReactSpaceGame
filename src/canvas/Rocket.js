@@ -1,4 +1,4 @@
-function rocket(ctx, x) {
+const rocket = (ctx, x) => {
   ctx.beginPath();
   ctx.ellipse(x, 665, 12, 37, 0, 0, 2 * Math.PI);
   ctx.fillStyle = "#ff0000";
@@ -19,5 +19,5 @@ function rocket(ctx, x) {
   );
   ctx.fill(p2);
   ctx.closePath();
-}
+};
 export default rocket;

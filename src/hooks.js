@@ -10,11 +10,11 @@ import {
   findCollisionsWithRocket,
   findCollisionsWithShots,
 } from "./collisions.js";
-export function useAnimate(requestID) {
+export const useAnimate = (requestID) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const store = useStore();
-  return function updatePerFrame() {
+  return () => {
     requestID.current = requestAnimationFrame(updatePerFrame);
     const state = store.getState();
     const game = state.game;
@@ -112,4 +112,4 @@ export function useAnimate(requestID) {
       dispatch(addFPS());
     });
   };
-}
+};

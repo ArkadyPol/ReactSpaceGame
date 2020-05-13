@@ -5,7 +5,7 @@ import shotMagazine from "./canvas/ShotMagazine.js";
 import healthBar from "./canvas/HealthBar.js";
 import asteroid from "./canvas/Asteroid.js";
 import box from "./canvas/Box.js";
-export function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
+export const calculateVelocity = ({ velocity, arrowLeft, arrowRight }) => {
   if (Math.abs(velocity) < 0.12) velocity = 0;
   if (velocity > 0) velocity -= 0.12;
   if (velocity < 0) velocity += 0.12;
@@ -16,12 +16,12 @@ export function calculateVelocity({ velocity, arrowLeft, arrowRight }) {
     velocity += 0.3;
   }
   return velocity;
-}
-export function randomInteger(min, max) {
+};
+export const randomInteger = (min, max) => {
   let rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
-}
-export function generateStar() {
+};
+export const generateStar = () => {
   let x = randomInteger(8, 1176);
   let y = randomInteger(-10, -19);
   let percent = randomInteger(0, 199);
@@ -34,22 +34,22 @@ export function generateStar() {
   else if (percent < 196) size = 7;
   else size = 8;
   return [x, y, size];
-}
-export function generateNewStars(stars) {
+};
+export const generateNewStars = (stars) => {
   let quantity = randomInteger(2, 7);
   for (let i = 0; i < quantity; i++) {
     stars.push(generateStar());
   }
-}
-export function generateAsteroid() {
+};
+export const generateAsteroid = () => {
   let x = randomInteger(20, 1164);
   let y = -200;
   let size = randomInteger(10, 100);
   let vX = randomInteger(-2, 2);
   let vY = randomInteger(4, 10);
   return { x, y, size, vX, vY };
-}
-export function updateCanvas(ctx, state) {
+};
+export const updateCanvas = (ctx, state) => {
   if (state.shots == undefined) return;
   ctx.clearRect(0, 0, 1184, 740);
   state.stars.forEach((params) => star(ctx, params));
@@ -59,4 +59,4 @@ export function updateCanvas(ctx, state) {
   rocket(ctx, state.rocketX);
   shotMagazine(ctx, state.shotMagazine);
   healthBar(ctx, state.health);
-}
+};

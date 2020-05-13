@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, Fragment } from "react";
+import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "./Form.jsx";
 import { default as Buttons } from "./ButtonsGame.jsx";
@@ -10,14 +10,14 @@ import {
   toggleArrowRight,
   toggleSpace,
   toggleEscape,
-  saveGame
+  saveGame,
 } from "../redux/actions.js";
 import { useAnimate } from "../hooks.js";
-function Game() {
-  const game = useSelector(state => state.game);
-  const keyboard = useSelector(state => state.keyboard);
-  const displayForm = useSelector(state => state.display);
-  const save = useSelector(state => state.saves.saveName);
+const Game = () => {
+  const game = useSelector((state) => state.game);
+  const keyboard = useSelector((state) => state.keyboard);
+  const displayForm = useSelector((state) => state.display);
+  const save = useSelector((state) => state.saves.saveName);
   const dispatch = useDispatch();
   const width = 1184;
   const height = 740;
@@ -43,19 +43,19 @@ function Game() {
       cancelAnimationFrame(requestID.current);
     };
   }, []);
-  function runTimers() {
+  const runTimers = () => {
     cancelAnimationFrame(requestID.current);
     clearInterval(timerFPS.current);
     requestID.current = requestAnimationFrame(updatePerFrame);
     timerFPS.current = setInterval(() => {
       dispatch(clearFPS());
     }, 5000);
-  }
-  function stopTimers() {
+  };
+  const stopTimers = () => {
     cancelAnimationFrame(requestID.current);
     clearInterval(timerFPS.current);
-  }
-  function handleKeyDown(e) {
+  };
+  const handleKeyDown = (e) => {
     switch (e.code) {
       case "ArrowLeft":
         dispatch(toggleArrowLeft(true));
@@ -76,8 +76,8 @@ function Game() {
         dispatch(toggleEscape());
         break;
     }
-  }
-  function handleKeyUp(e) {
+  };
+  const handleKeyUp = (e) => {
     switch (e.code) {
       case "ArrowLeft":
         dispatch(toggleArrowLeft(false));
@@ -89,7 +89,7 @@ function Game() {
         dispatch(toggleSpace(false));
         break;
     }
-  }
+  };
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
@@ -98,19 +98,19 @@ function Game() {
       document.removeEventListener("keyup", handleKeyUp);
     };
   }, [keyboard]);
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (game.nameSave == "") return;
     if (e.target.id != "save") return;
     runTimers();
     dispatch(saveGame(save));
-  }
+  };
   return (
-    <Fragment>
+    <>
       <canvas ref={canvas} width={width} height={height} />
       {keyboard.escape && !displayForm && <Buttons />}
       {displayForm && <Form handleSubmit={handleSubmit} />}
-    </Fragment>
+    </>
   );
-}
+};
 export default Game;

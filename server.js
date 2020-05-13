@@ -22,28 +22,30 @@ app.get("/*", (req, res) => {
 app.listen(3000, () => {
   console.log("Port 3000 listen");
 });
-function getSaves() {
+const getSaves = () => {
   let saves = fs.readdirSync("saves", "utf-8");
   saves = saves
     .sort((a, b) => getTime(`saves/${b}`) - getTime(`saves/${a}`))
-    .map(file => file.split(".")[0]);
+    .map((file) => file.split(".")[0]);
   return saves;
-}
-function newGame() {
-  let game = JSON.parse(
+};
+const newGame = () => {
+  const game = JSON.parse(
     fs.readFileSync("src/initial_state/game.json", "utf-8")
   );
   return game;
-}
-function loadSave(saveName) {
-  let save = JSON.parse(fs.readFileSync(`saves/${saveName.name}.json`, "utf-8"));
+};
+const loadSave = (saveName) => {
+  const save = JSON.parse(
+    fs.readFileSync(`saves/${saveName.name}.json`, "utf-8")
+  );
   return save;
-}
-function createSave(save) {
-  let name = save.saveName;
+};
+const createSave = (save) => {
+  const name = save.saveName;
   fs.writeFileSync(`saves/${name}.json`, JSON.stringify(save.game, null, 4));
-}
-function getTime(path) {
-  let stats = fs.statSync(path);
+};
+const getTime = (path) => {
+  const stats = fs.statSync(path);
   return stats.mtime;
-}
+};
