@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 
 module.exports = {
   context: path.join(__dirname, "/src"),
@@ -15,7 +16,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: require.resolve("babel-loader"),
           options: {
             presets: ["@babel/preset-env"],
             plugins: ["@babel/plugin-transform-runtime"],
@@ -26,7 +27,7 @@ module.exports = {
         test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: require.resolve("babel-loader"),
           options: {
             presets: ["@babel/preset-env", "@babel/preset-react"],
             plugins: ["@babel/plugin-transform-runtime"],
@@ -46,4 +47,10 @@ module.exports = {
       template: "./index.html",
     }),
   ],
+  resolve: {
+    plugins: [PnpWebpackPlugin],
+  },
+  resolveLoader: {
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
+  },
 };
