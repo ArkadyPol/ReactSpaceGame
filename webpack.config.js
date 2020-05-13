@@ -4,10 +4,10 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   context: path.join(__dirname, "/src"),
-  entry: ["@babel/polyfill", "./index.jsx"],
+  entry: "./index.jsx",
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: "index_bundle.js"
+    filename: "index_bundle.js",
   },
   module: {
     rules: [
@@ -17,9 +17,10 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env"]
-          }
-        }
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
+        },
       },
       {
         test: /\.jsx$/,
@@ -27,21 +28,22 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"]
-          }
-        }
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
+        },
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "./index.html"
-    })
-  ]
+      template: "./index.html",
+    }),
+  ],
 };
