@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
 import { toggleDisplay } from "../redux/actions.js";

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { Router } from "@reach/router";
@@ -14,5 +15,9 @@ const Root = ({ store }) => (
     </Router>
   </Provider>
 );
+
+Root.propTypes = {
+  store: PropTypes.object.isRequired,
+};
 
 render(<Root store={store} />, document.getElementById("root"));
