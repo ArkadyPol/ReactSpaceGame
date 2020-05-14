@@ -1,44 +1,53 @@
-import {
-  TOGGLE_DISPLAY,
-  RESET,
-  ADD_FPS,
-  CLEAR_FPS,
-  UPDATE_GAME,
-  TOGGLE_ARROW_RIGHT,
-  TOGGLE_ARROW_LEFT,
-  TOGGLE_SPACE,
-  CHANGE_SAVE_NAME,
-} from "./types";
+import * as t from "./types";
 
-export const toggleDisplay = (display) => ({
-  type: TOGGLE_DISPLAY,
-  payload: display,
+export const addFPS = () => ({ type: t.ADD_FPS });
+
+export const changeSaveName = (save) => ({
+  type: t.CHANGE_SAVE_NAME,
+  payload: save,
 });
 
-export const reset = () => ({ type: RESET });
+export const clearFPS = () => ({ type: t.CLEAR_FPS });
 
-export const addFPS = () => ({ type: ADD_FPS });
+export const getSaves = () => ({
+  type: t.SAGA_GET_SAVES,
+});
 
-export const clearFPS = () => ({ type: CLEAR_FPS });
+export const loadGame = (save) => ({
+  type: t.SAGA_LOAD_GAME,
+  save,
+});
 
-export const updateGame = (game) => ({ type: UPDATE_GAME, payload: game });
+export const reset = () => ({ type: t.RESET });
+
+export const saveGame = (saveName) => ({
+  type: t.SAGA_SAVE_GAME,
+  saveName,
+});
 
 export const toggleArrowLeft = (key) => ({
-  type: TOGGLE_ARROW_LEFT,
+  type: t.TOGGLE_ARROW_LEFT,
   payload: key,
 });
 
 export const toggleArrowRight = (key) => ({
-  type: TOGGLE_ARROW_RIGHT,
+  type: t.TOGGLE_ARROW_RIGHT,
   payload: key,
+});
+
+export const toggleDisplay = (display) => ({
+  type: t.TOGGLE_DISPLAY,
+  payload: display,
+});
+
+export const toggleEscape = (key) => ({
+  type: t.SAGA_TOGGLE_ESCAPE,
+  key,
 });
 
 export const toggleSpace = (key) => ({
-  type: TOGGLE_SPACE,
+  type: t.TOGGLE_SPACE,
   payload: key,
 });
 
-export const changeSaveName = (save) => ({
-  type: CHANGE_SAVE_NAME,
-  payload: save,
-});
+export const updateGame = (game) => ({ type: t.UPDATE_GAME, payload: game });

@@ -4,8 +4,7 @@ import { useNavigate } from "@reach/router";
 import Saves from "./Saves.jsx";
 import { default as Buttons } from "./ButtonsMenu.jsx";
 import star from "../canvas/Star";
-import { toggleDisplay } from "../redux/actions";
-import { getSaves, loadGame } from "../redux/thunks";
+import { toggleDisplay, getSaves, loadGame } from "../redux/actions";
 import "../styles/App.css";
 
 const MainMenu = () => {

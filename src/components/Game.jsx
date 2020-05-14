@@ -9,11 +9,13 @@ import {
   toggleArrowLeft,
   toggleArrowRight,
   toggleSpace,
+  toggleEscape,
+  saveGame,
 } from "../redux/actions";
-import { toggleEscape, saveGame } from "../redux/thunks";
 import { useAnimate } from "../hooks";
+import { getGame } from "../redux/selectors.js";
 const Game = () => {
-  const game = useSelector((state) => state.game);
+  const game = useSelector(getGame);
   const keyboard = useSelector((state) => state.keyboard);
   const displayForm = useSelector((state) => state.display);
   const save = useSelector((state) => state.saves.saveName);
