@@ -2,7 +2,6 @@ import {
   GET_SAVES,
   TOGGLE_DISPLAY,
   RESET,
-  NEW_GAME,
   ADD_FPS,
   CLEAR_FPS,
   UPDATE_GAME,
@@ -31,13 +30,6 @@ export const toggleDisplay = (display) => {
 export const reset = () => {
   return (dispatch) => {
     setTimeout(() => dispatch({ type: RESET }), 100);
-  };
-};
-export const startNewGame = () => {
-  return async (dispatch) => {
-    const response = await fetch("/newGame");
-    const game = await response.json();
-    dispatch({ type: NEW_GAME, payload: game });
   };
 };
 export const addFPS = () => {

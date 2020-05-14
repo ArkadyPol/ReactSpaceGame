@@ -1,15 +1,26 @@
 import { RESET, NEW_GAME, UPDATE_GAME, LOAD_GAME } from "../types";
-import stars from "../../initial_state/stars.json";
-const gameReducer = (state = { stars }, action) => {
+import stars from "./stars.json";
+
+const initialState = {
+  stars,
+  asteroids: [],
+  boxes: [],
+  health: 100,
+  passedPath: 0,
+  readyToShoot: true,
+  rocketX: 592,
+  shotMagazine: 10,
+  shots: [],
+  velocity: 0,
+};
+
+const gameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case NEW_GAME:
-      return { ...state, ...action.payload };
     case LOAD_GAME:
-      return { ...action.payload };
     case UPDATE_GAME:
       return { ...state, ...action.payload };
     case RESET: {
-      return { stars };
+      return initialState;
     }
     default:
       return state;

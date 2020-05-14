@@ -3,7 +3,6 @@ export const CHANGE_SAVE_NAME = "CHANGE_SAVE_NAME";
 export const CLEAR_FPS = "CLEAR_FPS";
 export const GET_SAVES = "GET_SAVES";
 export const LOAD_GAME = "LOAD_GAME";
-export const NEW_GAME = "NEW_GAME";
 export const RESET = "RESET";
 export const SAVE_GAME = "SAVE_GAME";
 export const TOGGLE_ARROW_LEFT = "TOGGLE_ARROW_LEFT";
