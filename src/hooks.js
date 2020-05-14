@@ -34,32 +34,26 @@ export const useAnimate = (requestID) => {
     stars = stars
       .map((params) => [params[0], params[1] + 0.5, params[2]])
       .filter((params) => params[1] < 750);
-    if (shots) {
-      shots = shots
-        .map((coords) => [coords[0], coords[1] - 5])
-        .filter((coords) => coords[1] > 0);
-    }
-    if (asteroids) {
-      asteroids = asteroids
-        .map((params) => {
-          let x = params.x + params.vX;
-          let y = params.y + params.vY;
-          return { ...params, x, y };
-        })
-        .filter((params) => params.y < 850);
-    }
-    if (boxes) {
-      boxes = boxes
-        .map((params) => {
-          let y = params.y + 2;
-          return { ...params, y };
-        })
-        .filter((params) => params.y < 800);
-    }
-    if (asteroids) {
-      findCollisionsWithShots(asteroids, shots, boxes);
-      health = findCollisionsWithRocket(asteroids, rocketX, health);
-    }
+    shots = shots
+      .map((coords) => [coords[0], coords[1] - 5])
+      .filter((coords) => coords[1] > 0);
+    asteroids = asteroids
+      .map((params) => {
+        let x = params.x + params.vX;
+        let y = params.y + params.vY;
+        return { ...params, x, y };
+      })
+      .filter((params) => params.y < 850);
+    boxes = boxes
+      .map((params) => {
+        let y = params.y + 2;
+        return { ...params, y };
+      })
+      .filter((params) => params.y < 800);
+
+    findCollisionsWithShots(asteroids, shots, boxes);
+    health = findCollisionsWithRocket(asteroids, rocketX, health);
+
     if (health <= 0) {
       navigate("/");
       dispatch(reset());
