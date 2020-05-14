@@ -1,4 +1,4 @@
-import { RESET, NEW_GAME, UPDATE_GAME, LOAD_GAME } from "../types";
+import { RESET, UPDATE_GAME, LOAD_GAME } from "../types";
 import stars from "./stars.json";
 
 const initialState = {

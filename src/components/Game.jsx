@@ -3,16 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import Form from "./Form.jsx";
 import { default as Buttons } from "./ButtonsGame.jsx";
 import "../styles/App.css";
-import { updateCanvas } from "../logic.js";
+import { updateCanvas } from "../logic";
 import {
   clearFPS,
   toggleArrowLeft,
   toggleArrowRight,
   toggleSpace,
-  toggleEscape,
-  saveGame,
-} from "../redux/actions.js";
-import { useAnimate } from "../hooks.js";
+} from "../redux/actions";
+import { toggleEscape, saveGame } from "../redux/thunks";
+import { useAnimate } from "../hooks";
 const Game = () => {
   const game = useSelector((state) => state.game);
   const keyboard = useSelector((state) => state.keyboard);
@@ -69,11 +68,12 @@ const Game = () => {
       case "Escape":
         if (keyboard.escape) {
           runTimers();
+          dispatch(toggleEscape(false));
         } else {
           stopTimers();
+          dispatch(toggleEscape(true));
           dispatch(clearFPS());
         }
-        dispatch(toggleEscape());
         break;
     }
   };

@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
 import Saves from "./Saves.jsx";
 import { default as Buttons } from "./ButtonsMenu.jsx";
-import star from "../canvas/Star.js";
-import { toggleDisplay, getSaves, loadGame } from "../redux/actions.js";
+import star from "../canvas/Star";
+import { toggleDisplay } from "../redux/actions";
+import { getSaves, loadGame } from "../redux/thunks";
 import "../styles/App.css";
 
 const MainMenu = () => {

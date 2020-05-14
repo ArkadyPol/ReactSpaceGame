@@ -18,7 +18,7 @@ app.get("/*", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Port 3000 listen");
+  console.log("Server is listening on port 3000");
 });
 const getSaves = () => {
   let saves = fs.readdirSync("saves", "utf-8");

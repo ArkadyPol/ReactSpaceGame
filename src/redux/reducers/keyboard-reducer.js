@@ -24,7 +24,7 @@ const keyboardReducer = (state = initialState, action) => {
     case TOGGLE_SPACE:
       return { ...state, space: action.payload };
     case TOGGLE_ESCAPE:
-      return { ...state, escape: !state.escape };
+      return { ...state, escape: action.payload };
     default:
       return state;
   }
