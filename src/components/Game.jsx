@@ -29,10 +29,7 @@ import getGame from "../redux/selectors";
 
 const Game = () => {
   const game = useSelector(getGame);
-  const arrowLeft = useSelector((state) => state.keyboard.arrowLeft);
-  const arrowRight = useSelector((state) => state.keyboard.arrowRight);
-  const space = useSelector((state) => state.keyboard.space);
-  const escape = useSelector((state) => state.keyboard.escape);
+  const keyboard = useSelector((state) => state.keyboard);
   const displayForm = useSelector((state) => state.display);
   const save = useSelector((state) => state.saves.saveName);
   const dispatch = useDispatch();
@@ -55,6 +52,8 @@ const Game = () => {
     };
   }, [dispatch]);
   const updatePerFrame = useCallback(() => {
+    const { escape, arrowLeft, arrowRight, space } = keyboard;
+    if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
     let {
       stars,
@@ -94,6 +93,7 @@ const Game = () => {
     if (health <= 0) {
       navigate("/");
       dispatch(reset());
+      return;
     }
     velocity = calculateVelocity({
       velocity,
@@ -142,7 +142,7 @@ const Game = () => {
       );
       dispatch(addFPS());
     });
-  }, [dispatch, game, navigate, arrowLeft, arrowRight, space]);
+  }, [dispatch, game, navigate, keyboard]);
 
   useEffect(() => {
     requestID.current = requestAnimationFrame(updatePerFrame);
@@ -177,7 +177,7 @@ const Game = () => {
           dispatch(toggleSpace(true));
           break;
         case "Escape":
-          if (escape) {
+          if (keyboard.escape) {
             runTimers();
             dispatch(toggleEscape(false));
           } else {
@@ -211,7 +211,7 @@ const Game = () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, [dispatch, escape, runTimers]);
+  }, [dispatch, keyboard.escape, runTimers]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (game.nameSave === "") return;
@@ -222,7 +222,7 @@ const Game = () => {
   return (
     <>
       <canvas ref={canvas} width={width} height={height} />
-      {escape && !displayForm && <Buttons />}
+      {keyboard.escape && !displayForm && <Buttons />}
       {displayForm && <Form handleSubmit={handleSubmit} />}
     </>
   );
