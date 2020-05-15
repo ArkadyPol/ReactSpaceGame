@@ -22,7 +22,7 @@ module.exports = {
           loader: "eslint-loader",
           options: {
             fix: true,
-            cache: false,
+            cache: true,
           },
         },
       },
