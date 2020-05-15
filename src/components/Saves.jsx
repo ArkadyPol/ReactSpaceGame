@@ -26,7 +26,11 @@ Saves.propTypes = {
     left: PropTypes.number,
     top: PropTypes.number,
     position: PropTypes.string,
-  }).isRequired,
+  }),
+};
+
+Saves.defaultProps = {
+  style: { left: 0, top: 0, position: "static" },
 };
 
 export default Saves;

@@ -151,18 +151,18 @@ const Game = () => {
     };
   }, [updatePerFrame]);
 
-  const runTimers = useCallback(() => {
+  const stopTimers = () => {
     cancelAnimationFrame(requestID.current);
     clearInterval(timerFPS.current);
+  };
+
+  const runTimers = useCallback(() => {
+    stopTimers();
     requestID.current = requestAnimationFrame(updatePerFrame);
     timerFPS.current = setInterval(() => {
       dispatch(clearFPS());
     }, 5000);
   }, [dispatch, updatePerFrame]);
-  const stopTimers = () => {
-    cancelAnimationFrame(requestID.current);
-    clearInterval(timerFPS.current);
-  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
