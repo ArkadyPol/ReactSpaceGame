@@ -7,16 +7,17 @@ import asteroid from "./canvas/Asteroid";
 import box from "./canvas/Box";
 
 export const calculateVelocity = ({ velocity, arrowLeft, arrowRight }) => {
-  if (Math.abs(velocity) < 0.12) velocity = 0;
-  if (velocity > 0) velocity -= 0.12;
-  if (velocity < 0) velocity += 0.12;
+  let newVelocity = velocity;
+  if (Math.abs(newVelocity) < 0.12) newVelocity = 0;
+  if (newVelocity > 0) newVelocity -= 0.12;
+  if (newVelocity < 0) newVelocity += 0.12;
   if (arrowLeft) {
-    velocity -= 0.3;
+    newVelocity -= 0.3;
   }
   if (arrowRight) {
-    velocity += 0.3;
+    newVelocity += 0.3;
   }
-  return velocity;
+  return newVelocity;
 };
 export const randomInteger = (min, max) => {
   const rand = min + Math.random() * (max + 1 - min);
