@@ -5,8 +5,8 @@ import {
   generateNewStars,
   calculateVelocity,
   generateAsteroid,
-  updateCanvas,
 } from "../logic";
+import updateCanvas from "../canvas";
 import {
   addFPS,
   updateGame,

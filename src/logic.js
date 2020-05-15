@@ -1,11 +1,3 @@
-import shot from "./canvas/Shot";
-import star from "./canvas/Star";
-import rocket from "./canvas/Rocket";
-import shotMagazine from "./canvas/ShotMagazine";
-import healthBar from "./canvas/HealthBar";
-import asteroid from "./canvas/Asteroid";
-import box from "./canvas/Box";
-
 export const calculateVelocity = ({ velocity, arrowLeft, arrowRight }) => {
   let newVelocity = velocity;
   if (Math.abs(newVelocity) < 0.12) newVelocity = 0;
@@ -56,14 +48,4 @@ export const generateAsteroid = () => {
     vX,
     vY,
   };
-};
-export const updateCanvas = (ctx, state) => {
-  ctx.clearRect(0, 0, 1184, 740);
-  state.stars.forEach((params) => star(ctx, params));
-  state.shots.forEach((coords) => shot(ctx, coords));
-  state.asteroids.forEach((params) => asteroid(ctx, params));
-  state.boxes.forEach((params) => box(ctx, params));
-  rocket(ctx, state.rocketX);
-  shotMagazine(ctx, state.shotMagazine);
-  healthBar(ctx, state.health);
 };
