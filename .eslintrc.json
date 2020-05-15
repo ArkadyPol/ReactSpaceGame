@@ -8,7 +8,8 @@
         "eslint:recommended",
         "airbnb",
         "plugin:react/recommended",
-        "plugin:react-hooks/recommended"
+        "plugin:react-hooks/recommended",
+        "plugin:prettier/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -26,13 +27,25 @@
         "react-hooks"
     ],
     "rules": {
-        "quotes": [
+        "import/no-extraneous-dependencies": [
             "error",
-            "double"
+            {
+                "devDependencies": true
+            }
         ],
-        "linebreak-style": [
+        "prettier/prettier": [
             "error",
-            "windows"
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "no-console": "off",
+        "no-param-reassign": "warn",
+        "no-plusplus": [
+            "error",
+            {
+                "allowForLoopAfterthoughts": true
+            }
         ]
     }
 }

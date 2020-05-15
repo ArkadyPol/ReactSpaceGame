@@ -1,3 +1,4 @@
+import { takeEvery, put, call, all, select, fork } from "redux-saga/effects";
 import {
   GET_SAVES,
   TOGGLE_ESCAPE,
@@ -10,28 +11,25 @@ import {
 } from "./types";
 import { toggleDisplay } from "./actions";
 import api from "../api";
-import { takeEvery, put, call, all, select, fork } from "redux-saga/effects";
-import { getGame } from "./selectors";
+import getGame from "./selectors";
 
-function* watchGetSaves() {
-  yield takeEvery(SAGA_GET_SAVES, getSavesSaga);
-}
 function* getSavesSaga() {
   const saves = yield call(api.getSaves);
   yield put({ type: GET_SAVES, payload: saves });
 }
 
-function* watchToggleEscape() {
-  yield takeEvery(SAGA_TOGGLE_ESCAPE, toggleEscapeSaga);
+function* watchGetSaves() {
+  yield takeEvery(SAGA_GET_SAVES, getSavesSaga);
 }
+
 function* toggleEscapeSaga({ key }) {
   yield put({ type: TOGGLE_ESCAPE, payload: key });
   yield put(toggleDisplay(false));
 }
-
-function* watchSaveGame() {
-  yield takeEvery(SAGA_SAVE_GAME, saveGameSaga);
+function* watchToggleEscape() {
+  yield takeEvery(SAGA_TOGGLE_ESCAPE, toggleEscapeSaga);
 }
+
 function* saveGameSaga({ saveName }) {
   const game = yield select(getGame);
   const save = { saveName, game };
@@ -40,14 +38,17 @@ function* saveGameSaga({ saveName }) {
   yield fork(getSavesSaga);
   yield* toggleEscapeSaga({ key: false });
 }
-
-function* watchLoadGame() {
-  yield takeEvery(SAGA_LOAD_GAME, loadGameSaga);
+function* watchSaveGame() {
+  yield takeEvery(SAGA_SAVE_GAME, saveGameSaga);
 }
+
 function* loadGameSaga({ save }) {
   const game = yield call(api.loadGame, save);
   yield put({ type: LOAD_GAME, payload: game });
   yield put(toggleDisplay(false));
+}
+function* watchLoadGame() {
+  yield takeEvery(SAGA_LOAD_GAME, loadGameSaga);
 }
 
 export default function* rootSaga() {

@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import Saves from "./Saves.jsx";
-import { changeSaveName } from "../redux/actions.js";
+import Saves from "./Saves";
+import { changeSaveName } from "../redux/actions";
+
 const Form = ({ handleSubmit }) => {
   const saves = useSelector((state) => state.saves.saves);
   const saveName = useSelector((state) => state.saves.saveName);

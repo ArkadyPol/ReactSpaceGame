@@ -1,13 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { Router } from "@reach/router";
-import MainMenu from "./components/MainMenu.jsx";
-import Game from "./components/Game.jsx";
+import MainMenu from "./components/MainMenu";
+import Game from "./components/Game";
 import store from "./redux/store";
 
-const Root = ({ store }) => (
+const Root = () => (
   <Provider store={store}>
     <Router>
       <MainMenu path="/" />
@@ -16,8 +15,4 @@ const Root = ({ store }) => (
   </Provider>
 );
 
-Root.propTypes = {
-  store: PropTypes.object.isRequired,
-};
-
-render(<Root store={store} />, document.getElementById("root"));
+render(<Root />, document.getElementById("root"));

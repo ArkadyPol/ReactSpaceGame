@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
-import Saves from "./Saves.jsx";
-import { default as Buttons } from "./ButtonsMenu.jsx";
+import Saves from "./Saves";
+import Buttons from "./ButtonsMenu";
 import star from "../canvas/Star";
 import { toggleDisplay, getSaves, loadGame } from "../redux/actions";
 import "../styles/App.css";
@@ -24,7 +24,7 @@ const MainMenu = () => {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.code == "Escape" && displayForm) {
+      if (e.code === "Escape" && displayForm) {
         dispatch(toggleDisplay(false));
       }
     };
@@ -32,7 +32,7 @@ const MainMenu = () => {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [displayForm]);
   const handleClickForm = (e) => {
-    let save = e.target.textContent;
+    const save = e.target.textContent;
     dispatch(loadGame(save));
     setTimeout(() => {
       navigate("/game");

@@ -1,24 +1,21 @@
 import { useDispatch, useStore, batch } from "react-redux";
 import { useNavigate } from "@reach/router";
-import {
-  generateNewStars,
-  calculateVelocity,
-  generateAsteroid,
-} from "./logic.js";
-import { addFPS, updateGame, reset } from "./redux/actions.js";
+import { generateNewStars, calculateVelocity, generateAsteroid } from "./logic";
+import { addFPS, updateGame, reset } from "./redux/actions";
 import {
   findCollisionsWithRocket,
   findCollisionsWithShots,
-} from "./collisions.js";
-export const useAnimate = (requestID) => {
+} from "./collisions";
+
+const useAnimate = (requestID) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const store = useStore();
   return function updatePerFrame() {
     requestID.current = requestAnimationFrame(updatePerFrame);
     const state = store.getState();
-    const game = state.game;
-    const keyboard = state.keyboard;
+    const { game } = state;
+    const { keyboard } = state;
     let {
       stars,
       passedPath,
@@ -39,14 +36,14 @@ export const useAnimate = (requestID) => {
       .filter((coords) => coords[1] > 0);
     asteroids = asteroids
       .map((params) => {
-        let x = params.x + params.vX;
-        let y = params.y + params.vY;
+        const x = params.x + params.vX;
+        const y = params.y + params.vY;
         return { ...params, x, y };
       })
       .filter((params) => params.y < 850);
     boxes = boxes
       .map((params) => {
-        let y = params.y + 2;
+        const y = params.y + 2;
         return { ...params, y };
       })
       .filter((params) => params.y < 800);
@@ -78,14 +75,14 @@ export const useAnimate = (requestID) => {
       shotMagazine -= 1;
     }
     passedPath += 1;
-    if (passedPath % 5 == 0 && !readyToShoot) readyToShoot = true;
-    if (passedPath % 25 == 0) generateNewStars(stars);
-    if (passedPath % 75 == 0) {
+    if (passedPath % 5 === 0 && !readyToShoot) readyToShoot = true;
+    if (passedPath % 25 === 0) generateNewStars(stars);
+    if (passedPath % 75 === 0) {
       if (shotMagazine < 10) {
         shotMagazine += 1;
       }
     }
-    if (passedPath % 100 == 0) {
+    if (passedPath % 100 === 0) {
       asteroids.push(generateAsteroid());
     }
     batch(() => {
@@ -107,3 +104,4 @@ export const useAnimate = (requestID) => {
     });
   };
 };
+export default useAnimate;

@@ -1,1 +1,2 @@
-export const getGame = (state) => state.game;
+const getGame = (state) => state.game;
+export default getGame;

@@ -2,8 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Saves = ({ saves, handleClick, style }) => {
-  let buttons = saves.map((save) => (
-    <button key={save} className="save-button" onClick={handleClick}>
+  const buttons = saves.map((save) => (
+    <button
+      type="button"
+      key={save}
+      className="save-button"
+      onClick={handleClick}
+    >
       {save}
     </button>
   ));
@@ -15,13 +20,13 @@ const Saves = ({ saves, handleClick, style }) => {
 };
 
 Saves.propTypes = {
-  saves: PropTypes.arrayOf(PropTypes.string),
+  saves: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleClick: PropTypes.func.isRequired,
   style: PropTypes.shape({
     left: PropTypes.number,
     top: PropTypes.number,
     position: PropTypes.string,
-  }),
+  }).isRequired,
 };
 
 export default Saves;

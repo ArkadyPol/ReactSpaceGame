@@ -1,10 +1,11 @@
-import shot from "./canvas/Shot.js";
-import star from "./canvas/Star.js";
-import rocket from "./canvas/Rocket.js";
-import shotMagazine from "./canvas/ShotMagazine.js";
-import healthBar from "./canvas/HealthBar.js";
-import asteroid from "./canvas/Asteroid.js";
-import box from "./canvas/Box.js";
+import shot from "./canvas/Shot";
+import star from "./canvas/Star";
+import rocket from "./canvas/Rocket";
+import shotMagazine from "./canvas/ShotMagazine";
+import healthBar from "./canvas/HealthBar";
+import asteroid from "./canvas/Asteroid";
+import box from "./canvas/Box";
+
 export const calculateVelocity = ({ velocity, arrowLeft, arrowRight }) => {
   if (Math.abs(velocity) < 0.12) velocity = 0;
   if (velocity > 0) velocity -= 0.12;
@@ -18,13 +19,13 @@ export const calculateVelocity = ({ velocity, arrowLeft, arrowRight }) => {
   return velocity;
 };
 export const randomInteger = (min, max) => {
-  let rand = min + Math.random() * (max + 1 - min);
+  const rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 };
 export const generateStar = () => {
-  let x = randomInteger(8, 1176);
-  let y = randomInteger(-10, -19);
-  let percent = randomInteger(0, 199);
+  const x = randomInteger(8, 1176);
+  const y = randomInteger(-10, -19);
+  const percent = randomInteger(0, 199);
   let size;
   if (percent < 81) size = 2;
   else if (percent < 130) size = 3;
@@ -36,18 +37,24 @@ export const generateStar = () => {
   return [x, y, size];
 };
 export const generateNewStars = (stars) => {
-  let quantity = randomInteger(2, 7);
+  const quantity = randomInteger(2, 7);
   for (let i = 0; i < quantity; i++) {
     stars.push(generateStar());
   }
 };
 export const generateAsteroid = () => {
-  let x = randomInteger(20, 1164);
-  let y = -200;
-  let size = randomInteger(10, 100);
-  let vX = randomInteger(-2, 2);
-  let vY = randomInteger(4, 10);
-  return { x, y, size, vX, vY };
+  const x = randomInteger(20, 1164);
+  const y = -200;
+  const size = randomInteger(10, 100);
+  const vX = randomInteger(-2, 2);
+  const vY = randomInteger(4, 10);
+  return {
+    x,
+    y,
+    size,
+    vX,
+    vY,
+  };
 };
 export const updateCanvas = (ctx, state) => {
   ctx.clearRect(0, 0, 1184, 740);

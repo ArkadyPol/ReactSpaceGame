@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
-import { toggleDisplay } from "../redux/actions.js";
+import { toggleDisplay } from "../redux/actions";
+
 const ButtonsMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const ButtonsMenu = () => {
       <button
         id="newGame"
         className="button"
+        type="button"
         onClick={() => {
           setTimeout(() => {
             navigate("/game");
@@ -21,6 +23,7 @@ const ButtonsMenu = () => {
       <button
         id="loadGame"
         className="button"
+        type="button"
         onClick={() => dispatch(toggleDisplay(true))}
       >
         Загрузить игру

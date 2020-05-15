@@ -10,11 +10,11 @@ const rocket = (ctx, x) => {
   ctx.arc(x, 685, 5, 0, 2 * Math.PI);
   ctx.fillStyle = "#ffff00";
   ctx.fill();
-  let p = new Path2D(
+  const p = new Path2D(
     `M${x - 7} 695 q -10 10 -10 20 q 0 -10 14 -16 Q ${x - 4} 700 ${x - 7} 695`
   );
   ctx.fill(p);
-  let p2 = new Path2D(
+  const p2 = new Path2D(
     `M${x + 7} 695 q 10 10 10 20 q 0 -10 -14 -16 Q ${x + 4} 700 ${x + 7} 695`
   );
   ctx.fill(p2);

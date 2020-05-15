@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Form from "./Form.jsx";
-import { default as Buttons } from "./ButtonsGame.jsx";
+import Form from "./Form";
+import Buttons from "./ButtonsGame";
 import "../styles/App.css";
 import { updateCanvas } from "../logic";
 import {
@@ -12,8 +12,9 @@ import {
   toggleEscape,
   saveGame,
 } from "../redux/actions";
-import { useAnimate } from "../hooks";
-import { getGame } from "../redux/selectors.js";
+import useAnimate from "../hooks";
+import getGame from "../redux/selectors";
+
 const Game = () => {
   const game = useSelector(getGame);
   const keyboard = useSelector((state) => state.keyboard);
@@ -77,6 +78,8 @@ const Game = () => {
           dispatch(clearFPS());
         }
         break;
+      default:
+        break;
     }
   };
   const handleKeyUp = (e) => {
@@ -90,6 +93,8 @@ const Game = () => {
       case "Space":
         dispatch(toggleSpace(false));
         break;
+      default:
+        break;
     }
   };
   useEffect(() => {
@@ -102,8 +107,8 @@ const Game = () => {
   }, [keyboard]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (game.nameSave == "") return;
-    if (e.target.id != "save") return;
+    if (game.nameSave === "") return;
+    if (e.target.id !== "save") return;
     runTimers();
     dispatch(saveGame(save));
   };

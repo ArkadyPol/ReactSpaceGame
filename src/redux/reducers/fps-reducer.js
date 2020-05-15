@@ -1,4 +1,5 @@
 import { RESET, ADD_FPS, CLEAR_FPS } from "../types";
+
 const fpsReducer = (state = 0, action) => {
   switch (action.type) {
     case RESET:
