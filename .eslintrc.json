@@ -6,6 +6,7 @@
     },
     "extends": [
         "eslint:recommended",
+        "airbnb",
         "plugin:react/recommended",
         "plugin:react-hooks/recommended"
     ],
@@ -25,45 +26,13 @@
         "react-hooks"
     ],
     "rules": {
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
         "quotes": [
             "error",
             "double"
         ],
-        "semi": [
+        "linebreak-style": [
             "error",
-            "always"
-        ],
-        "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error",
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn"
-    },
-    "settings": {
-        "react": {
-            "createClass": "createReactClass",
-            "pragma": "React",
-            "version": "detect"
-        },
-        "propWrapperFunctions": [
-            "forbidExtraProps",
-            {
-                "property": "freeze",
-                "object": "Object"
-            },
-            {
-                "property": "myFavoriteWrapper"
-            }
-        ],
-        "linkComponents": [
-            "Hyperlink",
-            {
-                "name": "Link",
-                "linkAttribute": "to"
-            }
+            "windows"
         ]
     }
 }
