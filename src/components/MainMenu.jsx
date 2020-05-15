@@ -20,7 +20,7 @@ const MainMenu = () => {
     const ctx = canvas.current.getContext("2d");
     ctx.fillRect(0, 0, width, height);
     stars.forEach((params) => star(ctx, params));
-  }, []);
+  }, [stars]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -30,7 +30,7 @@ const MainMenu = () => {
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [displayForm]);
+  }, [displayForm, dispatch]);
   const handleClickForm = (e) => {
     const save = e.target.textContent;
     dispatch(loadGame(save));
@@ -40,7 +40,7 @@ const MainMenu = () => {
   };
   useEffect(() => {
     dispatch(getSaves());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <canvas ref={canvas} width={width} height={height} />
