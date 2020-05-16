@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import { RESET, UPDATE_GAME, LOAD_GAME } from "../../types";
 import starsReducer from "./stars-reducer";
+import pathReducer from "./path-reducer";
 
 const initialState = {
   asteroids: [],
   boxes: [],
   health: 100,
-  passedPath: 0,
   readyToShoot: true,
   rocketX: 592,
   shotMagazine: 10,
@@ -17,7 +17,7 @@ const initialState = {
 const restGameReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_GAME: {
-      const { stars, ...game } = action.payload;
+      const { stars, passedPath, ...game } = action.payload;
       return { ...state, ...game };
     }
     case UPDATE_GAME:
@@ -31,6 +31,7 @@ const restGameReducer = (state = initialState, action) => {
 
 const gameReducer = combineReducers({
   stars: starsReducer,
+  passedPath: pathReducer,
   game: restGameReducer,
 });
 
