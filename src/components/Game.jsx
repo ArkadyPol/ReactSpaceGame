@@ -15,6 +15,7 @@ import {
   saveGame,
   runFpsTimer,
   stopFpsTimer,
+  generateNewStars,
 } from "../redux/actions";
 import {
   findCollisionsWithRocket,
@@ -107,7 +108,7 @@ const Game = () => {
     }
     passedPath += 1;
     if (passedPath % 5 === 0 && !readyToShoot) readyToShoot = true;
-    //  if (passedPath % 25 === 0) generateNewStars(stars);
+    if (passedPath % 25 === 0) dispatch(generateNewStars());
     if (passedPath % 75 === 0) {
       if (shotMagazine < 10) {
         shotMagazine += 1;

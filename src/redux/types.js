@@ -1,6 +1,7 @@
 export const ADD_FPS = "ADD_FPS";
 export const CHANGE_SAVE_NAME = "CHANGE_SAVE_NAME";
 export const CLEAR_FPS = "CLEAR_FPS";
+export const GENERATE_NEW_STARS = "GENERATE_NEW_STARS";
 export const GET_SAVES = "GET_SAVES";
 export const LOAD_GAME = "LOAD_GAME";
 export const RESET = "RESET";

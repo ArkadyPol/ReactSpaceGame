@@ -15,26 +15,6 @@ export const randomInteger = (min, max) => {
   const rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 };
-export const generateStar = () => {
-  const x = randomInteger(8, 1176);
-  const y = randomInteger(-10, -19);
-  const percent = randomInteger(0, 199);
-  let size;
-  if (percent < 81) size = 2;
-  else if (percent < 130) size = 3;
-  else if (percent < 160) size = 4;
-  else if (percent < 178) size = 5;
-  else if (percent < 189) size = 6;
-  else if (percent < 196) size = 7;
-  else size = 8;
-  return [x, y, size];
-};
-export const generateNewStars = (stars) => {
-  const quantity = randomInteger(2, 7);
-  for (let i = 0; i < quantity; i++) {
-    stars.push(generateStar());
-  }
-};
 export const generateAsteroid = () => {
   const x = randomInteger(20, 1164);
   const y = -200;

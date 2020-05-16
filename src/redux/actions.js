@@ -9,6 +9,8 @@ export const changeSaveName = (save) => ({
 
 export const clearFPS = () => ({ type: t.CLEAR_FPS });
 
+export const generateNewStars = () => ({ type: t.GENERATE_NEW_STARS });
+
 export const getSaves = () => ({
   type: t.SAGA_GET_SAVES,
 });
