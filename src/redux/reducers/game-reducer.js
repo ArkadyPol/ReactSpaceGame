@@ -19,9 +19,8 @@ const gameReducer = (state = initialState, action) => {
     case LOAD_GAME:
     case UPDATE_GAME:
       return { ...state, ...action.payload };
-    case RESET: {
+    case RESET:
       return initialState;
-    }
     default:
       return state;
   }

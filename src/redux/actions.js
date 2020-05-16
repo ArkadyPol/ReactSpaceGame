@@ -20,10 +20,14 @@ export const loadGame = (save) => ({
 
 export const reset = () => ({ type: t.RESET });
 
+export const runFpsTimer = () => ({ type: t.SAGA_RUN_FPS_TIMER });
+
 export const saveGame = (saveName) => ({
   type: t.SAGA_SAVE_GAME,
   saveName,
 });
+
+export const stopFpsTimer = () => ({ type: t.SAGA_STOP_FPS_TIMER });
 
 export const toggleArrowLeft = (key) => ({
   type: t.TOGGLE_ARROW_LEFT,

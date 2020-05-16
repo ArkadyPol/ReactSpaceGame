@@ -17,6 +17,8 @@ import {
   toggleSpace,
   toggleEscape,
   saveGame,
+  runFpsTimer,
+  stopFpsTimer,
 } from "../redux/actions";
 import {
   findCollisionsWithRocket,
@@ -37,18 +39,15 @@ const Game = () => {
   const width = 1184;
   const height = 740;
   const canvas = useRef(null);
-  const timerFPS = useRef(null);
   const requestID = useRef(null);
   useEffect(() => {
     const ctx = canvas.current.getContext("2d");
     updateCanvas(ctx, game);
   }, [game]);
   useEffect(() => {
-    timerFPS.current = setInterval(() => {
-      dispatch(clearFPS());
-    }, 5000);
+    dispatch(runFpsTimer());
     return () => {
-      clearInterval(timerFPS.current);
+      dispatch(stopFpsTimer());
     };
   }, [dispatch]);
   const updatePerFrame = useCallback(() => {
@@ -151,18 +150,16 @@ const Game = () => {
     };
   }, [updatePerFrame]);
 
-  const stopTimers = () => {
+  const stopTimers = useCallback(() => {
     cancelAnimationFrame(requestID.current);
-    clearInterval(timerFPS.current);
-  };
+    dispatch(stopFpsTimer());
+  }, [dispatch]);
 
   const runTimers = useCallback(() => {
     stopTimers();
     requestID.current = requestAnimationFrame(updatePerFrame);
-    timerFPS.current = setInterval(() => {
-      dispatch(clearFPS());
-    }, 5000);
-  }, [dispatch, updatePerFrame]);
+    dispatch(runFpsTimer());
+  }, [dispatch, updatePerFrame, stopTimers]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -211,7 +208,7 @@ const Game = () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, [dispatch, keyboard.escape, runTimers]);
+  }, [dispatch, keyboard.escape, runTimers, stopTimers]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (game.nameSave === "") return;
