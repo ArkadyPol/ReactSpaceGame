@@ -53,7 +53,6 @@ const Game = () => {
     requestID.current = requestAnimationFrame(updatePerFrame);
     let {
       velocity,
-      rocketX,
       readyToShoot,
       shotMagazine,
       shots,
@@ -61,7 +60,7 @@ const Game = () => {
       boxes,
       health,
     } = game;
-    const { passedPath } = game;
+    const { passedPath, rocketX } = game;
     shots = shots
       .map((coords) => [coords[0], coords[1] - 5])
       .filter((coords) => coords[1] > 0);
@@ -92,15 +91,6 @@ const Game = () => {
       arrowLeft,
       arrowRight,
     });
-    rocketX += velocity;
-    if (rocketX < 15) {
-      rocketX = 15;
-      velocity = 0;
-    }
-    if (rocketX > 1169) {
-      rocketX = 1169;
-      velocity = 0;
-    }
     if (space && readyToShoot && shotMagazine > 0) {
       shots.push([rocketX, 625]);
       readyToShoot = false;
@@ -120,7 +110,6 @@ const Game = () => {
       dispatch(
         updateGame({
           velocity,
-          rocketX,
           readyToShoot,
           shotMagazine,
           shots,

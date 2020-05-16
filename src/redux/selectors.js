@@ -1,7 +1,8 @@
-const getGame = (state) => {
-  const { game } = state.game;
-  game.stars = state.game.stars;
-  game.passedPath = state.game.passedPath;
-  return game;
-};
+const getGame = ({ game }) => ({
+  ...game.game,
+  stars: game.stars,
+  passedPath: game.passedPath,
+  ...game.move,
+});
+
 export default getGame;
