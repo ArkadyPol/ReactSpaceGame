@@ -1,11 +1,7 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useNavigate } from "@reach/router";
-import {
-  generateNewStars,
-  calculateVelocity,
-  generateAsteroid,
-} from "../logic";
+import { calculateVelocity, generateAsteroid } from "../logic";
 import updateCanvas from "../canvas";
 import {
   addFPS,
@@ -55,7 +51,6 @@ const Game = () => {
     if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
     let {
-      stars,
       passedPath,
       velocity,
       rocketX,
@@ -66,9 +61,6 @@ const Game = () => {
       boxes,
       health,
     } = game;
-    stars = stars
-      .map((params) => [params[0], params[1] + 0.5, params[2]])
-      .filter((params) => params[1] < 750);
     shots = shots
       .map((coords) => [coords[0], coords[1] - 5])
       .filter((coords) => coords[1] > 0);
@@ -115,7 +107,7 @@ const Game = () => {
     }
     passedPath += 1;
     if (passedPath % 5 === 0 && !readyToShoot) readyToShoot = true;
-    if (passedPath % 25 === 0) generateNewStars(stars);
+    //  if (passedPath % 25 === 0) generateNewStars(stars);
     if (passedPath % 75 === 0) {
       if (shotMagazine < 10) {
         shotMagazine += 1;
@@ -127,7 +119,6 @@ const Game = () => {
     batch(() => {
       dispatch(
         updateGame({
-          stars,
           passedPath,
           velocity,
           rocketX,
@@ -156,10 +147,10 @@ const Game = () => {
   }, [dispatch]);
 
   const runTimers = useCallback(() => {
-    stopTimers();
+    cancelAnimationFrame(requestID.current);
     requestID.current = requestAnimationFrame(updatePerFrame);
     dispatch(runFpsTimer());
-  }, [dispatch, updatePerFrame, stopTimers]);
+  }, [dispatch, updatePerFrame]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
