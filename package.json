@@ -4,10 +4,10 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "node server.js",
+    "start": "node server",
     "dev": "npm-run-all -p dev-webpack nodemon",
     "build": "webpack --config prod.config.js",
-    "nodemon": "nodemon server.js",
+    "nodemon": "nodemon server",
     "dev-webpack": "webpack --config dev.config.js"
   },
   "author": "Arkady",
