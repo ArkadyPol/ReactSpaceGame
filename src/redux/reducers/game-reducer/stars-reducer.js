@@ -18,7 +18,7 @@ const generateStar = () => {
 };
 const generateNewStars = (oldStars) => {
   const newStars = [...oldStars];
-  const quantity = randomInteger(2, 7);
+  const quantity = randomInteger(1, 6);
   for (let i = 0; i < quantity; i++) {
     newStars.push(generateStar());
   }
