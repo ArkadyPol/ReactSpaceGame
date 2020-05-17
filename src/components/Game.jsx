@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { useNavigate } from "@reach/router";
-import { calculateVelocity, generateAsteroid } from "../logic";
+import { generateAsteroid } from "../logic";
 import updateCanvas from "../canvas";
 import {
   addFPS,
@@ -51,15 +51,7 @@ const Game = () => {
     const { escape, arrowLeft, arrowRight, space } = keyboard;
     if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
-    let {
-      velocity,
-      readyToShoot,
-      shotMagazine,
-      shots,
-      asteroids,
-      boxes,
-      health,
-    } = game;
+    let { readyToShoot, shotMagazine, shots, asteroids, boxes, health } = game;
     const { passedPath, rocketX } = game;
     shots = shots
       .map((coords) => [coords[0], coords[1] - 5])
@@ -86,11 +78,7 @@ const Game = () => {
       dispatch(reset());
       return;
     }
-    velocity = calculateVelocity({
-      velocity,
-      arrowLeft,
-      arrowRight,
-    });
+
     if (space && readyToShoot && shotMagazine > 0) {
       shots.push([rocketX, 625]);
       readyToShoot = false;
@@ -108,15 +96,17 @@ const Game = () => {
     }
     batch(() => {
       dispatch(
-        updateGame({
-          velocity,
-          readyToShoot,
-          shotMagazine,
-          shots,
-          asteroids,
-          boxes,
-          health,
-        })
+        updateGame(
+          {
+            readyToShoot,
+            shotMagazine,
+            shots,
+            asteroids,
+            boxes,
+            health,
+          },
+          { arrowLeft, arrowRight }
+        )
       );
       dispatch(addFPS());
     });

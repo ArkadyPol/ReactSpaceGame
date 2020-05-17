@@ -56,4 +56,8 @@ export const toggleSpace = (key) => ({
   payload: key,
 });
 
-export const updateGame = (game) => ({ type: t.UPDATE_GAME, payload: game });
+export const updateGame = (game, state) => ({
+  type: t.UPDATE_GAME,
+  payload: game,
+  state,
+});
