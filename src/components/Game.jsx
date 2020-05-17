@@ -24,7 +24,7 @@ import {
 import Form from "./Form";
 import Buttons from "./ButtonsGame";
 import "../styles/App.css";
-import getGame from "../redux/selectors";
+import { getGame } from "../redux/selectors";
 
 const Game = () => {
   const game = useSelector(getGame);

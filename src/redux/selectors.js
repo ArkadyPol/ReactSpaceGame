@@ -1,11 +1,12 @@
 import { createSelector } from "reselect";
 
 const getRestGame = (state) => state.game.game;
-const getStars = (state) => state.game.stars;
 const getPassedPath = (state) => state.game.passedPath;
 const getMove = (state) => state.game.move;
 
-const getGame = createSelector(
+export const getStars = (state) => state.game.stars;
+
+export const getGame = createSelector(
   getRestGame,
   getStars,
   getPassedPath,
@@ -17,5 +18,3 @@ const getGame = createSelector(
     ...move,
   })
 );
-
-export default getGame;

@@ -23,7 +23,7 @@ import {
 } from "./types";
 import { toggleDisplay, clearFPS } from "./actions";
 import api from "../api";
-import getGame from "./selectors";
+import { getGame } from "./selectors";
 
 function* getSavesSaga() {
   const saves = yield call(api.getSaves);
