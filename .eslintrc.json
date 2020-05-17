@@ -5,15 +5,25 @@
         "node": true
     },
     "extends": [
-        "eslint:recommended",
         "airbnb",
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:prettier/recommended"
     ],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        }
+    },
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -52,6 +62,16 @@
             "error",
             {
                 "allowForLoopAfterthoughts": true
+            }
+        ],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
             }
         ]
     }

@@ -16,7 +16,7 @@ module.exports = {
     rules: [
       {
         enforce: "pre",
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "eslint-loader",
@@ -38,12 +38,38 @@ module.exports = {
         },
       },
       {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-typescript"],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
+        },
+      },
+      {
         test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
+        },
+      },
+      {
+        test: /\.tsx$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              "@babel/preset-env",
+              "@babel/preset-react",
+              "@babel/preset-typescript",
+            ],
             plugins: ["@babel/plugin-transform-runtime"],
           },
         },

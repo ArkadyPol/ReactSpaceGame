@@ -26,7 +26,7 @@ import api from "../api";
 import { getGame } from "./selectors";
 
 function* getSavesSaga() {
-  const saves = yield call(api.getSaves);
+  const saves = yield call(api.getSaves.bind(api));
   yield put({ type: GET_SAVES, payload: saves });
 }
 
@@ -45,7 +45,7 @@ function* watchToggleEscape() {
 function* saveGameSaga({ saveName }) {
   const game = yield select(getGame);
   const save = { saveName, game };
-  yield call(api.saveGame, save);
+  yield call(api.saveGame.bind(api), save);
   yield put({ type: SAVE_GAME, payload: save });
   yield fork(getSavesSaga);
   yield* toggleEscapeSaga({ key: false });
@@ -55,7 +55,7 @@ function* watchSaveGame() {
 }
 
 function* loadGameSaga({ save }) {
-  const game = yield call(api.loadGame, save);
+  const game = yield call(api.loadGame.bind(api), save);
   yield put({ type: LOAD_GAME, payload: game });
   yield put(toggleDisplay(false));
 }

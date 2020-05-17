@@ -115,6 +115,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/helper-create-class-features-plugin@npm:^7.9.6":
+  version: 7.9.6
+  resolution: "@babel/helper-create-class-features-plugin@npm:7.9.6"
+  dependencies:
+    "@babel/helper-function-name": ^7.9.5
+    "@babel/helper-member-expression-to-functions": ^7.8.3
+    "@babel/helper-optimise-call-expression": ^7.8.3
+    "@babel/helper-plugin-utils": ^7.8.3
+    "@babel/helper-replace-supers": ^7.9.6
+    "@babel/helper-split-export-declaration": ^7.8.3
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: 3/bdd3f0e26846db4efd890ba0ac273102c5947c68619f15fd69cad09a78d535c6cad53057b63d73561beefc9d708aaa5ffceabaac21405126948cfca3fe2abf1a
+  languageName: node
+  linkType: hard
+
 "@babel/helper-create-regexp-features-plugin@npm:^7.8.3, @babel/helper-create-regexp-features-plugin@npm:^7.8.8":
   version: 7.8.8
   resolution: "@babel/helper-create-regexp-features-plugin@npm:7.8.8"
@@ -249,7 +265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-replace-supers@npm:^7.8.3, @babel/helper-replace-supers@npm:^7.8.6":
+"@babel/helper-replace-supers@npm:^7.8.3, @babel/helper-replace-supers@npm:^7.8.6, @babel/helper-replace-supers@npm:^7.9.6":
   version: 7.9.6
   resolution: "@babel/helper-replace-supers@npm:7.9.6"
   dependencies:
@@ -547,6 +563,17 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 3/db2f0ca5cba56605068f9d5c5d0b11cf2d77c66f85bcf4afe91c73395ac334364f27d7f3bd4a1a145c10a80c55cf11bb41269baf11fcebf3d349dd4010d9f7b3
+  languageName: node
+  linkType: hard
+
+"@babel/plugin-syntax-typescript@npm:^7.8.3":
+  version: 7.8.3
+  resolution: "@babel/plugin-syntax-typescript@npm:7.8.3"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.8.3
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 3/56807f1cf9db0002359d0cc92153f8f038436236fc424f50100dc7f24f420e77422d9054ab9622238aa869ef3fa28835c0432cd365c7e3f60ec7016f62ff7a99
   languageName: node
   linkType: hard
 
@@ -982,6 +1009,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-typescript@npm:^7.9.0":
+  version: 7.9.6
+  resolution: "@babel/plugin-transform-typescript@npm:7.9.6"
+  dependencies:
+    "@babel/helper-create-class-features-plugin": ^7.9.6
+    "@babel/helper-plugin-utils": ^7.8.3
+    "@babel/plugin-syntax-typescript": ^7.8.3
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 3/74e10f3b7f25efc77b2a47cecff3bc31f361266b2b226c64ba7cf42003e77d39ff93d30a57a42c82cfff8b15e7aff79807ec70f93448fbb43e05b0a12f7e5ade
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-unicode-regex@npm:^7.8.3":
   version: 7.8.3
   resolution: "@babel/plugin-transform-unicode-regex@npm:7.8.3"
@@ -1092,6 +1132,18 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 3/1c5bc153630dc16af04c0e00842feebc229197bf73e51e1032064972f72f799fe1c9816ee7e52eb2d1a8d00ce7e926a41e56f8e7d94e8d6a56dfcdc1e827b92a
+  languageName: node
+  linkType: hard
+
+"@babel/preset-typescript@npm:^7.9.0":
+  version: 7.9.0
+  resolution: "@babel/preset-typescript@npm:7.9.0"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.8.3
+    "@babel/plugin-transform-typescript": ^7.9.0
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 3/d83ac83919d1b7f1cd9a95b738389c12314492231c70e82026ac17f85efe943b61fe7670d4c99707b2a716ccb91bc0703abc8dffd9466d0f201c0ad8ccdd42f6
   languageName: node
   linkType: hard
 
@@ -7165,6 +7217,7 @@ fsevents@~2.1.2:
     "@babel/plugin-transform-runtime": ^7.9.6
     "@babel/preset-env": ^7.9.6
     "@babel/preset-react": ^7.9.4
+    "@babel/preset-typescript": ^7.9.0
     "@babel/runtime": ^7.9.6
     "@reach/router": ^1.3.3
     "@typescript-eslint/eslint-plugin": latest
