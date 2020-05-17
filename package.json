@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node server",
     "dev": "npm-run-all -p dev-webpack nodemon",
-    "build": "webpack --config prod.config.js",
+    "build": "webpack --config webpack.prod.js",
     "nodemon": "nodemon server",
-    "dev-webpack": "webpack --config dev.config.js"
+    "dev-webpack": "webpack --config webpack.dev.js"
   },
   "author": "Arkady",
   "license": "ISC",
@@ -30,6 +30,11 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
+    "@types/prop-types": "^15.7.3",
+    "@types/reach__router": "^1.3.5",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.8",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "@yarnpkg/pnpify": "^2.0.0-rc.22",
@@ -53,6 +58,7 @@
     "style-loader": "^1.2.1",
     "typescript": "^3.9.2",
     "webpack": "next",
-    "webpack-cli": "latest"
+    "webpack-cli": "latest",
+    "webpack-merge": "^4.2.2"
   }
 }
