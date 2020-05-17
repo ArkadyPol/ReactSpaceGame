@@ -1,6 +1,6 @@
 import { RESET, ADD_FPS, CLEAR_FPS } from "../types";
 
-const fpsReducer = (state = 0, action) => {
+const fpsReducer = (state = 0, action: any): number => {
   switch (action.type) {
     case RESET:
       return 0;

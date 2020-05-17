@@ -1316,6 +1316,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/eslint-visitor-keys@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@types/eslint-visitor-keys@npm:1.0.0"
+  checksum: 3/48d1f3263148ac822afbc1e54358b423851a2a28c41aef4d7803b052b4f6c3ebfb219daed419b8a4f2b6ac34b545dab4def916d15e69d2bf3f128f7abc0e6132
+  languageName: node
+  linkType: hard
+
 "@types/events@npm:*":
   version: 3.0.0
   resolution: "@types/events@npm:3.0.0"
@@ -1345,6 +1352,13 @@ __metadata:
   version: 4.0.0
   resolution: "@types/http-cache-semantics@npm:4.0.0"
   checksum: 3/e16fae56d4daea4ed678b4d5918b693b44ca12fb5e479b87d242d3a35bf3a014974dcf9ed7aba7e29149fdb6c3719f9987fca51b20ef10aa84b58f86553c2f74
+  languageName: node
+  linkType: hard
+
+"@types/json-schema@npm:^7.0.3":
+  version: 7.0.4
+  resolution: "@types/json-schema@npm:7.0.4"
+  checksum: 3/5094037431e4b29d5cc9d6938ea596d1145cc46d305d8d302a477a54d0a7a83ba4629abbf52fcabc3ffdb31cf94647bc366a7bcc544770cbb80212d903018e2b
   languageName: node
   linkType: hard
 
@@ -1432,6 +1446,77 @@ __metadata:
     "@types/webpack-sources": "*"
     source-map: ^0.6.0
   checksum: 3/15264a33f63c91f8002e151d59780eaa0a24bcbea65d38ba78d4ffc13423a40c81fcb2cda0a5176c44756a05bec869340d74b96260e0641e8ca5d7a9809defd7
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/eslint-plugin@npm:latest":
+  version: 2.33.0
+  resolution: "@typescript-eslint/eslint-plugin@npm:2.33.0"
+  dependencies:
+    "@typescript-eslint/experimental-utils": 2.33.0
+    functional-red-black-tree: ^1.0.1
+    regexpp: ^3.0.0
+    tsutils: ^3.17.1
+  peerDependencies:
+    "@typescript-eslint/parser": ^2.0.0
+    eslint: ^5.0.0 || ^6.0.0
+    typescript: "*"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 3/fbac64a9ebf0c7dd61fb2b7bb8cd721116560d78aa5edfed517eea2d68e5e93f86953f99733f0db203a9b5363a53bf6944b23df63242d74ea7184fd2a0f76b3b
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/experimental-utils@npm:2.33.0":
+  version: 2.33.0
+  resolution: "@typescript-eslint/experimental-utils@npm:2.33.0"
+  dependencies:
+    "@types/json-schema": ^7.0.3
+    "@typescript-eslint/typescript-estree": 2.33.0
+    eslint-scope: ^5.0.0
+    eslint-utils: ^2.0.0
+  peerDependencies:
+    eslint: "*"
+  checksum: 3/d4e084287045b2c7bb9b0762010e7c538fec45492d6e83464181a7f73d1616644655e09eb30948c6e82a908b6859cbec85e3da27b4d5914218030485a99e5252
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/parser@npm:latest":
+  version: 2.33.0
+  resolution: "@typescript-eslint/parser@npm:2.33.0"
+  dependencies:
+    "@types/eslint-visitor-keys": ^1.0.0
+    "@typescript-eslint/experimental-utils": 2.33.0
+    "@typescript-eslint/typescript-estree": 2.33.0
+    eslint-visitor-keys: ^1.1.0
+  peerDependencies:
+    eslint: ^5.0.0 || ^6.0.0
+    typescript: "*"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 3/dfbe4d5bd7187d98c95a33a8875222af550fd690f5b4d922f6b8ac27dc3113349d81144dc1a6ad7d737289eaf183162eeae2b5a62cf724bf415ed574af99cc67
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/typescript-estree@npm:2.33.0":
+  version: 2.33.0
+  resolution: "@typescript-eslint/typescript-estree@npm:2.33.0"
+  dependencies:
+    debug: ^4.1.1
+    eslint-visitor-keys: ^1.1.0
+    glob: ^7.1.6
+    is-glob: ^4.0.1
+    lodash: ^4.17.15
+    semver: ^7.3.2
+    tsutils: ^3.17.1
+  peerDependencies:
+    typescript: "*"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 3/d917169d05f709fd5ae4e5b7b336b832f59eeb4a5ecd2a812f63a5c68dd4212366ff321c8c8444cad687047a37454feafa2400652d87022e51d85e6b9cb1621f
   languageName: node
   linkType: hard
 
@@ -2901,7 +2986,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:^4.0.1, debug@npm:^4.1.0":
+"debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1":
   version: 4.1.1
   resolution: "debug@npm:4.1.1"
   dependencies:
@@ -4232,7 +4317,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.0.3, glob@npm:^7.1.3, glob@npm:^7.1.4":
+"glob@npm:^7.0.3, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6":
   version: 7.1.6
   resolution: "glob@npm:7.1.6"
   dependencies:
@@ -7082,6 +7167,8 @@ fsevents@~2.1.2:
     "@babel/preset-react": ^7.9.4
     "@babel/runtime": ^7.9.6
     "@reach/router": ^1.3.3
+    "@typescript-eslint/eslint-plugin": latest
+    "@typescript-eslint/parser": latest
     "@yarnpkg/pnpify": ^2.0.0-rc.22
     babel-loader: ^8.1.0
     clean-webpack-plugin: ^3.0.0
@@ -7265,7 +7352,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"regexpp@npm:^3.1.0":
+"regexpp@npm:^3.0.0, regexpp@npm:^3.1.0":
   version: 3.1.0
   resolution: "regexpp@npm:3.1.0"
   checksum: 3/69d0ce6b449cf35d3732d6341a1e70850360ffc619f8eef10629871c462e614853fffb80d3f00fc17cd0bb5b8f34b0cde5be4b434e72c0eb3fbba2360c8b5ac4
@@ -7652,7 +7739,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.1.2, semver@npm:^7.2.1":
+"semver@npm:^7.1.2, semver@npm:^7.2.1, semver@npm:^7.3.2":
   version: 7.3.2
   resolution: "semver@npm:7.3.2"
   bin:
@@ -8420,6 +8507,24 @@ fsevents@~2.1.2:
   version: 1.12.0
   resolution: "tslib@npm:1.12.0"
   checksum: 3/a2f020c1187db465fbfb1c6d7d5dcd1a56aa08153d868b614f36fd59ef1225e938288a7cc8c593562faf5a681c53caccc6b580b06b7618a6670830079117f803
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^1.8.1":
+  version: 1.13.0
+  resolution: "tslib@npm:1.13.0"
+  checksum: 3/5dc3bdaea3b67c76ef4a14c28fcb2171da7bcf292fd9c59a260098729626b1ce766c52b588f08e324ed9a0c52ea8a93a815920f980d75981abc9d850fbf310fb
+  languageName: node
+  linkType: hard
+
+"tsutils@npm:^3.17.1":
+  version: 3.17.1
+  resolution: "tsutils@npm:3.17.1"
+  dependencies:
+    tslib: ^1.8.1
+  peerDependencies:
+    typescript: ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta"
+  checksum: 3/bed8ff7998d90a7ab9f3bdb26d36dae0edfcdb3e4f07994fb59df8d42e62ee07d591d3a435fb65cb50b6ca9af6b76c9bc9423a216186e5085d91793fa169c248
   languageName: node
   linkType: hard
 
