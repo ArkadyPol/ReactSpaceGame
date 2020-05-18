@@ -115,22 +115,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-create-class-features-plugin@npm:^7.9.6":
-  version: 7.9.6
-  resolution: "@babel/helper-create-class-features-plugin@npm:7.9.6"
-  dependencies:
-    "@babel/helper-function-name": ^7.9.5
-    "@babel/helper-member-expression-to-functions": ^7.8.3
-    "@babel/helper-optimise-call-expression": ^7.8.3
-    "@babel/helper-plugin-utils": ^7.8.3
-    "@babel/helper-replace-supers": ^7.9.6
-    "@babel/helper-split-export-declaration": ^7.8.3
-  peerDependencies:
-    "@babel/core": ^7.0.0
-  checksum: 3/bdd3f0e26846db4efd890ba0ac273102c5947c68619f15fd69cad09a78d535c6cad53057b63d73561beefc9d708aaa5ffceabaac21405126948cfca3fe2abf1a
-  languageName: node
-  linkType: hard
-
 "@babel/helper-create-regexp-features-plugin@npm:^7.8.3, @babel/helper-create-regexp-features-plugin@npm:^7.8.8":
   version: 7.8.8
   resolution: "@babel/helper-create-regexp-features-plugin@npm:7.8.8"
@@ -265,7 +249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-replace-supers@npm:^7.8.3, @babel/helper-replace-supers@npm:^7.8.6, @babel/helper-replace-supers@npm:^7.9.6":
+"@babel/helper-replace-supers@npm:^7.8.3, @babel/helper-replace-supers@npm:^7.8.6":
   version: 7.9.6
   resolution: "@babel/helper-replace-supers@npm:7.9.6"
   dependencies:
@@ -563,17 +547,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 3/db2f0ca5cba56605068f9d5c5d0b11cf2d77c66f85bcf4afe91c73395ac334364f27d7f3bd4a1a145c10a80c55cf11bb41269baf11fcebf3d349dd4010d9f7b3
-  languageName: node
-  linkType: hard
-
-"@babel/plugin-syntax-typescript@npm:^7.8.3":
-  version: 7.8.3
-  resolution: "@babel/plugin-syntax-typescript@npm:7.8.3"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.8.3
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 3/56807f1cf9db0002359d0cc92153f8f038436236fc424f50100dc7f24f420e77422d9054ab9622238aa869ef3fa28835c0432cd365c7e3f60ec7016f62ff7a99
   languageName: node
   linkType: hard
 
@@ -1009,19 +982,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-typescript@npm:^7.9.0":
-  version: 7.9.6
-  resolution: "@babel/plugin-transform-typescript@npm:7.9.6"
-  dependencies:
-    "@babel/helper-create-class-features-plugin": ^7.9.6
-    "@babel/helper-plugin-utils": ^7.8.3
-    "@babel/plugin-syntax-typescript": ^7.8.3
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 3/74e10f3b7f25efc77b2a47cecff3bc31f361266b2b226c64ba7cf42003e77d39ff93d30a57a42c82cfff8b15e7aff79807ec70f93448fbb43e05b0a12f7e5ade
-  languageName: node
-  linkType: hard
-
 "@babel/plugin-transform-unicode-regex@npm:^7.8.3":
   version: 7.8.3
   resolution: "@babel/plugin-transform-unicode-regex@npm:7.8.3"
@@ -1132,18 +1092,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 3/1c5bc153630dc16af04c0e00842feebc229197bf73e51e1032064972f72f799fe1c9816ee7e52eb2d1a8d00ce7e926a41e56f8e7d94e8d6a56dfcdc1e827b92a
-  languageName: node
-  linkType: hard
-
-"@babel/preset-typescript@npm:^7.9.0":
-  version: 7.9.0
-  resolution: "@babel/preset-typescript@npm:7.9.0"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.8.3
-    "@babel/plugin-transform-typescript": ^7.9.0
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 3/d83ac83919d1b7f1cd9a95b738389c12314492231c70e82026ac17f85efe943b61fe7670d4c99707b2a716ccb91bc0703abc8dffd9466d0f201c0ad8ccdd42f6
   languageName: node
   linkType: hard
 
@@ -2578,7 +2526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:2.4.2, chalk@npm:^2.0.0, chalk@npm:^2.4.1, chalk@npm:^2.4.2":
+"chalk@npm:2.4.2, chalk@npm:^2.0.0, chalk@npm:^2.3.0, chalk@npm:^2.4.1, chalk@npm:^2.4.2":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
   dependencies:
@@ -3493,6 +3441,17 @@ __metadata:
     graceful-fs: ^4.2.0
     tapable: ^2.0.0-beta.8
   checksum: 3/1d81e38533169e7143a36b428350aa0e6355a582249cdf470d19a819341e151c65edb8ea77d658a6eaf3b8340ba107fbe8c9615987a2f6606a2e5cec36350886
+  languageName: node
+  linkType: hard
+
+"enhanced-resolve@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "enhanced-resolve@npm:4.1.1"
+  dependencies:
+    graceful-fs: ^4.1.2
+    memory-fs: ^0.5.0
+    tapable: ^1.0.0
+  checksum: 3/613ad8cf82b9aba7180782e50539c046b92fff5e6b60e93c6e37e5f2c7eef26abf8f965efc4b2fe6d600dccb6baf48caff64cd4f7e8267e1ca5ca323e5fdde9d
   languageName: node
   linkType: hard
 
@@ -5694,7 +5653,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:^1.2.3, loader-utils@npm:^1.4.0":
+"loader-utils@npm:^1.0.2, loader-utils@npm:^1.2.3, loader-utils@npm:^1.4.0":
   version: 1.4.0
   resolution: "loader-utils@npm:1.4.0"
   dependencies:
@@ -5876,6 +5835,16 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"memory-fs@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "memory-fs@npm:0.5.0"
+  dependencies:
+    errno: ^0.1.3
+    readable-stream: ^2.0.1
+  checksum: 3/deb916f33ca09215d6ad58db30854bbf36aaca86e018dcbbbdb7c6160661e8c0b9acdcc23c9931fc6dcd62f3dd5318a7ecab519e3688f7787d0833e5f48c0d0a
+  languageName: node
+  linkType: hard
+
 "memorystream@npm:^0.3.1":
   version: 0.3.1
   resolution: "memorystream@npm:0.3.1"
@@ -5932,7 +5901,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.2":
+"micromatch@npm:^4.0.0, micromatch@npm:^4.0.2":
   version: 4.0.2
   resolution: "micromatch@npm:4.0.2"
   dependencies:
@@ -7289,7 +7258,6 @@ fsevents@~2.1.2:
     "@babel/plugin-transform-runtime": ^7.9.6
     "@babel/preset-env": ^7.9.6
     "@babel/preset-react": ^7.9.4
-    "@babel/preset-typescript": ^7.9.0
     "@babel/runtime": ^7.9.6
     "@reach/router": ^1.3.3
     "@types/prop-types": ^15.7.3
@@ -7326,6 +7294,7 @@ fsevents@~2.1.2:
     redux-saga: ^1.1.3
     reselect: ^4.0.0
     style-loader: ^1.2.1
+    ts-loader: ^7.0.4
     typescript: ^3.9.2
     webpack: next
     webpack-cli: latest
@@ -8631,6 +8600,21 @@ fsevents@~2.1.2:
     psl: ^1.1.28
     punycode: ^2.1.1
   checksum: 3/bf5d6fac5ce0bebc5876cb9b9a79d3d9ea21c9e4099f3d3e64701d6ba170a052cb88cece6737ec2473bac4f0a4f6c75d46ec17985be8587c6bbdd38d91625cb4
+  languageName: node
+  linkType: hard
+
+"ts-loader@npm:^7.0.4":
+  version: 7.0.4
+  resolution: "ts-loader@npm:7.0.4"
+  dependencies:
+    chalk: ^2.3.0
+    enhanced-resolve: ^4.0.0
+    loader-utils: ^1.0.2
+    micromatch: ^4.0.0
+    semver: ^6.0.0
+  peerDependencies:
+    typescript: "*"
+  checksum: 3/027cb130b27e553e5fbc29194eb057f0a61f1f351eeab8d20a081fd133e00bc196b656235a5848893df44c83c19e012778d211dbf8004044d08777cb7e248037
   languageName: node
   linkType: hard
 
