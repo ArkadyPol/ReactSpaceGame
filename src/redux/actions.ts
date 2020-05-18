@@ -1,6 +1,14 @@
 import * as t from "./types";
 
-export const addFPS = () => ({ type: t.ADD_FPS });
+export type addFPSActionType = {
+  type: typeof t.ADD_FPS;
+};
+
+export type resetActionType = {
+  type: typeof t.RESET;
+};
+
+export const addFPS = (): addFPSActionType => ({ type: t.ADD_FPS });
 
 export const changeSaveName = (save) => ({
   type: t.CHANGE_SAVE_NAME,
@@ -20,7 +28,7 @@ export const loadGame = (save) => ({
   save,
 });
 
-export const reset = () => ({ type: t.RESET });
+export const reset = (): resetActionType => ({ type: t.RESET });
 
 export const runFpsTimer = () => ({ type: t.SAGA_RUN_FPS_TIMER });
 
