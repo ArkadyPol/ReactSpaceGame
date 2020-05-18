@@ -25,7 +25,7 @@ const babelPresets = {
 const babelRule = (ext) => {
   return {
     test: new RegExp(`\.${ext}$`),
-    exclude: /node_modules/,
+    include: path.resolve(__dirname, 'src'),
     use: {
       loader: "babel-loader",
       options: babelOptions(babelPresets[ext]),
