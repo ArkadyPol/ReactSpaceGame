@@ -8,6 +8,10 @@ export type resetActionType = {
   type: typeof t.RESET;
 };
 
+export type clearFPSActionType = {
+  type: typeof t.CLEAR_FPS;
+};
+
 export const addFPS = (): addFPSActionType => ({ type: t.ADD_FPS });
 
 export const changeSaveName = (save) => ({
@@ -15,7 +19,7 @@ export const changeSaveName = (save) => ({
   payload: save,
 });
 
-export const clearFPS = () => ({ type: t.CLEAR_FPS });
+export const clearFPS = (): clearFPSActionType => ({ type: t.CLEAR_FPS });
 
 export const generateNewStars = () => ({ type: t.GENERATE_NEW_STARS });
 
