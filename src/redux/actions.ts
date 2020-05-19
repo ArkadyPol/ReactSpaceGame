@@ -1,19 +1,8 @@
 import * as t from "./actions-types";
+import { GameType, MoveType } from "../types";
 
 export type AddFPSActionType = {
   type: typeof t.ADD_FPS;
-};
-export type AsteroidType = {
-  x: number;
-  y: number;
-  size: number;
-  vX: number;
-  vY: number;
-};
-export type BoxType = {
-  x: number;
-  y: number;
-  color: string;
 };
 export type ChangeSaveNameActionType = {
   type: typeof t.CHANGE_SAVE_NAME;
@@ -26,28 +15,12 @@ export type LoadGameActionType = {
   type: typeof t.LOAD_GAME;
   payload: GameType;
 };
-export type GameType = {
-  stars: StarType[];
-  passedPath: number;
-  rocketX: number;
-  velocity: number;
-  asteroids: AsteroidType[];
-  boxes: BoxType[];
-  health: number;
-  readyToShoot: boolean;
-  shotMagazine: number;
-  shots: ShotType[];
-};
 export type GenerateNewStarsActionType = {
   type: typeof t.GENERATE_NEW_STARS;
 };
 export type GetSaveActionType = {
   type: typeof t.GET_SAVES;
   payload: string[];
-};
-export type MoveType = {
-  arrowLeft: boolean;
-  arrowRight: boolean;
 };
 export type SagaRunFpsTimerActionType = {
   type: typeof t.SAGA_RUN_FPS_TIMER;
@@ -73,8 +46,6 @@ export type SagaToggleEscapeActionType = {
   type: typeof t.SAGA_TOGGLE_ESCAPE;
   key: boolean;
 };
-export type ShotType = [number, number];
-export type StarType = [number, number, number];
 export type ToggleArrowLeftActionType = {
   type: typeof t.TOGGLE_ARROW_LEFT;
   payload: boolean;
