@@ -13,5 +13,6 @@ const rootReducer = combineReducers({
   keyboard: keyboardReducer,
   fps: fpsReducer,
 });
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;
