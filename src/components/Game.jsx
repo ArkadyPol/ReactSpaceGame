@@ -11,10 +11,10 @@ import {
   toggleArrowLeft,
   toggleArrowRight,
   toggleSpace,
-  toggleEscape,
-  saveGame,
-  runFpsTimer,
-  stopFpsTimer,
+  sagaToggleEscape,
+  sagaSaveGame,
+  sagaRunFpsTimer,
+  sagaStopFpsTimer,
   generateNewStars,
 } from "../redux/actions";
 import {
@@ -42,9 +42,9 @@ const Game = () => {
     updateCanvas(ctx, game);
   }, [game]);
   useEffect(() => {
-    dispatch(runFpsTimer());
+    dispatch(sagaRunFpsTimer());
     return () => {
-      dispatch(stopFpsTimer());
+      dispatch(sagaStopFpsTimer());
     };
   }, [dispatch]);
   const updatePerFrame = useCallback(() => {
@@ -121,13 +121,13 @@ const Game = () => {
 
   const stopTimers = useCallback(() => {
     cancelAnimationFrame(requestID.current);
-    dispatch(stopFpsTimer());
+    dispatch(sagaStopFpsTimer());
   }, [dispatch]);
 
   const runTimers = useCallback(() => {
     cancelAnimationFrame(requestID.current);
     requestID.current = requestAnimationFrame(updatePerFrame);
-    dispatch(runFpsTimer());
+    dispatch(sagaRunFpsTimer());
   }, [dispatch, updatePerFrame]);
 
   useEffect(() => {
@@ -145,10 +145,10 @@ const Game = () => {
         case "Escape":
           if (keyboard.escape) {
             runTimers();
-            dispatch(toggleEscape(false));
+            dispatch(sagaToggleEscape(false));
           } else {
             stopTimers();
-            dispatch(toggleEscape(true));
+            dispatch(sagaToggleEscape(true));
             dispatch(clearFPS());
           }
           break;
@@ -183,7 +183,7 @@ const Game = () => {
     if (game.nameSave === "") return;
     if (e.target.id !== "save") return;
     runTimers();
-    dispatch(saveGame(save));
+    dispatch(sagaSaveGame(save));
   };
   return (
     <>

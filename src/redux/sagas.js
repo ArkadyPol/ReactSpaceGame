@@ -10,10 +10,6 @@ import {
   delay,
 } from "redux-saga/effects";
 import {
-  GET_SAVES,
-  TOGGLE_ESCAPE,
-  SAVE_GAME,
-  LOAD_GAME,
   SAGA_GET_SAVES,
   SAGA_TOGGLE_ESCAPE,
   SAGA_SAVE_GAME,
@@ -21,13 +17,19 @@ import {
   SAGA_RUN_FPS_TIMER,
   SAGA_STOP_FPS_TIMER,
 } from "./types";
-import { toggleDisplay, clearFPS } from "./actions";
+import {
+  toggleDisplay,
+  clearFPS,
+  getSaves,
+  toggleEscape,
+  loadGame,
+} from "./actions";
 import api from "../api";
 import { getGame } from "./selectors";
 
 function* getSavesSaga() {
   const saves = yield call(api.getSaves.bind(api));
-  yield put({ type: GET_SAVES, payload: saves });
+  yield put(getSaves(saves));
 }
 
 function* watchGetSaves() {
@@ -35,7 +37,7 @@ function* watchGetSaves() {
 }
 
 function* toggleEscapeSaga({ key }) {
-  yield put({ type: TOGGLE_ESCAPE, payload: key });
+  yield put(toggleEscape(key));
   yield put(toggleDisplay(false));
 }
 function* watchToggleEscape() {
@@ -46,7 +48,6 @@ function* saveGameSaga({ saveName }) {
   const game = yield select(getGame);
   const save = { saveName, game };
   yield call(api.saveGame.bind(api), save);
-  yield put({ type: SAVE_GAME, payload: save });
   yield fork(getSavesSaga);
   yield* toggleEscapeSaga({ key: false });
 }
@@ -56,7 +57,7 @@ function* watchSaveGame() {
 
 function* loadGameSaga({ saveName }) {
   const game = yield call(api.loadGame.bind(api), saveName);
-  yield put({ type: LOAD_GAME, payload: game });
+  yield put(loadGame(game));
   yield put(toggleDisplay(false));
 }
 function* watchLoadGame() {

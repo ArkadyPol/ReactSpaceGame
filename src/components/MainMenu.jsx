@@ -5,7 +5,7 @@ import Saves from "./Saves";
 import Buttons from "./ButtonsMenu";
 import star from "../canvas/Star";
 import { getStars } from "../redux/selectors";
-import { toggleDisplay, getSaves, loadGame } from "../redux/actions";
+import { toggleDisplay, sagaGetSaves, sagaLoadGame } from "../redux/actions";
 import "../styles/App.css";
 
 const MainMenu = () => {
@@ -34,13 +34,13 @@ const MainMenu = () => {
   }, [displayForm, dispatch]);
   const handleClickForm = (e) => {
     const save = e.target.textContent;
-    dispatch(loadGame(save));
+    dispatch(sagaLoadGame(save));
     setTimeout(() => {
       navigate("/game");
     }, 50);
   };
   useEffect(() => {
-    dispatch(getSaves());
+    dispatch(sagaGetSaves());
   }, [dispatch]);
   return (
     <>
