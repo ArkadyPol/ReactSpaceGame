@@ -5,6 +5,13 @@ import {
   TOGGLE_SPACE,
   TOGGLE_ESCAPE,
 } from "../actions-types";
+import {
+  ResetActionType,
+  ToggleSpaceActionType,
+  ToggleArrowLeftActionType,
+  ToggleEscapeActionType,
+  ToggleArrowRightActionType,
+} from "../actions";
 
 const initialState = {
   arrowLeft: false,
@@ -13,7 +20,17 @@ const initialState = {
   space: false,
 };
 
-const keyboardReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+
+const keyboardReducer = (
+  state = initialState,
+  action:
+    | ResetActionType
+    | ToggleSpaceActionType
+    | ToggleArrowLeftActionType
+    | ToggleEscapeActionType
+    | ToggleArrowRightActionType
+): InitialStateType => {
   switch (action.type) {
     case RESET:
       return initialState;
