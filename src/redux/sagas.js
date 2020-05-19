@@ -54,8 +54,8 @@ function* watchSaveGame() {
   yield takeEvery(SAGA_SAVE_GAME, saveGameSaga);
 }
 
-function* loadGameSaga({ save }) {
-  const game = yield call(api.loadGame.bind(api), save);
+function* loadGameSaga({ saveName }) {
+  const game = yield call(api.loadGame.bind(api), saveName);
   yield put({ type: LOAD_GAME, payload: game });
   yield put(toggleDisplay(false));
 }

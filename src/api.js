@@ -14,13 +14,13 @@ const api = {
     };
     fetch("/saves", options);
   },
-  async loadGame(save) {
+  async loadGame(saveName) {
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({ name: save }),
+      body: JSON.stringify({ name: saveName }),
     };
     const response = await fetch("/save", options);
     const game = await response.json();
