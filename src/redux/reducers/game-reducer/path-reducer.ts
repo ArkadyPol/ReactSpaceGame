@@ -1,6 +1,7 @@
 import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
+import { GameReducerActionType } from "../../actions";
 
-const pathReducer = (state = 0, action) => {
+const pathReducer = (state = 0, action: GameReducerActionType): number => {
   switch (action.type) {
     case LOAD_GAME:
       return action.payload.passedPath;

@@ -6,8 +6,13 @@ import {
   GENERATE_NEW_STARS,
 } from "../../actions-types";
 import { randomInteger } from "../../../logic";
+import { StarType } from "../../../types";
+import {
+  GenerateNewStarsActionType,
+  GameReducerActionType,
+} from "../../actions";
 
-const generateStar = () => {
+const generateStar = (): StarType => {
   const x = randomInteger(8, 1176);
   const y = randomInteger(-10, -19);
   const percent = randomInteger(0, 199);
@@ -21,7 +26,7 @@ const generateStar = () => {
   else size = 8;
   return [x, y, size];
 };
-const generateNewStars = (oldStars) => {
+const generateNewStars = (oldStars: StarType[]): StarType[] => {
   const newStars = [...oldStars];
   const quantity = randomInteger(1, 6);
   for (let i = 0; i < quantity; i++) {
@@ -30,18 +35,23 @@ const generateNewStars = (oldStars) => {
   return newStars;
 };
 
-const starsReducer = (state = stars, action) => {
+const initialState = stars as StarType[];
+
+const starsReducer = (
+  state = initialState,
+  action: GameReducerActionType | GenerateNewStarsActionType
+): StarType[] => {
   switch (action.type) {
     case LOAD_GAME:
       return action.payload.stars;
     case UPDATE_GAME:
       return state
         .map((params) => [params[0], params[1] + 0.5, params[2]])
-        .filter((params) => params[1] < 750);
+        .filter((params) => params[1] < 750) as StarType[];
     case GENERATE_NEW_STARS:
       return generateNewStars(state);
     case RESET:
-      return stars;
+      return initialState;
     default:
       return state;
   }

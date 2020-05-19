@@ -1,12 +1,9 @@
 import { GET_SAVES, CHANGE_SAVE_NAME } from "../actions-types";
 import { GetSaveActionType, ChangeSaveNameActionType } from "../actions";
 
-type InitialStateType = {
-  saves: string[];
-  saveName: string;
-};
+const initialState = { saves: [] as string[], saveName: "" };
 
-const initialState: InitialStateType = { saves: [], saveName: "" };
+type InitialStateType = typeof initialState;
 
 const savesReducer = (
   state = initialState,

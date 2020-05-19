@@ -15,6 +15,10 @@ export type LoadGameActionType = {
   type: typeof t.LOAD_GAME;
   payload: GameType;
 };
+export type GameReducerActionType =
+  | LoadGameActionType
+  | UpdateGameActionType
+  | ResetActionType;
 export type GenerateNewStarsActionType = {
   type: typeof t.GENERATE_NEW_STARS;
 };
