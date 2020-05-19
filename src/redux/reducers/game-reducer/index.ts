@@ -15,12 +15,12 @@ const initialState = {
   shots: [] as ShotType[],
 };
 
-type InitialStateType = typeof initialState;
+export type RestGameStateType = typeof initialState;
 
 const restGameReducer = (
   state = initialState,
   action: GameReducerActionType
-): InitialStateType => {
+): RestGameStateType => {
   switch (action.type) {
     case LOAD_GAME: {
       const { stars, passedPath, velocity, rocketX, ...game } = action.payload;

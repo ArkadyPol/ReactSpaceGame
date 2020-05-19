@@ -24,12 +24,12 @@ const initialState = {
   velocity: 0,
 };
 
-type InitialStateType = typeof initialState;
+export type MoveStateType = typeof initialState;
 
 const moveReducer = (
   state = initialState,
   action: GameReducerActionType
-): InitialStateType => {
+): MoveStateType => {
   switch (action.type) {
     case LOAD_GAME:
       return {
