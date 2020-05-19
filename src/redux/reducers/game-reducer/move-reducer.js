@@ -1,4 +1,4 @@
-import { RESET, UPDATE_GAME, LOAD_GAME } from "../../types";
+import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
 
 const calculateVelocity = ({ velocity, arrowLeft, arrowRight }) => {
   let newVelocity = velocity;

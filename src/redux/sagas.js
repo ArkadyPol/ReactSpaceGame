@@ -16,7 +16,7 @@ import {
   SAGA_LOAD_GAME,
   SAGA_RUN_FPS_TIMER,
   SAGA_STOP_FPS_TIMER,
-} from "./types";
+} from "./actions-types";
 import {
   toggleDisplay,
   clearFPS,

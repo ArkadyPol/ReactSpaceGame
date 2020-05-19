@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { RESET, UPDATE_GAME, LOAD_GAME } from "../../types";
+import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
 import starsReducer from "./stars-reducer";
 import pathReducer from "./path-reducer";
 import moveReducer from "./move-reducer";

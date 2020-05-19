@@ -1,4 +1,4 @@
-import { RESET, UPDATE_GAME, LOAD_GAME } from "../../types";
+import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
 
 const pathReducer = (state = 0, action) => {
   switch (action.type) {

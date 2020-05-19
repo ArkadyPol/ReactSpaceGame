@@ -1,4 +1,4 @@
-import { GET_SAVES, CHANGE_SAVE_NAME } from "../types";
+import { GET_SAVES, CHANGE_SAVE_NAME } from "../actions-types";
 
 const initialState = { saves: [], saveName: "" };
 

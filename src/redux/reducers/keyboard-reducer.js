@@ -4,7 +4,7 @@ import {
   TOGGLE_ARROW_RIGHT,
   TOGGLE_SPACE,
   TOGGLE_ESCAPE,
-} from "../types";
+} from "../actions-types";
 
 const initialState = {
   arrowLeft: false,

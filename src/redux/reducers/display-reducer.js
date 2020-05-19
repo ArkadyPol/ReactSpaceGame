@@ -1,4 +1,4 @@
-import { TOGGLE_DISPLAY, RESET } from "../types";
+import { TOGGLE_DISPLAY, RESET } from "../actions-types";
 
 const displayReducer = (state = false, action) => {
   switch (action.type) {

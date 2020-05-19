@@ -1,4 +1,4 @@
-import * as t from "./types";
+import * as t from "./actions-types";
 
 export type AddFPSActionType = {
   type: typeof t.ADD_FPS;

@@ -1,5 +1,10 @@
 import stars from "./stars.json";
-import { RESET, UPDATE_GAME, LOAD_GAME, GENERATE_NEW_STARS } from "../../types";
+import {
+  RESET,
+  UPDATE_GAME,
+  LOAD_GAME,
+  GENERATE_NEW_STARS,
+} from "../../actions-types";
 import { randomInteger } from "../../../logic";
 
 const generateStar = () => {

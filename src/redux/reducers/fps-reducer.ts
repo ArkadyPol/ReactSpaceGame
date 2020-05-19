@@ -1,4 +1,4 @@
-import { RESET, ADD_FPS, CLEAR_FPS } from "../types";
+import { RESET, ADD_FPS, CLEAR_FPS } from "../actions-types";
 import {
   AddFPSActionType,
   ResetActionType,
