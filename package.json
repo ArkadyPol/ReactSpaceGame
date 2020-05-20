@@ -41,7 +41,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
     "eslint": "^7.0.0",
-    "eslint-config-airbnb": "latest",
+    "eslint-config-airbnb-typescript": "^7.2.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-node": "^0.3.3",
     "eslint-loader": "^4.0.2",

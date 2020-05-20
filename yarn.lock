@@ -1547,7 +1547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:latest":
+"@typescript-eslint/parser@npm:^2.24.0, @typescript-eslint/parser@npm:latest":
   version: 2.33.0
   resolution: "@typescript-eslint/parser@npm:2.33.0"
   dependencies:
@@ -3561,7 +3561,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-airbnb@npm:latest":
+"eslint-config-airbnb-typescript@npm:^7.2.1":
+  version: 7.2.1
+  resolution: "eslint-config-airbnb-typescript@npm:7.2.1"
+  dependencies:
+    "@typescript-eslint/parser": ^2.24.0
+    eslint-config-airbnb: ^18.1.0
+    eslint-config-airbnb-base: ^14.1.0
+  peerDependencies:
+    "@typescript-eslint/eslint-plugin": ^2.24.0
+  checksum: 3/61bf93dd204a2e5fc9dc06ee7e50461a53dd1cdaebdcfed1e2d3d4287307eb5b44bb028051d1255563750bb256728f298702515c44ec839fe32da34bd115c397
+  languageName: node
+  linkType: hard
+
+"eslint-config-airbnb@npm:^18.1.0":
   version: 18.1.0
   resolution: "eslint-config-airbnb@npm:18.1.0"
   dependencies:
@@ -7272,7 +7285,7 @@ fsevents@~2.1.2:
     clean-webpack-plugin: ^3.0.0
     css-loader: ^3.5.3
     eslint: ^7.0.0
-    eslint-config-airbnb: latest
+    eslint-config-airbnb-typescript: ^7.2.1
     eslint-config-prettier: ^6.11.0
     eslint-import-resolver-node: ^0.3.3
     eslint-loader: ^4.0.2
