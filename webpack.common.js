@@ -26,7 +26,7 @@ const babelRule = (ext) => {
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
-  entry: "./index.jsx",
+  entry: "./index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index_bundle.js",
