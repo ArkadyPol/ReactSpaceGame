@@ -1,17 +1,32 @@
-const findSquareDistance = (x, y, x2, y2) => {
+import { AsteroidType, ShotType, BoxType } from "./types";
+
+type CircleType = [number, number, number];
+type RectangleType = [number, number, number, number];
+
+const findSquareDistance = (
+  x: number,
+  y: number,
+  x2: number,
+  y2: number
+): number => {
   const dx = x - x2;
   const dy = y - y2;
-
   const sqDistance = dx * dx + dy * dy;
   return sqDistance;
 };
 
-const collisionCircles = ([x, y, r], [x2, y2, r2]) => {
+const collisionCircles = (
+  [x, y, r]: CircleType,
+  [x2, y2, r2]: CircleType
+): boolean => {
   const sqDistance = findSquareDistance(x, y, x2, y2);
   return sqDistance < (r + r2) ** 2;
 };
 
-const collisionCircleRectangle = ([x, y, r], [x2, y2, width, height]) => {
+const collisionCircleRectangle = (
+  [x, y, r]: CircleType,
+  [x2, y2, width, height]: RectangleType
+): boolean => {
   if (x < x2) {
     if (y < y2) {
       const sqDistance = findSquareDistance(x, y, x2, y2);
@@ -43,7 +58,11 @@ const collisionCircleRectangle = ([x, y, r], [x2, y2, width, height]) => {
   return true;
 };
 
-export const findCollisionsWithShots = (asteroids, shots, boxes) => {
+export const findCollisionsWithShots = (
+  asteroids: AsteroidType[],
+  shots: ShotType[],
+  boxes: BoxType[]
+): void => {
   asteroids.forEach((asteroid, indexAsteroid) => {
     const { x, y, size, vY } = asteroid;
     shots.forEach((shot, indexShot) => {
@@ -73,7 +92,11 @@ export const findCollisionsWithShots = (asteroids, shots, boxes) => {
     });
   });
 };
-export const findCollisionsWithRocket = (asteroids, rocketX, health) => {
+export const findCollisionsWithRocket = (
+  asteroids: AsteroidType[],
+  rocketX: number,
+  health: number
+): number => {
   let newHealth = health;
   asteroids.forEach((asteroid, indexAsteroid) => {
     const { x, y, size, vY: speed } = asteroid;
