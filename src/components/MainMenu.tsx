@@ -7,33 +7,39 @@ import star from "../canvas/Star";
 import { getStars } from "../redux/selectors";
 import { toggleDisplay, sagaGetSaves, sagaLoadGame } from "../redux/actions";
 import "../styles/App.css";
+import { RootStateType } from "../redux/reducers";
 
-const MainMenu = () => {
-  const displayForm = useSelector((state) => state.display);
-  const saves = useSelector((state) => state.saves.saves);
+const MainMenu: React.FC = () => {
+  const displayForm = useSelector((state: RootStateType) => state.display);
+  const saves = useSelector((state: RootStateType) => state.saves.saves);
   const stars = useSelector(getStars);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const width = 1184;
   const height = 740;
-  const canvas = useRef(null);
+  const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const ctx = canvas.current.getContext("2d");
-    ctx.fillRect(0, 0, width, height);
-    stars.forEach((params) => star(ctx, params));
+    if (canvas.current) {
+      const ctx = canvas.current.getContext("2d");
+      if (ctx) {
+        ctx.fillRect(0, 0, width, height);
+        stars.forEach((params) => star(ctx, params));
+      }
+    }
   }, [stars]);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.code === "Escape" && displayForm) {
         dispatch(toggleDisplay(false));
       }
     };
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    return (): void => document.removeEventListener("keydown", handleKeyDown);
   }, [displayForm, dispatch]);
-  const handleClickForm = (e) => {
-    const save = e.target.textContent;
+  const handleClickForm = (e: React.MouseEvent): void => {
+    const target = e.currentTarget;
+    const save = target.textContent as string;
     dispatch(sagaLoadGame(save));
     setTimeout(() => {
       navigate("/game");

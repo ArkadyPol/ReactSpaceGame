@@ -1,4 +1,6 @@
-const star = (ctx, [x, y, size]) => {
+import { StarType } from "../types";
+
+const star = (ctx: CanvasRenderingContext2D, [x, y, size]: StarType): void => {
   ctx.beginPath();
   const p = new Path2D(
     `M${
