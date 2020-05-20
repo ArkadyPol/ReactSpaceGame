@@ -185,7 +185,6 @@ const Game: React.FC = () => {
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     if (save === "") return;
-    if (e.currentTarget.id !== "save") return;
     runTimers();
     dispatch(sagaSaveGame(save));
   };

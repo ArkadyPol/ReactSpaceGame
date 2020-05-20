@@ -27,7 +27,7 @@ const Form: React.FC<PropsType> = ({ handleSubmit }) => {
         }
         value={saveName}
       />
-      <button id="save" type="submit" onClick={handleSubmit}>
+      <button id="save" type="submit">
         Сохранить
       </button>
     </form>
