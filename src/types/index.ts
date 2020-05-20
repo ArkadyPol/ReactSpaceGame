@@ -10,10 +10,6 @@ export type BoxType = {
   y: number;
   color: string;
 };
-export type MoveType = {
-  arrowLeft: boolean;
-  arrowRight: boolean;
-};
 export type GameType = {
   stars: StarType[];
   passedPath: number;
@@ -26,6 +22,10 @@ export type GameType = {
   shotMagazine: number;
   shots: ShotType[];
 };
+export type MoveType = {
+  arrowLeft: boolean;
+  arrowRight: boolean;
+};
 export type RestGameStateType = {
   asteroids: AsteroidType[];
   boxes: BoxType[];
@@ -33,6 +33,10 @@ export type RestGameStateType = {
   readyToShoot: boolean;
   shotMagazine: number;
   shots: ShotType[];
+};
+export type SaveType = {
+  game: GameType;
+  saveName: string;
 };
 export type ShotType = [number, number];
 export type StarType = [number, number, number];
