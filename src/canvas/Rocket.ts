@@ -1,4 +1,4 @@
-const rocket = (ctx, x) => {
+const rocket = (ctx: CanvasRenderingContext2D, x: number): void => {
   ctx.beginPath();
   ctx.ellipse(x, 665, 12, 37, 0, 0, 2 * Math.PI);
   ctx.fillStyle = "#ff0000";

@@ -1,4 +1,6 @@
-const shot = (ctx, [x, y]) => {
+import { ShotType } from "../types";
+
+const shot = (ctx: CanvasRenderingContext2D, [x, y]: ShotType): void => {
   ctx.beginPath();
   ctx.arc(x, y, 5, 0, 2 * Math.PI);
   ctx.fillStyle = "#00af00";

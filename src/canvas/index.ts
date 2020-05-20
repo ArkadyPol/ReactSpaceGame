@@ -5,8 +5,9 @@ import shotMagazine from "./ShotMagazine";
 import healthBar from "./HealthBar";
 import asteroid from "./Asteroid";
 import box from "./Box";
+import { GameType } from "../types";
 
-const updateCanvas = (ctx, game) => {
+const updateCanvas = (ctx: CanvasRenderingContext2D, game: GameType): void => {
   ctx.clearRect(0, 0, 1184, 740);
   game.stars.forEach((params) => star(ctx, params));
   game.shots.forEach((coords) => shot(ctx, coords));

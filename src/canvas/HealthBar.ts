@@ -1,4 +1,4 @@
-const healthBar = (ctx, num) => {
+const healthBar = (ctx: CanvasRenderingContext2D, num: number): void => {
   const height = num * 0.5;
   ctx.beginPath();
   ctx.fillStyle = "#ff0000";

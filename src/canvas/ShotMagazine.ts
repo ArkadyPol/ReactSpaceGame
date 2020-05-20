@@ -1,4 +1,4 @@
-const shotMagazine = (ctx, num) => {
+const shotMagazine = (ctx: CanvasRenderingContext2D, num: number): void => {
   const height = num * 5;
   ctx.beginPath();
   ctx.fillStyle = "#00af00";
