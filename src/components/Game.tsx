@@ -25,25 +25,29 @@ import Form from "./Form";
 import Buttons from "./ButtonsGame";
 import "../styles/App.css";
 import { getGame } from "../redux/selectors";
+import { RootStateType } from "../redux/reducers";
+import { ShotType } from "../types";
 
-const Game = () => {
+const Game: React.FC = () => {
   const game = useSelector(getGame);
-  const keyboard = useSelector((state) => state.keyboard);
-  const displayForm = useSelector((state) => state.display);
-  const save = useSelector((state) => state.saves.saveName);
+  const keyboard = useSelector((state: RootStateType) => state.keyboard);
+  const displayForm = useSelector((state: RootStateType) => state.display);
+  const save = useSelector((state: RootStateType) => state.saves.saveName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const width = 1184;
   const height = 740;
-  const canvas = useRef(null);
-  const requestID = useRef(null);
+  const canvas = useRef<HTMLCanvasElement>(null);
+  const requestID = useRef(0);
   useEffect(() => {
-    const ctx = canvas.current.getContext("2d");
-    updateCanvas(ctx, game);
+    if (canvas.current) {
+      const ctx = canvas.current.getContext("2d");
+      if (ctx) updateCanvas(ctx, game);
+    }
   }, [game]);
   useEffect(() => {
     dispatch(sagaRunFpsTimer());
-    return () => {
+    return (): void => {
       dispatch(sagaStopFpsTimer());
     };
   }, [dispatch]);
@@ -55,7 +59,7 @@ const Game = () => {
     const { passedPath, rocketX } = game;
     shots = shots
       .map((coords) => [coords[0], coords[1] - 5])
-      .filter((coords) => coords[1] > 0);
+      .filter((coords) => coords[1] > 0) as ShotType[];
     asteroids = asteroids
       .map((params) => {
         const x = params.x + params.vX;
@@ -114,7 +118,7 @@ const Game = () => {
 
   useEffect(() => {
     requestID.current = requestAnimationFrame(updatePerFrame);
-    return () => {
+    return (): void => {
       cancelAnimationFrame(requestID.current);
     };
   }, [updatePerFrame]);
@@ -131,7 +135,7 @@ const Game = () => {
   }, [dispatch, updatePerFrame]);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       switch (e.code) {
         case "ArrowLeft":
           dispatch(toggleArrowLeft(true));
@@ -156,7 +160,7 @@ const Game = () => {
           break;
       }
     };
-    const handleKeyUp = (e) => {
+    const handleKeyUp = (e: KeyboardEvent): void => {
       switch (e.code) {
         case "ArrowLeft":
           dispatch(toggleArrowLeft(false));
@@ -173,15 +177,15 @@ const Game = () => {
     };
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
-    return () => {
+    return (): void => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
   }, [dispatch, keyboard.escape, runTimers, stopTimers]);
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (game.nameSave === "") return;
-    if (e.target.id !== "save") return;
+    if (save === "") return;
+    if (e.currentTarget.id !== "save") return;
     runTimers();
     dispatch(sagaSaveGame(save));
   };

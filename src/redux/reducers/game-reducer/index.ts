@@ -3,19 +3,17 @@ import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
 import starsReducer from "./stars-reducer";
 import pathReducer from "./path-reducer";
 import moveReducer from "./move-reducer";
-import { AsteroidType, BoxType, ShotType } from "../../../types";
+import { RestGameStateType } from "../../../types";
 import { GameReducerActionType } from "../../actions";
 
-const initialState = {
-  asteroids: [] as AsteroidType[],
-  boxes: [] as BoxType[],
+const initialState: RestGameStateType = {
+  asteroids: [],
+  boxes: [],
   health: 100,
   readyToShoot: true,
   shotMagazine: 10,
-  shots: [] as ShotType[],
+  shots: [],
 };
-
-export type RestGameStateType = typeof initialState;
 
 const restGameReducer = (
   state = initialState,
@@ -27,8 +25,7 @@ const restGameReducer = (
       return { ...state, ...game };
     }
     case UPDATE_GAME: {
-      const { velocity, ...game } = action.payload;
-      return { ...state, ...game };
+      return { ...action.payload };
     }
     case RESET:
       return initialState;

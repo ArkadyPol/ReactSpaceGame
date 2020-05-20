@@ -1,8 +1,7 @@
 import { createSelector } from "reselect";
 import { RootStateType } from "./reducers";
-import { StarType, GameType } from "../types";
+import { StarType, GameType, RestGameStateType } from "../types";
 import { MoveStateType } from "./reducers/game-reducer/move-reducer";
-import { RestGameStateType } from "./reducers/game-reducer";
 
 const getRestGame = (state: RootStateType): RestGameStateType =>
   state.game.game;

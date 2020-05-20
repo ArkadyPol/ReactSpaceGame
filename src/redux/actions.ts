@@ -1,5 +1,5 @@
 import * as t from "./actions-types";
-import { GameType, MoveType } from "../types";
+import { GameType, MoveType, RestGameStateType } from "../types";
 
 export type AddFPSActionType = {
   type: typeof t.ADD_FPS;
@@ -72,7 +72,7 @@ export type ToggleSpaceActionType = {
 };
 export type UpdateGameActionType = {
   type: typeof t.UPDATE_GAME;
-  payload: GameType;
+  payload: RestGameStateType;
   state: MoveType;
 };
 
@@ -136,7 +136,7 @@ export const toggleSpace = (key: boolean): ToggleSpaceActionType => ({
   payload: key,
 });
 export const updateGame = (
-  game: GameType,
+  game: RestGameStateType,
   state: MoveType
 ): UpdateGameActionType => ({
   type: t.UPDATE_GAME,

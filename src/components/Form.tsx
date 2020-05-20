@@ -5,7 +5,7 @@ import { changeSaveName, ChangeSaveNameActionType } from "../redux/actions";
 import { RootStateType } from "../redux/reducers";
 
 type PropsType = {
-  handleSubmit: () => void;
+  handleSubmit: (e: React.FormEvent) => void;
 };
 
 const Form: React.FC<PropsType> = ({ handleSubmit }) => {

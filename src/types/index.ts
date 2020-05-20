@@ -26,5 +26,13 @@ export type GameType = {
   shotMagazine: number;
   shots: ShotType[];
 };
+export type RestGameStateType = {
+  asteroids: AsteroidType[];
+  boxes: BoxType[];
+  health: number;
+  readyToShoot: boolean;
+  shotMagazine: number;
+  shots: ShotType[];
+};
 export type ShotType = [number, number];
 export type StarType = [number, number, number];
