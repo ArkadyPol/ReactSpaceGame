@@ -13,6 +13,7 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:import/typescript",
         "plugin:prettier/recommended",
+        "prettier/react",
         "prettier/@typescript-eslint"
     ],
     "settings": {

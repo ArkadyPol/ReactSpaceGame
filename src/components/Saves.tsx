@@ -8,7 +8,7 @@ type StyleType = {
 
 type PropsType = {
   saves: string[];
-  handleClick: () => void;
+  handleClick: (e: React.MouseEvent) => void;
   style?: StyleType;
 };
 
