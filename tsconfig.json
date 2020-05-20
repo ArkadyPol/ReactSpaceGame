@@ -12,7 +12,8 @@
       "es2015",
       "es2016",
       "dom"
-    ]
+    ],
+    "jsx": "preserve"
   },
   "exclude": [
     "dist",
