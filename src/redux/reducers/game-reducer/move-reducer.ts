@@ -1,5 +1,5 @@
-import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
-import { GameReducerAction } from "../../actions";
+import { RESET, UPDATE_GAME, LOAD_GAME } from '../../actions-types';
+import { GameReducerAction } from '../../actions';
 
 const calculateVelocity = (
   velocity: number,

@@ -1,4 +1,4 @@
-import { Star } from "../types";
+import { Star } from '../types';
 
 const star = (ctx: CanvasRenderingContext2D, [x, y, size]: Star): void => {
   ctx.beginPath();
@@ -8,7 +8,7 @@ const star = (ctx: CanvasRenderingContext2D, [x, y, size]: Star): void => {
     } ${y} q ${size} 0 ${size} ${-size} q 0 ${size} ${size} ${size} q ${-size} 0 
       ${-size} ${size} q 0 ${-size} ${-size} ${-size}`
   );
-  ctx.fillStyle = "#ffffff";
+  ctx.fillStyle = '#ffffff';
   ctx.fill(p);
   ctx.closePath();
 };

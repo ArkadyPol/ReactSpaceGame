@@ -1,11 +1,11 @@
-import { combineReducers } from "redux";
-import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
-import starsReducer from "./stars-reducer";
-import pathReducer from "./path-reducer";
-import moveReducer from "./move-reducer";
-import asteroidsReducer from "./asteroids-reducer";
-import { RestGameState } from "../../../types";
-import { GameReducerAction } from "../../actions";
+import { combineReducers } from 'redux';
+import { RESET, UPDATE_GAME, LOAD_GAME } from '../../actions-types';
+import starsReducer from './stars-reducer';
+import pathReducer from './path-reducer';
+import moveReducer from './move-reducer';
+import asteroidsReducer from './asteroids-reducer';
+import { RestGameState } from '../../../types';
+import { GameReducerAction } from '../../actions';
 
 const initialState: RestGameState = {
   boxes: [],

@@ -1,4 +1,4 @@
-import { Asteroid, Shot, Box } from "./types";
+import { Asteroid, Shot, Box } from './types';
 
 type Circle = [number, number, number];
 type Rectangle = [number, number, number, number];
@@ -83,7 +83,7 @@ export const findCollisionsWithShots = (
             vX: -newVY,
             vY: newVY,
           });
-          boxes.push({ x, y, color: "red" });
+          boxes.push({ x, y, color: 'red' });
         }
       }
     });
@@ -100,7 +100,7 @@ export const findCollisionsWithRocket = (
     if (collisionCircleRectangle([x, y, size], [rocketX - 15, 627, 30, 85])) {
       asteroids.splice(indexAsteroid, 1);
       const damage = Math.floor((size / 2) * (speed / 10));
-      console.log("damage:", damage);
+      console.log('damage:', damage);
       newHealth -= damage;
     }
   });

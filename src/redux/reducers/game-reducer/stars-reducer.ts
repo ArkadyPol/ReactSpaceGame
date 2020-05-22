@@ -1,13 +1,13 @@
-import stars from "./stars.json";
+import stars from './stars.json';
 import {
   RESET,
   UPDATE_GAME,
   LOAD_GAME,
   GENERATE_NEW_STARS,
-} from "../../actions-types";
-import { randomInteger } from "../../../logic";
-import { Star } from "../../../types";
-import { GenerateNewStarsAction, GameReducerAction } from "../../actions";
+} from '../../actions-types';
+import { randomInteger } from '../../../logic';
+import { Star } from '../../../types';
+import { GenerateNewStarsAction, GameReducerAction } from '../../actions';
 
 const generateStar = (): Star => {
   const x = randomInteger(8, 1176);

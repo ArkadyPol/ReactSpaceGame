@@ -1,8 +1,8 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Saves from "./Saves";
-import { changeSaveName, ChangeSaveNameAction } from "../redux/actions";
-import { RootState } from "../redux/reducers";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Saves from './Saves';
+import { changeSaveName, ChangeSaveNameAction } from '../redux/actions';
+import { RootState } from '../redux/reducers';
 
 type Props = {
   handleSubmit: (e: React.FormEvent) => void;

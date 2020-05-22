@@ -4,14 +4,14 @@ import {
   TOGGLE_ARROW_RIGHT,
   TOGGLE_SPACE,
   TOGGLE_ESCAPE,
-} from "../actions-types";
+} from '../actions-types';
 import {
   ResetAction,
   ToggleSpaceAction,
   ToggleArrowLeftAction,
   ToggleEscapeAction,
   ToggleArrowRightAction,
-} from "../actions";
+} from '../actions';
 
 const initialState = {
   arrowLeft: false,

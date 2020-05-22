@@ -1,7 +1,7 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "@reach/router";
-import { toggleDisplay, ToggleDisplayAction } from "../redux/actions";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from '@reach/router';
+import { toggleDisplay, ToggleDisplayAction } from '../redux/actions';
 
 const ButtonsMenu: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const ButtonsMenu: React.FC = () => {
         type="button"
         onClick={(): void => {
           setTimeout(() => {
-            navigate("/game");
+            navigate('/game');
           }, 50);
         }}
       >

@@ -1,8 +1,8 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import { useSelector, useDispatch, batch } from "react-redux";
-import { useNavigate } from "@reach/router";
-import { generateAsteroid } from "../logic";
-import updateCanvas from "../canvas";
+import React, { useRef, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch, batch } from 'react-redux';
+import { useNavigate } from '@reach/router';
+import { generateAsteroid } from '../logic';
+import updateCanvas from '../canvas';
 import {
   addFPS,
   updateGame,
@@ -16,17 +16,17 @@ import {
   sagaRunFpsTimer,
   sagaStopFpsTimer,
   generateNewStars,
-} from "../redux/actions";
+} from '../redux/actions';
 import {
   findCollisionsWithRocket,
   findCollisionsWithShots,
-} from "../collisions";
-import Form from "./Form";
-import Buttons from "./ButtonsGame";
-import "../styles/App.css";
-import { getGame } from "../redux/selectors";
-import { RootState } from "../redux/reducers";
-import { Shot } from "../types";
+} from '../collisions';
+import Form from './Form';
+import Buttons from './ButtonsGame';
+import '../styles/App.css';
+import { getGame } from '../redux/selectors';
+import { RootState } from '../redux/reducers';
+import { Shot } from '../types';
 
 const Game: React.FC = () => {
   const game = useSelector(getGame);
@@ -41,7 +41,7 @@ const Game: React.FC = () => {
   const requestID = useRef(0);
   useEffect(() => {
     if (canvas.current) {
-      const ctx = canvas.current.getContext("2d");
+      const ctx = canvas.current.getContext('2d');
       if (ctx) updateCanvas(ctx, game);
     }
   }, [game]);
@@ -71,7 +71,7 @@ const Game: React.FC = () => {
     health = findCollisionsWithRocket(asteroids, rocketX, health);
 
     if (health <= 0) {
-      navigate("/");
+      navigate('/');
       dispatch(reset());
       return;
     }
@@ -129,16 +129,16 @@ const Game: React.FC = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent): void => {
       switch (e.code) {
-        case "ArrowLeft":
+        case 'ArrowLeft':
           dispatch(toggleArrowLeft(true));
           break;
-        case "ArrowRight":
+        case 'ArrowRight':
           dispatch(toggleArrowRight(true));
           break;
-        case "Space":
+        case 'Space':
           dispatch(toggleSpace(true));
           break;
-        case "Escape":
+        case 'Escape':
           if (keyboard.escape) {
             runTimers();
             dispatch(sagaToggleEscape(false));
@@ -154,29 +154,29 @@ const Game: React.FC = () => {
     };
     const handleKeyUp = (e: KeyboardEvent): void => {
       switch (e.code) {
-        case "ArrowLeft":
+        case 'ArrowLeft':
           dispatch(toggleArrowLeft(false));
           break;
-        case "ArrowRight":
+        case 'ArrowRight':
           dispatch(toggleArrowRight(false));
           break;
-        case "Space":
+        case 'Space':
           dispatch(toggleSpace(false));
           break;
         default:
           break;
       }
     };
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("keyup", handleKeyUp);
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
     return (): void => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("keyup", handleKeyUp);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
     };
   }, [dispatch, keyboard.escape, runTimers, stopTimers]);
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (save === "") return;
+    if (save === '') return;
     runTimers();
     dispatch(sagaSaveGame(save));
   };

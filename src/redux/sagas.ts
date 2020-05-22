@@ -15,8 +15,8 @@ import {
   TakeEffect,
   CancelEffect,
   AllEffect,
-} from "redux-saga/effects";
-import { Task } from "redux-saga";
+} from 'redux-saga/effects';
+import { Task } from 'redux-saga';
 import {
   SAGA_GET_SAVES,
   SAGA_TOGGLE_ESCAPE,
@@ -24,7 +24,7 @@ import {
   SAGA_LOAD_GAME,
   SAGA_RUN_FPS_TIMER,
   SAGA_STOP_FPS_TIMER,
-} from "./actions-types";
+} from './actions-types';
 import {
   toggleDisplay,
   clearFPS,
@@ -39,10 +39,10 @@ import {
   SagaLoadGameAction,
   LoadGameAction,
   ClearFPSAction,
-} from "./actions";
-import api from "../api";
-import { getGame } from "./selectors";
-import { Game } from "../types";
+} from './actions';
+import api from '../api';
+import { getGame } from './selectors';
+import { Game } from '../types';
 
 type GetSavesSaga = Generator<
   CallEffect<string[]> | PutEffect<GetSaveAction>,

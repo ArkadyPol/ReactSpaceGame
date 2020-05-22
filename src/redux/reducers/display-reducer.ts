@@ -1,5 +1,5 @@
-import { TOGGLE_DISPLAY, RESET } from "../actions-types";
-import { ToggleDisplayAction, ResetAction } from "../actions";
+import { TOGGLE_DISPLAY, RESET } from '../actions-types';
+import { ToggleDisplayAction, ResetAction } from '../actions';
 
 const displayReducer = (
   state = false,

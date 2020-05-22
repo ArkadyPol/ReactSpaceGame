@@ -1,10 +1,10 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import displayReducer from "./display-reducer";
-import savesReducer from "./saves-reducer";
-import gameReducer from "./game-reducer";
-import keyboardReducer from "./keyboard-reducer";
-import fpsReducer from "./fps-reducer";
+import displayReducer from './display-reducer';
+import savesReducer from './saves-reducer';
+import gameReducer from './game-reducer';
+import keyboardReducer from './keyboard-reducer';
+import fpsReducer from './fps-reducer';
 
 const rootReducer = combineReducers({
   display: displayReducer,

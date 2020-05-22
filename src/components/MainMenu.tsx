@@ -1,13 +1,13 @@
-import React, { useRef, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "@reach/router";
-import Saves from "./Saves";
-import Buttons from "./ButtonsMenu";
-import star from "../canvas/star";
-import { getStars } from "../redux/selectors";
-import { toggleDisplay, sagaGetSaves, sagaLoadGame } from "../redux/actions";
-import "../styles/App.css";
-import { RootState } from "../redux/reducers";
+import React, { useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from '@reach/router';
+import Saves from './Saves';
+import Buttons from './ButtonsMenu';
+import star from '../canvas/star';
+import { getStars } from '../redux/selectors';
+import { toggleDisplay, sagaGetSaves, sagaLoadGame } from '../redux/actions';
+import '../styles/App.css';
+import { RootState } from '../redux/reducers';
 
 const MainMenu: React.FC = () => {
   const displayForm = useSelector((state: RootState) => state.display);
@@ -20,7 +20,7 @@ const MainMenu: React.FC = () => {
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     if (canvas.current) {
-      const ctx = canvas.current.getContext("2d");
+      const ctx = canvas.current.getContext('2d');
       if (ctx) {
         ctx.fillRect(0, 0, width, height);
         stars.forEach((params) => star(ctx, params));
@@ -30,19 +30,19 @@ const MainMenu: React.FC = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent): void => {
-      if (e.code === "Escape" && displayForm) {
+      if (e.code === 'Escape' && displayForm) {
         dispatch(toggleDisplay(false));
       }
     };
-    document.addEventListener("keydown", handleKeyDown);
-    return (): void => document.removeEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return (): void => document.removeEventListener('keydown', handleKeyDown);
   }, [displayForm, dispatch]);
   const handleClickForm = (e: React.MouseEvent): void => {
     const target = e.currentTarget;
     const save = target.textContent as string;
     dispatch(sagaLoadGame(save));
     setTimeout(() => {
-      navigate("/game");
+      navigate('/game');
     }, 50);
   };
   useEffect(() => {
@@ -54,7 +54,7 @@ const MainMenu: React.FC = () => {
       {!displayForm && <Buttons />}
       {displayForm && (
         <Saves
-          style={{ left: 482, top: 220, position: "absolute" }}
+          style={{ left: 482, top: 220, position: 'absolute' }}
           saves={saves}
           handleClick={handleClickForm}
         />

@@ -1,6 +1,6 @@
-import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
-import { Asteroid } from "../../../types";
-import { GameReducerAction } from "../../actions";
+import { RESET, UPDATE_GAME, LOAD_GAME } from '../../actions-types';
+import { Asteroid } from '../../../types';
+import { GameReducerAction } from '../../actions';
 
 const initialState = [] as Asteroid[];
 

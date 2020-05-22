@@ -1,4 +1,4 @@
-import { Asteroid } from "../types";
+import { Asteroid } from '../types';
 
 const asteroid = (
   ctx: CanvasRenderingContext2D,
@@ -6,7 +6,7 @@ const asteroid = (
 ): void => {
   ctx.beginPath();
   ctx.arc(x, y, size, 0, 2 * Math.PI);
-  ctx.fillStyle = "#999191";
+  ctx.fillStyle = '#999191';
   ctx.fill();
   ctx.closePath();
 };

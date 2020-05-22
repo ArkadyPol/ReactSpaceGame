@@ -1,5 +1,5 @@
-import * as t from "./actions-types";
-import { Game, Move, RestGameState } from "../types";
+import * as t from './actions-types';
+import { Game, Move, RestGameState } from '../types';
 
 export type AddFPSAction = {
   type: typeof t.ADD_FPS;

@@ -1,4 +1,4 @@
-import { Box } from "../types";
+import { Box } from '../types';
 
 const box = (ctx: CanvasRenderingContext2D, { x, y, color }: Box): void => {
   ctx.beginPath();

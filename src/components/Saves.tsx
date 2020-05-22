@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 type Style = {
   left: number;
   top: number;
-  position: "static" | "absolute";
+  position: 'static' | 'absolute';
 };
 
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
 const Saves: React.FC<Props> = ({
   saves,
   handleClick,
-  style = { left: 0, top: 0, position: "static" },
+  style = { left: 0, top: 0, position: 'static' },
 }) => {
   const buttons = saves.map((save) => (
     <button

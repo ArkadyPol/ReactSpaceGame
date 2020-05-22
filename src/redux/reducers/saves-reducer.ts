@@ -1,7 +1,7 @@
-import { GET_SAVES, CHANGE_SAVE_NAME } from "../actions-types";
-import { GetSaveAction, ChangeSaveNameAction } from "../actions";
+import { GET_SAVES, CHANGE_SAVE_NAME } from '../actions-types';
+import { GetSaveAction, ChangeSaveNameAction } from '../actions';
 
-const initialState = { saves: [] as string[], saveName: "" };
+const initialState = { saves: [] as string[], saveName: '' };
 
 type InitialState = typeof initialState;
 

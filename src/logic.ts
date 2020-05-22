@@ -1,4 +1,4 @@
-import { Asteroid } from "./types";
+import { Asteroid } from './types';
 
 export const randomInteger = (min: number, max: number): number => {
   const rand = min + Math.random() * (max + 1 - min);

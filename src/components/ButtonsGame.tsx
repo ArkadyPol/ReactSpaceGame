@@ -1,7 +1,7 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "@reach/router";
-import { reset, toggleDisplay, ToggleDisplayAction } from "../redux/actions";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from '@reach/router';
+import { reset, toggleDisplay, ToggleDisplayAction } from '../redux/actions';
 
 const ButtonsMenu: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const ButtonsMenu: React.FC = () => {
         className="button"
         type="button"
         onClick={(): void => {
-          navigate("/");
+          navigate('/');
           dispatch(reset());
         }}
       >
