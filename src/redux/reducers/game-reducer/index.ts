@@ -3,11 +3,11 @@ import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
 import starsReducer from "./stars-reducer";
 import pathReducer from "./path-reducer";
 import moveReducer from "./move-reducer";
+import asteroidsReducer from "./asteroids-reducer";
 import { RestGameStateType } from "../../../types";
 import { GameReducerActionType } from "../../actions";
 
 const initialState: RestGameStateType = {
-  asteroids: [],
   boxes: [],
   health: 100,
   readyToShoot: true,
@@ -38,6 +38,7 @@ const gameReducer = combineReducers({
   stars: starsReducer,
   passedPath: pathReducer,
   move: moveReducer,
+  asteroids: asteroidsReducer,
   game: restGameReducer,
 });
 

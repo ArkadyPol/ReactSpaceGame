@@ -55,18 +55,11 @@ const Game: React.FC = () => {
     const { escape, arrowLeft, arrowRight, space } = keyboard;
     if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
-    let { readyToShoot, shotMagazine, shots, asteroids, boxes, health } = game;
-    const { passedPath, rocketX } = game;
+    let { readyToShoot, shotMagazine, shots, boxes, health } = game;
+    const { passedPath, rocketX, asteroids } = game;
     shots = shots
       .map((coords) => [coords[0], coords[1] - 5])
       .filter((coords) => coords[1] > 0) as ShotType[];
-    asteroids = asteroids
-      .map((params) => {
-        const x = params.x + params.vX;
-        const y = params.y + params.vY;
-        return { ...params, x, y };
-      })
-      .filter((params) => params.y < 850);
     boxes = boxes
       .map((params) => {
         const y = params.y + 2;
@@ -105,7 +98,6 @@ const Game: React.FC = () => {
             readyToShoot,
             shotMagazine,
             shots,
-            asteroids,
             boxes,
             health,
           },

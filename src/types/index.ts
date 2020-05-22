@@ -27,7 +27,6 @@ export type MoveType = {
   arrowRight: boolean;
 };
 export type RestGameStateType = {
-  asteroids: AsteroidType[];
   boxes: BoxType[];
   health: number;
   readyToShoot: boolean;
