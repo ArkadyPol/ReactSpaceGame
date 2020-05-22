@@ -1,9 +1,9 @@
 import { TOGGLE_DISPLAY, RESET } from "../actions-types";
-import { ToggleDisplayActionType, ResetActionType } from "../actions";
+import { ToggleDisplayAction, ResetAction } from "../actions";
 
 const displayReducer = (
   state = false,
-  action: ToggleDisplayActionType | ResetActionType
+  action: ToggleDisplayAction | ResetAction
 ): boolean => {
   switch (action.type) {
     case TOGGLE_DISPLAY:

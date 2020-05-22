@@ -1,16 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Saves from "./Saves";
-import { changeSaveName, ChangeSaveNameActionType } from "../redux/actions";
-import { RootStateType } from "../redux/reducers";
+import { changeSaveName, ChangeSaveNameAction } from "../redux/actions";
+import { RootState } from "../redux/reducers";
 
-type PropsType = {
+type Props = {
   handleSubmit: (e: React.FormEvent) => void;
 };
 
-const Form: React.FC<PropsType> = ({ handleSubmit }) => {
-  const saves = useSelector((state: RootStateType) => state.saves.saves);
-  const saveName = useSelector((state: RootStateType) => state.saves.saveName);
+const Form: React.FC<Props> = ({ handleSubmit }) => {
+  const saves = useSelector((state: RootState) => state.saves.saves);
+  const saveName = useSelector((state: RootState) => state.saves.saveName);
   const dispatch = useDispatch();
   const handleClick = (e: React.MouseEvent): void => {
     const target = e.currentTarget;
@@ -22,7 +22,7 @@ const Form: React.FC<PropsType> = ({ handleSubmit }) => {
       <input
         style={{ width: 133 }}
         type="text"
-        onChange={(e): ChangeSaveNameActionType =>
+        onChange={(e): ChangeSaveNameAction =>
           dispatch(changeSaveName(e.target.value))
         }
         value={saveName}

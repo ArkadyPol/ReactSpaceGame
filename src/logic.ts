@@ -1,10 +1,10 @@
-import { AsteroidType } from "./types";
+import { Asteroid } from "./types";
 
 export const randomInteger = (min: number, max: number): number => {
   const rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 };
-export const generateAsteroid = (): AsteroidType => {
+export const generateAsteroid = (): Asteroid => {
   const x = randomInteger(20, 1164);
   const y = -200;
   const size = randomInteger(10, 100);

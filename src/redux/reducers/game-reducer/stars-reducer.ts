@@ -6,13 +6,10 @@ import {
   GENERATE_NEW_STARS,
 } from "../../actions-types";
 import { randomInteger } from "../../../logic";
-import { StarType } from "../../../types";
-import {
-  GenerateNewStarsActionType,
-  GameReducerActionType,
-} from "../../actions";
+import { Star } from "../../../types";
+import { GenerateNewStarsAction, GameReducerAction } from "../../actions";
 
-const generateStar = (): StarType => {
+const generateStar = (): Star => {
   const x = randomInteger(8, 1176);
   const y = randomInteger(-10, -19);
   const percent = randomInteger(0, 199);
@@ -26,7 +23,7 @@ const generateStar = (): StarType => {
   else size = 8;
   return [x, y, size];
 };
-const generateNewStars = (oldStars: StarType[]): StarType[] => {
+const generateNewStars = (oldStars: readonly Star[]): readonly Star[] => {
   const newStars = [...oldStars];
   const quantity = randomInteger(1, 6);
   for (let i = 0; i < quantity; i++) {
@@ -35,19 +32,19 @@ const generateNewStars = (oldStars: StarType[]): StarType[] => {
   return newStars;
 };
 
-const initialState = stars as StarType[];
+const initialState = (stars as unknown) as readonly Star[];
 
 const starsReducer = (
   state = initialState,
-  action: GameReducerActionType | GenerateNewStarsActionType
-): StarType[] => {
+  action: GameReducerAction | GenerateNewStarsAction
+): readonly Star[] => {
   switch (action.type) {
     case LOAD_GAME:
       return action.payload.stars;
     case UPDATE_GAME:
-      return state
+      return (state
         .map((params) => [params[0], params[1] + 0.5, params[2]])
-        .filter((params) => params[1] < 750) as StarType[];
+        .filter((params) => params[1] < 750) as unknown) as readonly Star[];
     case GENERATE_NEW_STARS:
       return generateNewStars(state);
     case RESET:

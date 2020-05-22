@@ -1,13 +1,13 @@
 import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
-import { AsteroidType } from "../../../types";
-import { GameReducerActionType } from "../../actions";
+import { Asteroid } from "../../../types";
+import { GameReducerAction } from "../../actions";
 
-const initialState = [] as AsteroidType[];
+const initialState = [] as Asteroid[];
 
 const asteroidsReducer = (
   state = initialState,
-  action: GameReducerActionType
-): AsteroidType[] => {
+  action: GameReducerAction
+): Asteroid[] => {
   switch (action.type) {
     case LOAD_GAME:
       return action.payload.asteroids;

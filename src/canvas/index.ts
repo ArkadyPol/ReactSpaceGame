@@ -1,13 +1,13 @@
-import shot from "./Shot";
-import star from "./Star";
-import rocket from "./Rocket";
-import shotMagazine from "./ShotMagazine";
-import healthBar from "./HealthBar";
-import asteroid from "./Asteroid";
-import box from "./Box";
-import { GameType } from "../types";
+import shot from "./shot";
+import star from "./star";
+import rocket from "./rocket";
+import shotMagazine from "./shot-magazine";
+import healthBar from "./health-bar";
+import asteroid from "./asteroid";
+import box from "./box";
+import { Game } from "../types";
 
-const updateCanvas = (ctx: CanvasRenderingContext2D, game: GameType): void => {
+const updateCanvas = (ctx: CanvasRenderingContext2D, game: Game): void => {
   ctx.clearRect(0, 0, 1184, 740);
   game.stars.forEach((params) => star(ctx, params));
   game.shots.forEach((coords) => shot(ctx, coords));

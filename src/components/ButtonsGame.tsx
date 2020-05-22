@@ -1,11 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
-import {
-  reset,
-  toggleDisplay,
-  ToggleDisplayActionType,
-} from "../redux/actions";
+import { reset, toggleDisplay, ToggleDisplayAction } from "../redux/actions";
 
 const ButtonsMenu: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,7 +12,7 @@ const ButtonsMenu: React.FC = () => {
         id="saveGame"
         className="button"
         type="button"
-        onClick={(): ToggleDisplayActionType => dispatch(toggleDisplay(true))}
+        onClick={(): ToggleDisplayAction => dispatch(toggleDisplay(true))}
       >
         Сохранить игру
       </button>

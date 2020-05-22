@@ -1,7 +1,7 @@
-import { AsteroidType, ShotType, BoxType } from "./types";
+import { Asteroid, Shot, Box } from "./types";
 
-type CircleType = [number, number, number];
-type RectangleType = [number, number, number, number];
+type Circle = [number, number, number];
+type Rectangle = [number, number, number, number];
 
 const findSquareDistance = (
   x: number,
@@ -15,17 +15,14 @@ const findSquareDistance = (
   return sqDistance;
 };
 
-const collisionCircles = (
-  [x, y, r]: CircleType,
-  [x2, y2, r2]: CircleType
-): boolean => {
+const collisionCircles = ([x, y, r]: Circle, [x2, y2, r2]: Circle): boolean => {
   const sqDistance = findSquareDistance(x, y, x2, y2);
   return sqDistance < (r + r2) ** 2;
 };
 
 const collisionCircleRectangle = (
-  [x, y, r]: CircleType,
-  [x2, y2, width, height]: RectangleType
+  [x, y, r]: Circle,
+  [x2, y2, width, height]: Rectangle
 ): boolean => {
   if (x < x2) {
     if (y < y2) {
@@ -59,9 +56,9 @@ const collisionCircleRectangle = (
 };
 
 export const findCollisionsWithShots = (
-  asteroids: AsteroidType[],
-  shots: ShotType[],
-  boxes: BoxType[]
+  asteroids: Asteroid[],
+  shots: Shot[],
+  boxes: Box[]
 ): void => {
   asteroids.forEach((asteroid, indexAsteroid) => {
     const { x, y, size, vY } = asteroid;
@@ -93,7 +90,7 @@ export const findCollisionsWithShots = (
   });
 };
 export const findCollisionsWithRocket = (
-  asteroids: AsteroidType[],
+  asteroids: Asteroid[],
   rocketX: number,
   health: number
 ): number => {

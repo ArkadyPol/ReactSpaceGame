@@ -1,4 +1,4 @@
-import { SaveType, GameType } from "./types";
+import { Save, Game } from "./types";
 
 const api = {
   async getSaves(): Promise<string[]> {
@@ -6,7 +6,7 @@ const api = {
     const saves: string[] = await response.json();
     return saves;
   },
-  saveGame(save: SaveType): void {
+  saveGame(save: Save): void {
     const options = {
       method: "POST",
       headers: {
@@ -16,7 +16,7 @@ const api = {
     };
     fetch("/saves", options);
   },
-  async loadGame(saveName: string): Promise<GameType> {
+  async loadGame(saveName: string): Promise<Game> {
     const options = {
       method: "POST",
       headers: {
@@ -25,7 +25,7 @@ const api = {
       body: JSON.stringify({ name: saveName }),
     };
     const response = await fetch("/save", options);
-    const game: GameType = await response.json();
+    const game: Game = await response.json();
     return game;
   },
 };

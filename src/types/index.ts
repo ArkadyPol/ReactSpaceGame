@@ -1,41 +1,41 @@
-export type AsteroidType = {
+export type Asteroid = {
   x: number;
   y: number;
   size: number;
   vX: number;
   vY: number;
 };
-export type BoxType = {
+export type Box = {
   x: number;
   y: number;
   color: string;
 };
-export type GameType = {
-  stars: StarType[];
+export type Game = {
+  stars: readonly Star[];
   passedPath: number;
   rocketX: number;
   velocity: number;
-  asteroids: AsteroidType[];
-  boxes: BoxType[];
+  asteroids: Asteroid[];
+  boxes: Box[];
   health: number;
   readyToShoot: boolean;
   shotMagazine: number;
-  shots: ShotType[];
+  shots: Shot[];
 };
-export type MoveType = {
+export type Move = {
   arrowLeft: boolean;
   arrowRight: boolean;
 };
-export type RestGameStateType = {
-  boxes: BoxType[];
+export type RestGameState = {
+  boxes: Box[];
   health: number;
   readyToShoot: boolean;
   shotMagazine: number;
-  shots: ShotType[];
+  shots: Shot[];
 };
-export type SaveType = {
-  game: GameType;
+export type Save = {
+  game: Game;
   saveName: string;
 };
-export type ShotType = [number, number];
-export type StarType = [number, number, number];
+export type Shot = readonly [number, number];
+export type Star = readonly [number, number, number];

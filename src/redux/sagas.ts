@@ -31,45 +31,43 @@ import {
   getSaves,
   toggleEscape,
   loadGame,
-  GetSaveActionType,
-  ToggleEscapeActionType,
-  ToggleDisplayActionType,
-  SagaToggleEscapeActionType,
-  SagaSaveGameActionType,
-  SagaLoadGameActionType,
-  LoadGameActionType,
-  ClearFPSActionType,
+  GetSaveAction,
+  ToggleEscapeAction,
+  ToggleDisplayAction,
+  SagaToggleEscapeAction,
+  SagaSaveGameAction,
+  SagaLoadGameAction,
+  LoadGameAction,
+  ClearFPSAction,
 } from "./actions";
 import api from "../api";
 import { getGame } from "./selectors";
-import { GameType } from "../types";
+import { Game } from "../types";
 
-type GetSavesSagaType = Generator<
-  CallEffect<string[]> | PutEffect<GetSaveActionType>,
+type GetSavesSaga = Generator<
+  CallEffect<string[]> | PutEffect<GetSaveAction>,
   void,
   string[]
 >;
 
-function* getSavesSaga(): GetSavesSagaType {
+function* getSavesSaga(): GetSavesSaga {
   const saves: string[] = yield call(api.getSaves.bind(api));
   yield put(getSaves(saves));
 }
 
-type WatcherSagaType = Generator<ForkEffect<never>, void, unknown>;
+type WatcherSaga = Generator<ForkEffect<never>, void, unknown>;
 
-function* watchGetSaves(): WatcherSagaType {
+function* watchGetSaves(): WatcherSaga {
   yield takeEvery(SAGA_GET_SAVES, getSavesSaga);
 }
 
-type ToggleEscapeEffectsType =
-  | PutEffect<ToggleEscapeActionType>
-  | PutEffect<ToggleDisplayActionType>;
+type ToggleEscapeEffects =
+  | PutEffect<ToggleEscapeAction>
+  | PutEffect<ToggleDisplayAction>;
 
-type ToggleEscapeSagaType = Generator<ToggleEscapeEffectsType, void, unknown>;
+type ToggleEscapeSaga = Generator<ToggleEscapeEffects, void, unknown>;
 
-function* toggleEscapeSaga({
-  key,
-}: SagaToggleEscapeActionType): ToggleEscapeSagaType {
+function* toggleEscapeSaga({ key }: SagaToggleEscapeAction): ToggleEscapeSaga {
   yield put(toggleEscape(key));
   yield put(toggleDisplay(false));
 }
@@ -77,69 +75,67 @@ function* watchToggleEscape(): Generator<ForkEffect<never>, void, unknown> {
   yield takeEvery(SAGA_TOGGLE_ESCAPE, toggleEscapeSaga);
 }
 
-type SaveGameSagaType = Generator<
-  ForkEffect<void> | SelectEffect | CallEffect<void> | ToggleEscapeEffectsType,
+type SaveGameSaga = Generator<
+  ForkEffect<void> | SelectEffect | CallEffect<void> | ToggleEscapeEffects,
   void,
-  GameType
+  Game
 >;
 
-function* saveGameSaga({ saveName }: SagaSaveGameActionType): SaveGameSagaType {
-  const game: GameType = yield select(getGame);
+function* saveGameSaga({ saveName }: SagaSaveGameAction): SaveGameSaga {
+  const game: Game = yield select(getGame);
   const save = { saveName, game };
   yield call(api.saveGame.bind(api), save);
   yield fork(getSavesSaga);
-  yield* toggleEscapeSaga({ key: false } as SagaToggleEscapeActionType);
+  yield* toggleEscapeSaga({ key: false } as SagaToggleEscapeAction);
 }
-function* watchSaveGame(): WatcherSagaType {
+function* watchSaveGame(): WatcherSaga {
   yield takeEvery(SAGA_SAVE_GAME, saveGameSaga);
 }
 
-type LoadGameSagaType = Generator<
-  | CallEffect<GameType>
-  | PutEffect<LoadGameActionType>
-  | PutEffect<ToggleDisplayActionType>,
+type LoadGameSaga = Generator<
+  CallEffect<Game> | PutEffect<LoadGameAction> | PutEffect<ToggleDisplayAction>,
   void,
-  GameType
+  Game
 >;
 
-function* loadGameSaga({ saveName }: SagaLoadGameActionType): LoadGameSagaType {
-  const game: GameType = yield call(api.loadGame.bind(api), saveName);
+function* loadGameSaga({ saveName }: SagaLoadGameAction): LoadGameSaga {
+  const game: Game = yield call(api.loadGame.bind(api), saveName);
   yield put(loadGame(game));
   yield put(toggleDisplay(false));
 }
-function* watchLoadGame(): WatcherSagaType {
+function* watchLoadGame(): WatcherSaga {
   yield takeEvery(SAGA_LOAD_GAME, loadGameSaga);
 }
 
-type FpsTickType = Generator<
-  CallEffect<true> | PutEffect<ClearFPSActionType>,
+type FpsTick = Generator<
+  CallEffect<true> | PutEffect<ClearFPSAction>,
   void,
   unknown
 >;
 
-function* fpsTick(): FpsTickType {
+function* fpsTick(): FpsTick {
   while (true) {
     yield delay(5000);
     yield put(clearFPS());
   }
 }
 
-type FpsTimerType = Generator<
+type FpsTimer = Generator<
   ForkEffect<void> | TakeEffect | CancelEffect,
   void,
   Task
 >;
 
-function* fpsTimer(): FpsTimerType {
+function* fpsTimer(): FpsTimer {
   while (yield take(SAGA_RUN_FPS_TIMER)) {
     const fpsTask: Task = yield fork(fpsTick);
     yield take(SAGA_STOP_FPS_TIMER);
     yield cancel(fpsTask);
   }
 }
-type RootSageType = Generator<AllEffect<FpsTimerType>, void, unknown>;
+type RootSaga = Generator<AllEffect<FpsTimer>, void, unknown>;
 
-export default function* rootSaga(): RootSageType {
+export default function* rootSaga(): RootSaga {
   yield all([
     watchGetSaves(),
     watchToggleEscape(),

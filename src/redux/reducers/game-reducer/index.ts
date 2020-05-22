@@ -4,10 +4,10 @@ import starsReducer from "./stars-reducer";
 import pathReducer from "./path-reducer";
 import moveReducer from "./move-reducer";
 import asteroidsReducer from "./asteroids-reducer";
-import { RestGameStateType } from "../../../types";
-import { GameReducerActionType } from "../../actions";
+import { RestGameState } from "../../../types";
+import { GameReducerAction } from "../../actions";
 
-const initialState: RestGameStateType = {
+const initialState: RestGameState = {
   boxes: [],
   health: 100,
   readyToShoot: true,
@@ -17,8 +17,8 @@ const initialState: RestGameStateType = {
 
 const restGameReducer = (
   state = initialState,
-  action: GameReducerActionType
-): RestGameStateType => {
+  action: GameReducerAction
+): RestGameState => {
   switch (action.type) {
     case LOAD_GAME: {
       const { stars, passedPath, velocity, rocketX, ...game } = action.payload;

@@ -1,14 +1,14 @@
 import { GET_SAVES, CHANGE_SAVE_NAME } from "../actions-types";
-import { GetSaveActionType, ChangeSaveNameActionType } from "../actions";
+import { GetSaveAction, ChangeSaveNameAction } from "../actions";
 
 const initialState = { saves: [] as string[], saveName: "" };
 
-type InitialStateType = typeof initialState;
+type InitialState = typeof initialState;
 
 const savesReducer = (
   state = initialState,
-  action: GetSaveActionType | ChangeSaveNameActionType
-): InitialStateType => {
+  action: GetSaveAction | ChangeSaveNameAction
+): InitialState => {
   switch (action.type) {
     case GET_SAVES:
       return { ...state, saves: action.payload };

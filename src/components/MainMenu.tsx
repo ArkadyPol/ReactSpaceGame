@@ -3,15 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "@reach/router";
 import Saves from "./Saves";
 import Buttons from "./ButtonsMenu";
-import star from "../canvas/Star";
+import star from "../canvas/star";
 import { getStars } from "../redux/selectors";
 import { toggleDisplay, sagaGetSaves, sagaLoadGame } from "../redux/actions";
 import "../styles/App.css";
-import { RootStateType } from "../redux/reducers";
+import { RootState } from "../redux/reducers";
 
 const MainMenu: React.FC = () => {
-  const displayForm = useSelector((state: RootStateType) => state.display);
-  const saves = useSelector((state: RootStateType) => state.saves.saves);
+  const displayForm = useSelector((state: RootState) => state.display);
+  const saves = useSelector((state: RootState) => state.saves.saves);
   const stars = useSelector(getStars);
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
-import { AsteroidType } from "../types";
+import { Asteroid } from "../types";
 
 const asteroid = (
   ctx: CanvasRenderingContext2D,
-  { x, y, size }: AsteroidType
+  { x, y, size }: Asteroid
 ): void => {
   ctx.beginPath();
   ctx.arc(x, y, size, 0, 2 * Math.PI);

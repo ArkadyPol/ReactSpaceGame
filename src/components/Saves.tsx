@@ -1,18 +1,18 @@
 import React from "react";
 
-type StyleType = {
+type Style = {
   left: number;
   top: number;
   position: "static" | "absolute";
 };
 
-type PropsType = {
+type Props = {
   saves: string[];
   handleClick: (e: React.MouseEvent) => void;
-  style?: StyleType;
+  style?: Style;
 };
 
-const Saves: React.FC<PropsType> = ({
+const Saves: React.FC<Props> = ({
   saves,
   handleClick,
   style = { left: 0, top: 0, position: "static" },

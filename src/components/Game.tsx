@@ -25,14 +25,14 @@ import Form from "./Form";
 import Buttons from "./ButtonsGame";
 import "../styles/App.css";
 import { getGame } from "../redux/selectors";
-import { RootStateType } from "../redux/reducers";
-import { ShotType } from "../types";
+import { RootState } from "../redux/reducers";
+import { Shot } from "../types";
 
 const Game: React.FC = () => {
   const game = useSelector(getGame);
-  const keyboard = useSelector((state: RootStateType) => state.keyboard);
-  const displayForm = useSelector((state: RootStateType) => state.display);
-  const save = useSelector((state: RootStateType) => state.saves.saveName);
+  const keyboard = useSelector((state: RootState) => state.keyboard);
+  const displayForm = useSelector((state: RootState) => state.display);
+  const save = useSelector((state: RootState) => state.saves.saveName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const width = 1184;
@@ -57,9 +57,9 @@ const Game: React.FC = () => {
     requestID.current = requestAnimationFrame(updatePerFrame);
     let { readyToShoot, shotMagazine, shots, boxes, health } = game;
     const { passedPath, rocketX, asteroids } = game;
-    shots = shots
+    shots = (shots
       .map((coords) => [coords[0], coords[1] - 5])
-      .filter((coords) => coords[1] > 0) as ShotType[];
+      .filter((coords) => coords[1] > 0) as unknown) as Shot[];
     boxes = boxes
       .map((params) => {
         const y = params.y + 2;

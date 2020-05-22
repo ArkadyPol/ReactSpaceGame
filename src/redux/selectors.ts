@@ -1,16 +1,14 @@
 import { createSelector } from "reselect";
-import { RootStateType } from "./reducers";
-import { StarType, GameType, RestGameStateType, AsteroidType } from "../types";
-import { MoveStateType } from "./reducers/game-reducer/move-reducer";
+import { RootState } from "./reducers";
+import { Star, Game, RestGameState, Asteroid } from "../types";
+import { MoveState } from "./reducers/game-reducer/move-reducer";
 
-const getRestGame = (state: RootStateType): RestGameStateType =>
-  state.game.game;
-const getPassedPath = (state: RootStateType): number => state.game.passedPath;
-const getMove = (state: RootStateType): MoveStateType => state.game.move;
-const getAsteroids = (state: RootStateType): AsteroidType[] =>
-  state.game.asteroids;
+const getRestGame = (state: RootState): RestGameState => state.game.game;
+const getPassedPath = (state: RootState): number => state.game.passedPath;
+const getMove = (state: RootState): MoveState => state.game.move;
+const getAsteroids = (state: RootState): Asteroid[] => state.game.asteroids;
 
-export const getStars = (state: RootStateType): StarType[] => state.game.stars;
+export const getStars = (state: RootState): readonly Star[] => state.game.stars;
 
 export const getGame = createSelector(
   getRestGame,
@@ -18,7 +16,7 @@ export const getGame = createSelector(
   getPassedPath,
   getMove,
   getAsteroids,
-  (game, stars, passedPath, move, asteroids): GameType => ({
+  (game, stars, passedPath, move, asteroids): Game => ({
     ...game,
     stars,
     passedPath,

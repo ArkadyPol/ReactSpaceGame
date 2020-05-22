@@ -1,5 +1,5 @@
 import { RESET, UPDATE_GAME, LOAD_GAME } from "../../actions-types";
-import { GameReducerActionType } from "../../actions";
+import { GameReducerAction } from "../../actions";
 
 const calculateVelocity = (
   velocity: number,
@@ -24,12 +24,12 @@ const initialState = {
   velocity: 0,
 };
 
-export type MoveStateType = typeof initialState;
+export type MoveState = typeof initialState;
 
 const moveReducer = (
   state = initialState,
-  action: GameReducerActionType
-): MoveStateType => {
+  action: GameReducerAction
+): MoveState => {
   switch (action.type) {
     case LOAD_GAME:
       return {

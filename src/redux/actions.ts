@@ -1,144 +1,141 @@
 import * as t from "./actions-types";
-import { GameType, MoveType, RestGameStateType } from "../types";
+import { Game, Move, RestGameState } from "../types";
 
-export type AddFPSActionType = {
+export type AddFPSAction = {
   type: typeof t.ADD_FPS;
 };
-export type ChangeSaveNameActionType = {
+export type ChangeSaveNameAction = {
   type: typeof t.CHANGE_SAVE_NAME;
   payload: string;
 };
-export type ClearFPSActionType = {
+export type ClearFPSAction = {
   type: typeof t.CLEAR_FPS;
 };
-export type LoadGameActionType = {
+export type LoadGameAction = {
   type: typeof t.LOAD_GAME;
-  payload: GameType;
+  payload: Game;
 };
-export type GameReducerActionType =
-  | LoadGameActionType
-  | UpdateGameActionType
-  | ResetActionType;
-export type GenerateNewStarsActionType = {
+export type GameReducerAction = LoadGameAction | UpdateGameAction | ResetAction;
+export type GenerateNewStarsAction = {
   type: typeof t.GENERATE_NEW_STARS;
 };
-export type GetSaveActionType = {
+export type GetSaveAction = {
   type: typeof t.GET_SAVES;
   payload: string[];
 };
-export type SagaRunFpsTimerActionType = {
-  type: typeof t.SAGA_RUN_FPS_TIMER;
-};
-export type ResetActionType = {
+export type ResetAction = {
   type: typeof t.RESET;
 };
-export type SagaGetSavesActionType = {
+export type SagaGetSavesAction = {
   type: typeof t.SAGA_GET_SAVES;
 };
-export type SagaLoadGameActionType = {
+export type SagaLoadGameAction = {
   type: typeof t.SAGA_LOAD_GAME;
   saveName: string;
 };
-export type SagaSaveGameActionType = {
+export type SagaRunFpsTimerAction = {
+  type: typeof t.SAGA_RUN_FPS_TIMER;
+};
+export type SagaSaveGameAction = {
   type: typeof t.SAGA_SAVE_GAME;
   saveName: string;
 };
-export type SagaStopFpsTimerActionType = {
+export type SagaStopFpsTimerAction = {
   type: typeof t.SAGA_STOP_FPS_TIMER;
 };
-export type SagaToggleEscapeActionType = {
+export type SagaToggleEscapeAction = {
   type: typeof t.SAGA_TOGGLE_ESCAPE;
   key: boolean;
 };
-export type ToggleArrowLeftActionType = {
+export type ToggleArrowLeftAction = {
   type: typeof t.TOGGLE_ARROW_LEFT;
   payload: boolean;
 };
-export type ToggleArrowRightActionType = {
+export type ToggleArrowRightAction = {
   type: typeof t.TOGGLE_ARROW_RIGHT;
   payload: boolean;
 };
-export type ToggleDisplayActionType = {
+export type ToggleDisplayAction = {
   type: typeof t.TOGGLE_DISPLAY;
   payload: boolean;
 };
-export type ToggleEscapeActionType = {
+export type ToggleEscapeAction = {
   type: typeof t.TOGGLE_ESCAPE;
   payload: boolean;
 };
-export type ToggleSpaceActionType = {
+export type ToggleSpaceAction = {
   type: typeof t.TOGGLE_SPACE;
   payload: boolean;
 };
-export type UpdateGameActionType = {
+export type UpdateGameAction = {
   type: typeof t.UPDATE_GAME;
-  payload: RestGameStateType;
-  state: MoveType;
+  payload: RestGameState;
+  state: Move;
 };
 
-export const addFPS = (): AddFPSActionType => ({ type: t.ADD_FPS });
-export const changeSaveName = (saveName: string): ChangeSaveNameActionType => ({
+export const addFPS = (): AddFPSAction => ({ type: t.ADD_FPS });
+export const changeSaveName = (saveName: string): ChangeSaveNameAction => ({
   type: t.CHANGE_SAVE_NAME,
   payload: saveName,
 });
-export const clearFPS = (): ClearFPSActionType => ({ type: t.CLEAR_FPS });
-export const generateNewStars = (): GenerateNewStarsActionType => ({
+export const clearFPS = (): ClearFPSAction => ({ type: t.CLEAR_FPS });
+export const generateNewStars = (): GenerateNewStarsAction => ({
   type: t.GENERATE_NEW_STARS,
 });
-export const getSaves = (saves: string[]): GetSaveActionType => ({
+export const getSaves = (saves: string[]): GetSaveAction => ({
   type: t.GET_SAVES,
   payload: saves,
 });
-export const loadGame = (payload: GameType): LoadGameActionType => ({
+export const loadGame = (payload: Game): LoadGameAction => ({
   type: t.LOAD_GAME,
   payload,
 });
-export const reset = (): ResetActionType => ({ type: t.RESET });
-export const sagaGetSaves = (): SagaGetSavesActionType => ({
+export const reset = (): ResetAction => ({ type: t.RESET });
+export const sagaGetSaves = (): SagaGetSavesAction => ({
   type: t.SAGA_GET_SAVES,
 });
-export const sagaLoadGame = (saveName: string): SagaLoadGameActionType => ({
+export const sagaLoadGame = (saveName: string): SagaLoadGameAction => ({
   type: t.SAGA_LOAD_GAME,
   saveName,
 });
-export const sagaRunFpsTimer = (): SagaRunFpsTimerActionType => ({
+export const sagaRunFpsTimer = (): SagaRunFpsTimerAction => ({
   type: t.SAGA_RUN_FPS_TIMER,
 });
-export const sagaSaveGame = (saveName: string): SagaSaveGameActionType => ({
+export const sagaSaveGame = (saveName: string): SagaSaveGameAction => ({
   type: t.SAGA_SAVE_GAME,
   saveName,
 });
-export const sagaStopFpsTimer = (): SagaStopFpsTimerActionType => ({
+export const sagaStopFpsTimer = (): SagaStopFpsTimerAction => ({
   type: t.SAGA_STOP_FPS_TIMER,
 });
-export const sagaToggleEscape = (key: boolean): SagaToggleEscapeActionType => ({
+export const sagaToggleEscape = (key: boolean): SagaToggleEscapeAction => ({
   type: t.SAGA_TOGGLE_ESCAPE,
   key,
 });
-export const toggleArrowLeft = (key: boolean): ToggleArrowLeftActionType => ({
+export const toggleArrowLeft = (key: boolean): ToggleArrowLeftAction => ({
   type: t.TOGGLE_ARROW_LEFT,
   payload: key,
 });
-export const toggleArrowRight = (key: boolean): ToggleArrowRightActionType => ({
+export const toggleArrowRight = (key: boolean): ToggleArrowRightAction => ({
   type: t.TOGGLE_ARROW_RIGHT,
   payload: key,
 });
-export const toggleDisplay = (display: boolean): ToggleDisplayActionType => ({
+export const toggleDisplay = (display: boolean): ToggleDisplayAction => ({
   type: t.TOGGLE_DISPLAY,
   payload: display,
 });
-export const toggleEscape = (payload: boolean): ToggleEscapeActionType => ({
+export const toggleEscape = (payload: boolean): ToggleEscapeAction => ({
   type: t.TOGGLE_ESCAPE,
   payload,
 });
-export const toggleSpace = (key: boolean): ToggleSpaceActionType => ({
+export const toggleSpace = (key: boolean): ToggleSpaceAction => ({
   type: t.TOGGLE_SPACE,
   payload: key,
 });
 export const updateGame = (
-  game: RestGameStateType,
-  state: MoveType
-): UpdateGameActionType => ({
+  game: RestGameState,
+  state: Move
+): UpdateGameAction => ({
   type: t.UPDATE_GAME,
   payload: game,
   state,
