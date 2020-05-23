@@ -6,7 +6,8 @@ import { MoveState } from './reducers/game-reducer/move-reducer';
 const getRestGame = (state: RootState): RestGameState => state.game.game;
 const getPassedPath = (state: RootState): number => state.game.passedPath;
 const getMove = (state: RootState): MoveState => state.game.move;
-const getAsteroids = (state: RootState): Asteroid[] => state.game.asteroids;
+const getAsteroids = (state: RootState): readonly Asteroid[] =>
+  state.game.asteroids;
 
 export const getStars = (state: RootState): readonly Star[] => state.game.stars;
 

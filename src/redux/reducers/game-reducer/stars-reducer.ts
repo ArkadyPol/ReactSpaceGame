@@ -5,7 +5,7 @@ import {
   LOAD_GAME,
   GENERATE_NEW_STARS,
 } from '../../actions-types';
-import { randomInteger } from '../../../logic';
+import randomInteger from '../../../logic';
 import { Star } from '../../../types';
 import { GenerateNewStarsAction, GameReducerAction } from '../../actions';
 

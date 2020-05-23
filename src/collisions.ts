@@ -1,4 +1,6 @@
+import { Dispatch } from 'redux';
 import { Asteroid, Shot, Box } from './types';
+import { destroyAsteroid, addAsteroid } from './redux/actions';
 
 type Circle = [number, number, number];
 type Rectangle = [number, number, number, number];
@@ -56,33 +58,38 @@ const collisionCircleRectangle = (
 };
 
 export const findCollisionsWithShots = (
-  asteroids: Asteroid[],
+  asteroids: readonly Asteroid[],
   shots: Shot[],
-  boxes: Box[]
+  boxes: Box[],
+  dispatch: Dispatch
 ): void => {
   asteroids.forEach((asteroid, indexAsteroid) => {
     const { x, y, size, vY } = asteroid;
     shots.forEach((shot, indexShot) => {
       if (collisionCircles([x, y, size], [shot[0], shot[1], 5])) {
         shots.splice(indexShot, 1);
-        asteroids.splice(indexAsteroid, 1);
+        dispatch(destroyAsteroid(indexAsteroid));
         if (size >= 10) {
           const newSize = Math.floor(size / 2);
           const newVY = 0.9 * vY;
-          asteroids.push({
-            x,
-            y,
-            size: newSize,
-            vX: newVY,
-            vY: newVY,
-          });
-          asteroids.push({
-            x,
-            y,
-            size: newSize,
-            vX: -newVY,
-            vY: newVY,
-          });
+          dispatch(
+            addAsteroid({
+              x,
+              y,
+              size: newSize,
+              vX: newVY,
+              vY: newVY,
+            })
+          );
+          dispatch(
+            addAsteroid({
+              x,
+              y,
+              size: newSize,
+              vX: -newVY,
+              vY: newVY,
+            })
+          );
           boxes.push({ x, y, color: 'red' });
         }
       }
@@ -90,15 +97,16 @@ export const findCollisionsWithShots = (
   });
 };
 export const findCollisionsWithRocket = (
-  asteroids: Asteroid[],
+  asteroids: readonly Asteroid[],
   rocketX: number,
-  health: number
+  health: number,
+  dispatch: Dispatch
 ): number => {
   let newHealth = health;
   asteroids.forEach((asteroid, indexAsteroid) => {
     const { x, y, size, vY: speed } = asteroid;
     if (collisionCircleRectangle([x, y, size], [rocketX - 15, 627, 30, 85])) {
-      asteroids.splice(indexAsteroid, 1);
+      dispatch(destroyAsteroid(indexAsteroid));
       const damage = Math.floor((size / 2) * (speed / 10));
       console.log('damage:', damage);
       newHealth -= damage;

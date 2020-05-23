@@ -1,6 +1,10 @@
 import * as t from './actions-types';
-import { Game, Move, RestGameState } from '../types';
+import { Game, Move, RestGameState, Asteroid } from '../types';
 
+export type AddAsteroidAction = {
+  type: typeof t.ADD_ASTEROID;
+  payload: Asteroid;
+};
 export type AddFPSAction = {
   type: typeof t.ADD_FPS;
 };
@@ -11,11 +15,18 @@ export type ChangeSaveNameAction = {
 export type ClearFPSAction = {
   type: typeof t.CLEAR_FPS;
 };
+export type DestroyAsteroidAction = {
+  type: typeof t.DESTROY_ASTEROID;
+  payload: number;
+};
 export type LoadGameAction = {
   type: typeof t.LOAD_GAME;
   payload: Game;
 };
 export type GameReducerAction = LoadGameAction | UpdateGameAction | ResetAction;
+export type GenerateAsteroidAction = {
+  type: typeof t.GENERATE_ASTEROID;
+};
 export type GenerateNewStarsAction = {
   type: typeof t.GENERATE_NEW_STARS;
 };
@@ -73,12 +84,23 @@ export type UpdateGameAction = {
   state: Move;
 };
 
+export const addAsteroid = (asteroid: Asteroid): AddAsteroidAction => ({
+  type: t.ADD_ASTEROID,
+  payload: asteroid,
+});
 export const addFPS = (): AddFPSAction => ({ type: t.ADD_FPS });
 export const changeSaveName = (saveName: string): ChangeSaveNameAction => ({
   type: t.CHANGE_SAVE_NAME,
   payload: saveName,
 });
 export const clearFPS = (): ClearFPSAction => ({ type: t.CLEAR_FPS });
+export const destroyAsteroid = (index: number): DestroyAsteroidAction => ({
+  type: t.DESTROY_ASTEROID,
+  payload: index,
+});
+export const generateAsteroid = (): GenerateAsteroidAction => ({
+  type: t.GENERATE_ASTEROID,
+});
 export const generateNewStars = (): GenerateNewStarsAction => ({
   type: t.GENERATE_NEW_STARS,
 });

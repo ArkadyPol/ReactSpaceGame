@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux';
 import { useNavigate } from '@reach/router';
-import { generateAsteroid } from '../logic';
 import updateCanvas from '../canvas';
 import {
   addFPS,
@@ -16,6 +15,7 @@ import {
   sagaRunFpsTimer,
   sagaStopFpsTimer,
   generateNewStars,
+  generateAsteroid,
 } from '../redux/actions';
 import {
   findCollisionsWithRocket,
@@ -67,8 +67,8 @@ const Game: React.FC = () => {
       })
       .filter((params) => params.y < 800);
 
-    findCollisionsWithShots(asteroids, shots, boxes);
-    health = findCollisionsWithRocket(asteroids, rocketX, health);
+    findCollisionsWithShots(asteroids, shots, boxes, dispatch);
+    health = findCollisionsWithRocket(asteroids, rocketX, health, dispatch);
 
     if (health <= 0) {
       void navigate('/');
@@ -89,7 +89,7 @@ const Game: React.FC = () => {
       }
     }
     if (passedPath % 100 === 0) {
-      asteroids.push(generateAsteroid());
+      dispatch(generateAsteroid());
     }
     batch(() => {
       dispatch(
