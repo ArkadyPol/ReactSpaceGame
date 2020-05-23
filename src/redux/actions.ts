@@ -26,6 +26,10 @@ export type DestroyAsteroidAction = {
   type: typeof t.DESTROY_ASTEROID;
   payload: number;
 };
+export type DestroyShotAction = {
+  type: typeof t.DESTROY_SHOT;
+  payload: number;
+};
 export type LoadGameAction = {
   type: typeof t.LOAD_GAME;
   payload: Game;
@@ -111,6 +115,10 @@ export const damageRocket = (damage: number): DamageRocketAction => ({
 });
 export const destroyAsteroid = (index: number): DestroyAsteroidAction => ({
   type: t.DESTROY_ASTEROID,
+  payload: index,
+});
+export const destroyShot = (index: number): DestroyShotAction => ({
+  type: t.DESTROY_SHOT,
   payload: index,
 });
 export const generateAsteroid = (): GenerateAsteroidAction => ({

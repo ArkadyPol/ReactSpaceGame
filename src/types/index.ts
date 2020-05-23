@@ -20,7 +20,7 @@ export type Game = {
   health: number;
   readyToShoot: boolean;
   shotMagazine: number;
-  shots: Shot[];
+  shots: readonly Shot[];
 };
 export type RequiredState = {
   arrowLeft: boolean;

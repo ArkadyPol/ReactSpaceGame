@@ -1,6 +1,11 @@
 import { Dispatch } from 'redux';
 import { Asteroid, Shot, Box } from './types';
-import { destroyAsteroid, addAsteroid, damageRocket } from './redux/actions';
+import {
+  destroyAsteroid,
+  addAsteroid,
+  damageRocket,
+  destroyShot,
+} from './redux/actions';
 
 type Circle = [number, number, number];
 type Rectangle = [number, number, number, number];
@@ -59,7 +64,7 @@ const collisionCircleRectangle = (
 
 export const findCollisionsWithShots = (
   asteroids: readonly Asteroid[],
-  shots: Shot[],
+  shots: readonly Shot[],
   boxes: Box[],
   dispatch: Dispatch
 ): void => {
@@ -67,7 +72,7 @@ export const findCollisionsWithShots = (
     const { x, y, size, vY } = asteroid;
     shots.forEach((shot, indexShot) => {
       if (collisionCircles([x, y, size], [shot[0], shot[1], 5])) {
-        shots.splice(indexShot, 1);
+        dispatch(destroyShot(indexShot));
         dispatch(destroyAsteroid(indexAsteroid));
         if (size >= 10) {
           const newSize = Math.floor(size / 2);
