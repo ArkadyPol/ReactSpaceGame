@@ -1,4 +1,4 @@
-import stars from './stars.json';
+import stars from '../../../assets/stars.json';
 import {
   RESET,
   UPDATE_GAME,
