@@ -15,6 +15,8 @@ import {
   sagaStopFpsTimer,
   generateNewStars,
   generateAsteroid,
+  readyShoot,
+  addShot,
 } from '../redux/actions';
 import {
   findCollisionsWithRocket,
@@ -25,7 +27,6 @@ import Buttons from './ButtonsGame';
 import '../styles/App.css';
 import { getGame } from '../redux/selectors';
 import { RootState } from '../redux/reducers';
-import { Shot } from '../types';
 
 const Game: React.FC = () => {
   const game = useSelector(getGame);
@@ -54,15 +55,20 @@ const Game: React.FC = () => {
     const { escape, arrowLeft, arrowRight, space } = keyboard;
     if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
-    let { readyToShoot, shotMagazine, shots, boxes } = game;
-    const { passedPath, rocketX, asteroids, health } = game;
+    let { boxes } = game;
+    const {
+      shotMagazine,
+      passedPath,
+      rocketX,
+      asteroids,
+      health,
+      shots,
+      readyToShoot,
+    } = game;
     if (health <= 0) {
       void navigate('/');
       return;
     }
-    shots = (shots
-      .map((coords) => [coords[0], coords[1] - 5])
-      .filter((coords) => coords[1] > 0) as unknown) as Shot[];
     boxes = boxes
       .map((params) => {
         const y = params.y + 2;
@@ -73,17 +79,10 @@ const Game: React.FC = () => {
     findCollisionsWithShots(asteroids, shots, boxes, dispatch);
     findCollisionsWithRocket(asteroids, rocketX, dispatch);
 
-    if (space && readyToShoot && shotMagazine > 0) {
-      shots.push([rocketX, 625]);
-      readyToShoot = false;
-      shotMagazine -= 1;
-    }
-    if (passedPath % 5 === 0 && !readyToShoot) readyToShoot = true;
+    if (passedPath % 5 === 0 && !readyToShoot) dispatch(readyShoot());
     if (passedPath % 30 === 0) dispatch(generateNewStars());
-    if (passedPath % 75 === 0) {
-      if (shotMagazine < 10) {
-        shotMagazine += 1;
-      }
+    if (passedPath % 75 === 0 && shotMagazine < 10) {
+      dispatch(addShot());
     }
     if (passedPath % 100 === 0) {
       dispatch(generateAsteroid());
@@ -92,12 +91,9 @@ const Game: React.FC = () => {
       dispatch(
         updateGame(
           {
-            readyToShoot,
-            shotMagazine,
-            shots,
             boxes,
           },
-          { arrowLeft, arrowRight }
+          { arrowLeft, arrowRight, rocketX, space }
         )
       );
       dispatch(addFPS());

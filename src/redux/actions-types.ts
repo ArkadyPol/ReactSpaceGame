@@ -1,5 +1,6 @@
 export const ADD_ASTEROID = 'ADD_ASTEROID';
 export const ADD_FPS = 'ADD_FPS';
+export const ADD_SHOT = 'ADD_SHOT';
 export const CHANGE_SAVE_NAME = 'CHANGE_SAVE_NAME';
 export const CLEAR_FPS = 'CLEAR_FPS';
 export const DAMAGE_ROCKET = 'DAMAGE_ROCKET';
@@ -8,6 +9,7 @@ export const GENERATE_ASTEROID = 'GENERATE_ASTEROID';
 export const GENERATE_NEW_STARS = 'GENERATE_NEW_STARS';
 export const GET_SAVES = 'GET_SAVES';
 export const LOAD_GAME = 'LOAD_GAME';
+export const READY_SHOOT = 'READY_SHOOT';
 export const RESET = 'RESET';
 export const SAGA_GET_SAVES = 'SAGA_GET_SAVES';
 export const SAGA_LOAD_GAME = 'SAGA_LOAD_GAME';

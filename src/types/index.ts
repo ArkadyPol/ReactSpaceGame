@@ -22,15 +22,14 @@ export type Game = {
   shotMagazine: number;
   shots: Shot[];
 };
-export type Move = {
+export type RequiredState = {
   arrowLeft: boolean;
   arrowRight: boolean;
+  space: boolean;
+  rocketX: number;
 };
 export type RestGameState = {
   boxes: Box[];
-  readyToShoot: boolean;
-  shotMagazine: number;
-  shots: Shot[];
 };
 export type Save = {
   game: Game;

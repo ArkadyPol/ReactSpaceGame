@@ -1,5 +1,5 @@
 import * as t from './actions-types';
-import { Game, Move, RestGameState, Asteroid } from '../types';
+import { Game, RequiredState, RestGameState, Asteroid } from '../types';
 
 export type AddAsteroidAction = {
   type: typeof t.ADD_ASTEROID;
@@ -7,6 +7,9 @@ export type AddAsteroidAction = {
 };
 export type AddFPSAction = {
   type: typeof t.ADD_FPS;
+};
+export type AddShotAction = {
+  type: typeof t.ADD_SHOT;
 };
 export type ChangeSaveNameAction = {
   type: typeof t.CHANGE_SAVE_NAME;
@@ -37,6 +40,9 @@ export type GenerateNewStarsAction = {
 export type GetSaveAction = {
   type: typeof t.GET_SAVES;
   payload: string[];
+};
+export type ReadyShootAction = {
+  type: typeof t.READY_SHOOT;
 };
 export type ResetAction = {
   type: typeof t.RESET;
@@ -85,7 +91,7 @@ export type ToggleSpaceAction = {
 export type UpdateGameAction = {
   type: typeof t.UPDATE_GAME;
   payload: RestGameState;
-  state: Move;
+  state: RequiredState;
 };
 
 export const addAsteroid = (asteroid: Asteroid): AddAsteroidAction => ({
@@ -93,6 +99,7 @@ export const addAsteroid = (asteroid: Asteroid): AddAsteroidAction => ({
   payload: asteroid,
 });
 export const addFPS = (): AddFPSAction => ({ type: t.ADD_FPS });
+export const addShot = (): AddShotAction => ({ type: t.ADD_SHOT });
 export const changeSaveName = (saveName: string): ChangeSaveNameAction => ({
   type: t.CHANGE_SAVE_NAME,
   payload: saveName,
@@ -119,6 +126,9 @@ export const getSaves = (saves: string[]): GetSaveAction => ({
 export const loadGame = (payload: Game): LoadGameAction => ({
   type: t.LOAD_GAME,
   payload,
+});
+export const readyShoot = (): ReadyShootAction => ({
+  type: t.READY_SHOOT,
 });
 export const reset = (): ResetAction => ({ type: t.RESET });
 export const sagaGetSaves = (): SagaGetSavesAction => ({
@@ -164,7 +174,7 @@ export const toggleSpace = (key: boolean): ToggleSpaceAction => ({
 });
 export const updateGame = (
   game: RestGameState,
-  state: Move
+  state: RequiredState
 ): UpdateGameAction => ({
   type: t.UPDATE_GAME,
   payload: game,

@@ -5,14 +5,12 @@ import pathReducer from './path-reducer';
 import moveReducer from './move-reducer';
 import asteroidsReducer from './asteroids-reducer';
 import healthReducer from './health-reducer';
+import shotsReducer from './shots-reducer';
 import { RestGameState } from '../../../types';
 import { GameReducerAction } from '../../actions';
 
 const initialState: RestGameState = {
   boxes: [],
-  readyToShoot: true,
-  shotMagazine: 10,
-  shots: [],
 };
 
 const restGameReducer = (
@@ -21,8 +19,7 @@ const restGameReducer = (
 ): RestGameState => {
   switch (action.type) {
     case LOAD_GAME: {
-      const { boxes, readyToShoot, shotMagazine, shots } = action.payload;
-      return { ...state, boxes, readyToShoot, shotMagazine, shots };
+      return { ...state, boxes: action.payload.boxes };
     }
     case UPDATE_GAME: {
       return { ...action.payload };
@@ -40,6 +37,7 @@ const gameReducer = combineReducers({
   move: moveReducer,
   asteroids: asteroidsReducer,
   health: healthReducer,
+  shotsState: shotsReducer,
   game: restGameReducer,
 });
 
