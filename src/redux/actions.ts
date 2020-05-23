@@ -52,6 +52,9 @@ export type ReadyShootAction = {
 export type ResetAction = {
   type: typeof t.RESET;
 };
+export type RunFpsTimerAction = {
+  type: typeof t.RUN_FPS_TIMER;
+};
 export type SagaGetSavesAction = {
   type: typeof t.SAGA_GET_SAVES;
 };
@@ -59,19 +62,16 @@ export type SagaLoadGameAction = {
   type: typeof t.SAGA_LOAD_GAME;
   saveName: string;
 };
-export type SagaRunFpsTimerAction = {
-  type: typeof t.SAGA_RUN_FPS_TIMER;
-};
-export type SagaSaveGameAction = {
-  type: typeof t.SAGA_SAVE_GAME;
-  saveName: string;
-};
-export type SagaStopFpsTimerAction = {
-  type: typeof t.SAGA_STOP_FPS_TIMER;
-};
 export type SagaToggleEscapeAction = {
   type: typeof t.SAGA_TOGGLE_ESCAPE;
   key: boolean;
+};
+export type SaveGameAction = {
+  type: typeof t.SAVE_GAME;
+  saveName: string;
+};
+export type StopFpsTimerAction = {
+  type: typeof t.STOP_FPS_TIMER;
 };
 export type ToggleArrowLeftAction = {
   type: typeof t.TOGGLE_ARROW_LEFT;
@@ -142,6 +142,9 @@ export const readyShoot = (): ReadyShootAction => ({
   type: t.READY_SHOOT,
 });
 export const reset = (): ResetAction => ({ type: t.RESET });
+export const runFpsTimer = (): RunFpsTimerAction => ({
+  type: t.RUN_FPS_TIMER,
+});
 export const sagaGetSaves = (): SagaGetSavesAction => ({
   type: t.SAGA_GET_SAVES,
 });
@@ -149,19 +152,16 @@ export const sagaLoadGame = (saveName: string): SagaLoadGameAction => ({
   type: t.SAGA_LOAD_GAME,
   saveName,
 });
-export const sagaRunFpsTimer = (): SagaRunFpsTimerAction => ({
-  type: t.SAGA_RUN_FPS_TIMER,
-});
-export const sagaSaveGame = (saveName: string): SagaSaveGameAction => ({
-  type: t.SAGA_SAVE_GAME,
-  saveName,
-});
-export const sagaStopFpsTimer = (): SagaStopFpsTimerAction => ({
-  type: t.SAGA_STOP_FPS_TIMER,
-});
 export const sagaToggleEscape = (key: boolean): SagaToggleEscapeAction => ({
   type: t.SAGA_TOGGLE_ESCAPE,
   key,
+});
+export const saveGame = (saveName: string): SaveGameAction => ({
+  type: t.SAVE_GAME,
+  saveName,
+});
+export const stopFpsTimer = (): StopFpsTimerAction => ({
+  type: t.STOP_FPS_TIMER,
 });
 export const toggleArrowLeft = (key: boolean): ToggleArrowLeftAction => ({
   type: t.TOGGLE_ARROW_LEFT,

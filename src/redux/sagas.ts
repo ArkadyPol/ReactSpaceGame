@@ -20,10 +20,10 @@ import { Task } from 'redux-saga';
 import {
   SAGA_GET_SAVES,
   SAGA_TOGGLE_ESCAPE,
-  SAGA_SAVE_GAME,
+  SAVE_GAME,
   SAGA_LOAD_GAME,
-  SAGA_RUN_FPS_TIMER,
-  SAGA_STOP_FPS_TIMER,
+  RUN_FPS_TIMER,
+  STOP_FPS_TIMER,
 } from './actions-types';
 import {
   toggleDisplay,
@@ -35,7 +35,7 @@ import {
   ToggleEscapeAction,
   ToggleDisplayAction,
   SagaToggleEscapeAction,
-  SagaSaveGameAction,
+  SaveGameAction,
   SagaLoadGameAction,
   LoadGameAction,
   ClearFPSAction,
@@ -83,7 +83,7 @@ type SaveGameSaga = Generator<
   Game
 >;
 
-function* saveGameSaga({ saveName }: SagaSaveGameAction): SaveGameSaga {
+function* saveGameSaga({ saveName }: SaveGameAction): SaveGameSaga {
   const game: Game = yield select(getGame);
   const save = { saveName, game };
   yield call(api.saveGame.bind(api), save);
@@ -91,7 +91,7 @@ function* saveGameSaga({ saveName }: SagaSaveGameAction): SaveGameSaga {
   yield* toggleEscapeSaga({ key: false } as SagaToggleEscapeAction);
 }
 function* watchSaveGame(): WatcherSaga {
-  yield takeEvery(SAGA_SAVE_GAME, saveGameSaga);
+  yield takeEvery(SAVE_GAME, saveGameSaga);
 }
 
 type LoadGameSaga = Generator<
@@ -129,9 +129,9 @@ type FpsTimer = Generator<
 >;
 
 function* fpsTimer(): FpsTimer {
-  while (yield take(SAGA_RUN_FPS_TIMER)) {
+  while (yield take(RUN_FPS_TIMER)) {
     const fpsTask: Task = yield fork(fpsTick);
-    yield take(SAGA_STOP_FPS_TIMER);
+    yield take(STOP_FPS_TIMER);
     yield cancel(fpsTask);
   }
 }

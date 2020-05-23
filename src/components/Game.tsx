@@ -9,9 +9,9 @@ import {
   toggleArrowRight,
   toggleSpace,
   sagaToggleEscape,
-  sagaSaveGame,
-  sagaRunFpsTimer,
-  sagaStopFpsTimer,
+  saveGame,
+  runFpsTimer,
+  stopFpsTimer,
   generateNewStars,
   generateAsteroid,
   readyShoot,
@@ -45,9 +45,9 @@ const Game: React.FC = () => {
     }
   }, [game]);
   useEffect(() => {
-    dispatch(sagaRunFpsTimer());
+    dispatch(runFpsTimer());
     return (): void => {
-      dispatch(sagaStopFpsTimer());
+      dispatch(stopFpsTimer());
     };
   }, [dispatch]);
   const updatePerFrame = useCallback(() => {
@@ -90,13 +90,13 @@ const Game: React.FC = () => {
 
   const stopTimers = useCallback(() => {
     cancelAnimationFrame(requestID.current);
-    dispatch(sagaStopFpsTimer());
+    dispatch(stopFpsTimer());
   }, [dispatch]);
 
   const runTimers = useCallback(() => {
     cancelAnimationFrame(requestID.current);
     requestID.current = requestAnimationFrame(updatePerFrame);
-    dispatch(sagaRunFpsTimer());
+    dispatch(runFpsTimer());
   }, [dispatch, updatePerFrame]);
 
   useEffect(() => {
@@ -151,7 +151,7 @@ const Game: React.FC = () => {
     e.preventDefault();
     if (save === '') return;
     runTimers();
-    dispatch(sagaSaveGame(save));
+    dispatch(saveGame(save));
   };
   return (
     <>
