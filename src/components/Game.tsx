@@ -1,9 +1,8 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch, batch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from '@reach/router';
 import updateCanvas from '../canvas';
 import {
-  addFPS,
   updateGame,
   clearFPS,
   toggleArrowLeft,
@@ -79,10 +78,7 @@ const Game: React.FC = () => {
     if (passedPath % 100 === 0) {
       dispatch(generateAsteroid());
     }
-    batch(() => {
-      dispatch(updateGame({ arrowLeft, arrowRight, rocketX, space }));
-      dispatch(addFPS());
-    });
+    dispatch(updateGame({ arrowLeft, arrowRight, rocketX, space }));
   }, [dispatch, game, navigate, keyboard]);
 
   useEffect(() => {

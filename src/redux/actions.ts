@@ -9,9 +9,6 @@ export type AddBoxdAction = {
   type: typeof t.ADD_BOX;
   payload: Box;
 };
-export type AddFPSAction = {
-  type: typeof t.ADD_FPS;
-};
 export type AddShotAction = {
   type: typeof t.ADD_SHOT;
 };
@@ -109,7 +106,6 @@ export const addBox = (box: Box): AddBoxdAction => ({
   type: t.ADD_BOX,
   payload: box,
 });
-export const addFPS = (): AddFPSAction => ({ type: t.ADD_FPS });
 export const addShot = (): AddShotAction => ({ type: t.ADD_SHOT });
 export const changeSaveName = (saveName: string): ChangeSaveNameAction => ({
   type: t.CHANGE_SAVE_NAME,
