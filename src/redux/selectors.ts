@@ -10,7 +10,7 @@ const getAsteroids = (state: RootState): readonly Asteroid[] =>
   state.game.asteroids;
 const getHealth = (state: RootState): number => state.game.health;
 const getShotsState = (state: RootState): ShotsState => state.game.shotsState;
-const getBoxes = (state: RootState): Box[] => state.game.boxes;
+const getBoxes = (state: RootState): readonly Box[] => state.game.boxes;
 
 export const getStars = (state: RootState): readonly Star[] => state.game.stars;
 

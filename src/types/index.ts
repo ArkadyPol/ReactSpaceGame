@@ -16,7 +16,7 @@ export type Game = {
   rocketX: number;
   velocity: number;
   asteroids: readonly Asteroid[];
-  boxes: Box[];
+  boxes: readonly Box[];
   health: number;
   readyToShoot: boolean;
   shotMagazine: number;

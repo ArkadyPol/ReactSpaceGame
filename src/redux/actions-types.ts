@@ -1,4 +1,5 @@
 export const ADD_ASTEROID = 'ADD_ASTEROID';
+export const ADD_BOX = 'ADD_BOX';
 export const ADD_FPS = 'ADD_FPS';
 export const ADD_SHOT = 'ADD_SHOT';
 export const CHANGE_SAVE_NAME = 'CHANGE_SAVE_NAME';

@@ -63,13 +63,12 @@ const Game: React.FC = () => {
       health,
       shots,
       readyToShoot,
-      boxes,
     } = game;
     if (health <= 0) {
       void navigate('/');
       return;
     }
-    findCollisionsWithShots(asteroids, shots, boxes, dispatch);
+    findCollisionsWithShots(asteroids, shots, dispatch);
     findCollisionsWithRocket(asteroids, rocketX, dispatch);
 
     if (passedPath % 5 === 0 && !readyToShoot) dispatch(readyShoot());

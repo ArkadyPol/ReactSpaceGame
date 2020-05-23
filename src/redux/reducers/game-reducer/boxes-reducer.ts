@@ -1,13 +1,13 @@
-import { LOAD_GAME, UPDATE_GAME, RESET } from '../../actions-types';
-import { GameReducerAction } from '../../actions';
+import { LOAD_GAME, UPDATE_GAME, RESET, ADD_BOX } from '../../actions-types';
+import { GameReducerAction, AddBoxdAction } from '../../actions';
 import { Box } from '../../../types';
 
-const initialState = [] as Box[];
+const initialState = [] as readonly Box[];
 
 const boxesReducer = (
   state = initialState,
-  action: GameReducerAction
-): Box[] => {
+  action: GameReducerAction | AddBoxdAction
+): readonly Box[] => {
   switch (action.type) {
     case LOAD_GAME: {
       return action.payload.boxes;
@@ -20,6 +20,8 @@ const boxesReducer = (
         })
         .filter((params) => params.y < 800);
     }
+    case ADD_BOX:
+      return [...state, action.payload];
     case RESET:
       return initialState;
     default:
