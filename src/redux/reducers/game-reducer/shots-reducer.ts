@@ -40,8 +40,8 @@ const shotsReducer = (
       shots = (state.shots
         .map((coords) => [coords[0], coords[1] - 5])
         .filter((coords) => coords[1] > 0) as unknown) as Shot[];
-      if (action.state.space && readyToShoot && state.shotMagazine > 0) {
-        shots = [...shots, [action.state.rocketX, 625]];
+      if (action.payload.space && readyToShoot && state.shotMagazine > 0) {
+        shots = [...shots, [action.payload.rocketX, 625]];
         readyToShoot = false;
         shotMagazine -= 1;
       }

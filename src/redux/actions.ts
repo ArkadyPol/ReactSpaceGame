@@ -1,5 +1,5 @@
 import * as t from './actions-types';
-import { Game, RequiredState, RestGameState, Asteroid } from '../types';
+import { Game, RequiredState, Asteroid } from '../types';
 
 export type AddAsteroidAction = {
   type: typeof t.ADD_ASTEROID;
@@ -94,8 +94,7 @@ export type ToggleSpaceAction = {
 };
 export type UpdateGameAction = {
   type: typeof t.UPDATE_GAME;
-  payload: RestGameState;
-  state: RequiredState;
+  payload: RequiredState;
 };
 
 export const addAsteroid = (asteroid: Asteroid): AddAsteroidAction => ({
@@ -180,11 +179,7 @@ export const toggleSpace = (key: boolean): ToggleSpaceAction => ({
   type: t.TOGGLE_SPACE,
   payload: key,
 });
-export const updateGame = (
-  game: RestGameState,
-  state: RequiredState
-): UpdateGameAction => ({
+export const updateGame = (payload: RequiredState): UpdateGameAction => ({
   type: t.UPDATE_GAME,
-  payload: game,
-  state,
+  payload,
 });

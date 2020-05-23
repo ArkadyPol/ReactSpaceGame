@@ -28,9 +28,6 @@ export type RequiredState = {
   space: boolean;
   rocketX: number;
 };
-export type RestGameState = {
-  boxes: Box[];
-};
 export type Save = {
   game: Game;
   saveName: string;

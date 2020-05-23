@@ -55,7 +55,6 @@ const Game: React.FC = () => {
     const { escape, arrowLeft, arrowRight, space } = keyboard;
     if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
-    let { boxes } = game;
     const {
       shotMagazine,
       passedPath,
@@ -64,18 +63,12 @@ const Game: React.FC = () => {
       health,
       shots,
       readyToShoot,
+      boxes,
     } = game;
     if (health <= 0) {
       void navigate('/');
       return;
     }
-    boxes = boxes
-      .map((params) => {
-        const y = params.y + 2;
-        return { ...params, y };
-      })
-      .filter((params) => params.y < 800);
-
     findCollisionsWithShots(asteroids, shots, boxes, dispatch);
     findCollisionsWithRocket(asteroids, rocketX, dispatch);
 
@@ -88,14 +81,7 @@ const Game: React.FC = () => {
       dispatch(generateAsteroid());
     }
     batch(() => {
-      dispatch(
-        updateGame(
-          {
-            boxes,
-          },
-          { arrowLeft, arrowRight, rocketX, space }
-        )
-      );
+      dispatch(updateGame({ arrowLeft, arrowRight, rocketX, space }));
       dispatch(addFPS());
     });
   }, [dispatch, game, navigate, keyboard]);

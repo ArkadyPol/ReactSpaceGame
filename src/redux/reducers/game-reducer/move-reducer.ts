@@ -39,7 +39,7 @@ const moveReducer = (
       };
     case UPDATE_GAME: {
       let { rocketX } = state;
-      const { arrowLeft, arrowRight } = action.state;
+      const { arrowLeft, arrowRight } = action.payload;
       const velocity = calculateVelocity(state.velocity, arrowLeft, arrowRight);
       rocketX += velocity;
       if (rocketX < 15) {
