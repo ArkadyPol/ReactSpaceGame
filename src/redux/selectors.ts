@@ -8,6 +8,7 @@ const getPassedPath = (state: RootState): number => state.game.passedPath;
 const getMove = (state: RootState): MoveState => state.game.move;
 const getAsteroids = (state: RootState): readonly Asteroid[] =>
   state.game.asteroids;
+const getHealth = (state: RootState): number => state.game.health;
 
 export const getStars = (state: RootState): readonly Star[] => state.game.stars;
 
@@ -17,11 +18,13 @@ export const getGame = createSelector(
   getPassedPath,
   getMove,
   getAsteroids,
-  (game, stars, passedPath, move, asteroids): Game => ({
+  getHealth,
+  (game, stars, passedPath, move, asteroids, health): Game => ({
     ...game,
     stars,
     passedPath,
     ...move,
     asteroids,
+    health,
   })
 );

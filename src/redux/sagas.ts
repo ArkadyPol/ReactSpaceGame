@@ -39,6 +39,8 @@ import {
   SagaLoadGameAction,
   LoadGameAction,
   ClearFPSAction,
+  reset,
+  ResetAction,
 } from './actions';
 import api from '../api';
 import { getGame } from './selectors';
@@ -93,15 +95,15 @@ function* watchSaveGame(): WatcherSaga {
 }
 
 type LoadGameSaga = Generator<
-  CallEffect<Game> | PutEffect<LoadGameAction> | PutEffect<ToggleDisplayAction>,
+  CallEffect<Game> | PutEffect<LoadGameAction> | PutEffect<ResetAction>,
   void,
   Game
 >;
 
 function* loadGameSaga({ saveName }: SagaLoadGameAction): LoadGameSaga {
   const game: Game = yield call(api.loadGame.bind(api), saveName);
+  yield put(reset());
   yield put(loadGame(game));
-  yield put(toggleDisplay(false));
 }
 function* watchLoadGame(): WatcherSaga {
   yield takeEvery(SAGA_LOAD_GAME, loadGameSaga);

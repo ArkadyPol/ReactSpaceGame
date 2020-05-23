@@ -5,7 +5,6 @@ import updateCanvas from '../canvas';
 import {
   addFPS,
   updateGame,
-  reset,
   clearFPS,
   toggleArrowLeft,
   toggleArrowRight,
@@ -55,8 +54,12 @@ const Game: React.FC = () => {
     const { escape, arrowLeft, arrowRight, space } = keyboard;
     if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
-    let { readyToShoot, shotMagazine, shots, boxes, health } = game;
-    const { passedPath, rocketX, asteroids } = game;
+    let { readyToShoot, shotMagazine, shots, boxes } = game;
+    const { passedPath, rocketX, asteroids, health } = game;
+    if (health <= 0) {
+      void navigate('/');
+      return;
+    }
     shots = (shots
       .map((coords) => [coords[0], coords[1] - 5])
       .filter((coords) => coords[1] > 0) as unknown) as Shot[];
@@ -68,13 +71,7 @@ const Game: React.FC = () => {
       .filter((params) => params.y < 800);
 
     findCollisionsWithShots(asteroids, shots, boxes, dispatch);
-    health = findCollisionsWithRocket(asteroids, rocketX, health, dispatch);
-
-    if (health <= 0) {
-      void navigate('/');
-      dispatch(reset());
-      return;
-    }
+    findCollisionsWithRocket(asteroids, rocketX, dispatch);
 
     if (space && readyToShoot && shotMagazine > 0) {
       shots.push([rocketX, 625]);
@@ -99,7 +96,6 @@ const Game: React.FC = () => {
             shotMagazine,
             shots,
             boxes,
-            health,
           },
           { arrowLeft, arrowRight }
         )

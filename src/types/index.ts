@@ -28,7 +28,6 @@ export type Move = {
 };
 export type RestGameState = {
   boxes: Box[];
-  health: number;
   readyToShoot: boolean;
   shotMagazine: number;
   shots: Shot[];

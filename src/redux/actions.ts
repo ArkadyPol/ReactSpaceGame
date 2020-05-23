@@ -15,6 +15,10 @@ export type ChangeSaveNameAction = {
 export type ClearFPSAction = {
   type: typeof t.CLEAR_FPS;
 };
+export type DamageRocketAction = {
+  type: typeof t.DAMAGE_ROCKET;
+  payload: number;
+};
 export type DestroyAsteroidAction = {
   type: typeof t.DESTROY_ASTEROID;
   payload: number;
@@ -94,6 +98,10 @@ export const changeSaveName = (saveName: string): ChangeSaveNameAction => ({
   payload: saveName,
 });
 export const clearFPS = (): ClearFPSAction => ({ type: t.CLEAR_FPS });
+export const damageRocket = (damage: number): DamageRocketAction => ({
+  type: t.DAMAGE_ROCKET,
+  payload: damage,
+});
 export const destroyAsteroid = (index: number): DestroyAsteroidAction => ({
   type: t.DESTROY_ASTEROID,
   payload: index,
