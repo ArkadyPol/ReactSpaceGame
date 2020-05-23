@@ -71,7 +71,7 @@ const Game: React.FC = () => {
     health = findCollisionsWithRocket(asteroids, rocketX, health);
 
     if (health <= 0) {
-      navigate('/');
+      void navigate('/');
       dispatch(reset());
       return;
     }

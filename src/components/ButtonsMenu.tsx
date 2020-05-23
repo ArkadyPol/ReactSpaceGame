@@ -14,7 +14,7 @@ const ButtonsMenu: React.FC = () => {
         type="button"
         onClick={(): void => {
           setTimeout(() => {
-            navigate('/game');
+            void navigate('/game');
           }, 50);
         }}
       >

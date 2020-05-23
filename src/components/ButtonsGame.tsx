@@ -21,7 +21,7 @@ const ButtonsMenu: React.FC = () => {
         className="button"
         type="button"
         onClick={(): void => {
-          navigate('/');
+          void navigate('/');
           dispatch(reset());
         }}
       >

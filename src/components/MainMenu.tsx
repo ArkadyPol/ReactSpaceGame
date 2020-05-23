@@ -42,7 +42,7 @@ const MainMenu: React.FC = () => {
     const save = target.textContent as string;
     dispatch(sagaLoadGame(save));
     setTimeout(() => {
-      navigate('/game');
+      void navigate('/game');
     }, 50);
   };
   useEffect(() => {
