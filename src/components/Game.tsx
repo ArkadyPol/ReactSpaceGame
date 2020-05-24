@@ -1,9 +1,7 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from '@reach/router';
 import updateCanvas from '../canvas';
 import {
-  updateGame,
   clearFPS,
   toggleArrowLeft,
   toggleArrowRight,
@@ -12,10 +10,7 @@ import {
   saveGame,
   runFpsTimer,
   stopFpsTimer,
-  generateNewStars,
-  generateAsteroid,
-  readyShoot,
-  addShot,
+  sagaUpdateGame,
 } from '../redux/actions';
 import Form from './Form';
 import Buttons from './ButtonsGame';
@@ -29,7 +24,6 @@ const Game: React.FC = () => {
   const displayForm = useSelector((state: RootState) => state.display);
   const save = useSelector((state: RootState) => state.saves.saveName);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const width = 1184;
   const height = 740;
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -47,26 +41,9 @@ const Game: React.FC = () => {
     };
   }, [dispatch]);
   const updatePerFrame = useCallback(() => {
-    const { escape, arrowLeft, arrowRight, space } = keyboard;
-    if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
-    const { passedPath, health } = game;
-    const { shotMagazine, readyToShoot } = game.shotsState;
-    const { rocketX } = game.move;
-    if (health <= 0) {
-      void navigate('/');
-      return;
-    }
-    if (passedPath % 5 === 0 && !readyToShoot) dispatch(readyShoot());
-    if (passedPath % 30 === 0) dispatch(generateNewStars());
-    if (passedPath % 75 === 0 && shotMagazine < 10) {
-      dispatch(addShot());
-    }
-    if (passedPath % 100 === 0) {
-      dispatch(generateAsteroid());
-    }
-    dispatch(updateGame({ arrowLeft, arrowRight, rocketX, space }));
-  }, [dispatch, game, navigate, keyboard]);
+    dispatch(sagaUpdateGame());
+  }, [dispatch]);
 
   useEffect(() => {
     requestID.current = requestAnimationFrame(updatePerFrame);

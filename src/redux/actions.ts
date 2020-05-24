@@ -66,6 +66,9 @@ export type SagaToggleEscapeAction = {
   type: typeof t.SAGA_TOGGLE_ESCAPE;
   key: boolean;
 };
+export type SagaUpdateGameAction = {
+  type: typeof t.SAGA_UPDATE_GAME;
+};
 export type SaveGameAction = {
   type: typeof t.SAVE_GAME;
   saveName: string;
@@ -155,6 +158,9 @@ export const sagaLoadGame = (saveName: string): SagaLoadGameAction => ({
 export const sagaToggleEscape = (key: boolean): SagaToggleEscapeAction => ({
   type: t.SAGA_TOGGLE_ESCAPE,
   key,
+});
+export const sagaUpdateGame = (): SagaUpdateGameAction => ({
+  type: t.SAGA_UPDATE_GAME,
 });
 export const saveGame = (saveName: string): SaveGameAction => ({
   type: t.SAVE_GAME,

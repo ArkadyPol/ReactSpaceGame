@@ -16,6 +16,7 @@ export const RUN_FPS_TIMER = 'RUN_FPS_TIMER';
 export const SAGA_GET_SAVES = 'SAGA_GET_SAVES';
 export const SAGA_LOAD_GAME = 'SAGA_LOAD_GAME';
 export const SAGA_TOGGLE_ESCAPE = 'SAGA_TOGGLE_ESCAPE';
+export const SAGA_UPDATE_GAME = 'SAGA_UPDATE_GAME';
 export const SAVE_GAME = 'SAVE_GAME';
 export const STOP_FPS_TIMER = 'STOP_FPS_TIMER';
 export const TOGGLE_ARROW_LEFT = 'TOGGLE_ARROW_LEFT';
