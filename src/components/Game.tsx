@@ -17,10 +17,7 @@ import {
   readyShoot,
   addShot,
 } from '../redux/actions';
-import {
-  findCollisionsWithRocket,
-  findCollisionsWithShots,
-} from '../collisions';
+import { findCollisionsWithRocket } from '../collisions';
 import Form from './Form';
 import Buttons from './ButtonsGame';
 import '../styles/App.css';
@@ -55,13 +52,12 @@ const Game: React.FC = () => {
     if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
     const { passedPath, asteroids, health } = game;
-    const { shotMagazine, shots, readyToShoot } = game.shotsState;
+    const { shotMagazine, readyToShoot } = game.shotsState;
     const { rocketX } = game.move;
     if (health <= 0) {
       void navigate('/');
       return;
     }
-    findCollisionsWithShots(asteroids, shots, dispatch);
     findCollisionsWithRocket(asteroids, rocketX, dispatch);
 
     if (passedPath % 5 === 0 && !readyToShoot) dispatch(readyShoot());

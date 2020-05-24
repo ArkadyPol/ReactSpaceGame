@@ -24,6 +24,7 @@ import {
   SAGA_LOAD_GAME,
   RUN_FPS_TIMER,
   STOP_FPS_TIMER,
+  UPDATE_GAME,
 } from './actions-types';
 import {
   toggleDisplay,
@@ -41,10 +42,19 @@ import {
   ClearFPSAction,
   reset,
   ResetAction,
+  destroyShot,
+  destroyAsteroid,
+  addAsteroid,
+  addBox,
+  DestroyAsteroidAction,
+  DestroyShotAction,
+  AddAsteroidAction,
+  AddBoxdAction,
 } from './actions';
 import api from '../api';
-import { getGame } from './selectors';
-import { Game } from '../types';
+import { getGame, getAsteroids, getShots } from './selectors';
+import { Game, Asteroid, Shot } from '../types';
+import { collisionCircles } from '../collisions';
 
 type GetSavesSaga = Generator<
   CallEffect<string[]> | PutEffect<GetSaveAction>,
@@ -135,6 +145,62 @@ function* fpsTimer(): FpsTimer {
     yield cancel(fpsTask);
   }
 }
+
+type FindCollisionsWithShots = Generator<
+  | SelectEffect
+  | PutEffect<DestroyAsteroidAction>
+  | PutEffect<DestroyShotAction>
+  | PutEffect<AddAsteroidAction>
+  | PutEffect<AddBoxdAction>,
+  void,
+  readonly Asteroid[] & readonly Shot[]
+>;
+
+function* findCollisionsWithShots(): FindCollisionsWithShots {
+  const asteroids: readonly Asteroid[] = yield select(getAsteroids);
+  const shots: readonly Shot[] = yield select(getShots);
+  for (let i = 0; i < asteroids.length; i++) {
+    const { x, y, size, vY } = asteroids[i];
+    for (let j = 0; j < shots.length; j++) {
+      if (collisionCircles([x, y, size], [shots[j][0], shots[j][1], 5])) {
+        yield put(destroyShot(j));
+        yield put(destroyAsteroid(i));
+        if (size >= 10) {
+          const newSize = Math.floor(size / 2);
+          const newVY = 0.9 * vY;
+          yield put(
+            addAsteroid({
+              x,
+              y,
+              size: newSize,
+              vX: newVY,
+              vY: newVY,
+            })
+          );
+          yield put(
+            addAsteroid({
+              x,
+              y,
+              size: newSize,
+              vX: -newVY,
+              vY: newVY,
+            })
+          );
+          yield put(addBox({ x, y, color: 'red' }));
+        }
+      }
+    }
+  }
+}
+
+function* updateGameSaga() {
+  yield fork(findCollisionsWithShots);
+}
+
+function* watchUpdateGame(): WatcherSaga {
+  yield takeEvery(UPDATE_GAME, updateGameSaga);
+}
+
 type RootSaga = Generator<AllEffect<FpsTimer>, void, unknown>;
 
 export default function* rootSaga(): RootSaga {
@@ -144,5 +210,6 @@ export default function* rootSaga(): RootSaga {
     watchSaveGame(),
     watchLoadGame(),
     fpsTimer(),
+    watchUpdateGame(),
   ]);
 }

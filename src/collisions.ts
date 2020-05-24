@@ -1,12 +1,6 @@
 import { Dispatch } from 'redux';
-import { Asteroid, Shot } from './types';
-import {
-  destroyAsteroid,
-  addAsteroid,
-  damageRocket,
-  destroyShot,
-  addBox,
-} from './redux/actions';
+import { Asteroid } from './types';
+import { destroyAsteroid, damageRocket } from './redux/actions';
 
 type Circle = [number, number, number];
 type Rectangle = [number, number, number, number];
@@ -23,7 +17,10 @@ const findSquareDistance = (
   return sqDistance;
 };
 
-const collisionCircles = ([x, y, r]: Circle, [x2, y2, r2]: Circle): boolean => {
+export const collisionCircles = (
+  [x, y, r]: Circle,
+  [x2, y2, r2]: Circle
+): boolean => {
   const sqDistance = findSquareDistance(x, y, x2, y2);
   return sqDistance < (r + r2) ** 2;
 };
@@ -63,44 +60,6 @@ const collisionCircleRectangle = (
   return true;
 };
 
-export const findCollisionsWithShots = (
-  asteroids: readonly Asteroid[],
-  shots: readonly Shot[],
-  dispatch: Dispatch
-): void => {
-  asteroids.forEach((asteroid, indexAsteroid) => {
-    const { x, y, size, vY } = asteroid;
-    shots.forEach((shot, indexShot) => {
-      if (collisionCircles([x, y, size], [shot[0], shot[1], 5])) {
-        dispatch(destroyShot(indexShot));
-        dispatch(destroyAsteroid(indexAsteroid));
-        if (size >= 10) {
-          const newSize = Math.floor(size / 2);
-          const newVY = 0.9 * vY;
-          dispatch(
-            addAsteroid({
-              x,
-              y,
-              size: newSize,
-              vX: newVY,
-              vY: newVY,
-            })
-          );
-          dispatch(
-            addAsteroid({
-              x,
-              y,
-              size: newSize,
-              vX: -newVY,
-              vY: newVY,
-            })
-          );
-          dispatch(addBox({ x, y, color: 'red' }));
-        }
-      }
-    });
-  });
-};
 export const findCollisionsWithRocket = (
   asteroids: readonly Asteroid[],
   rocketX: number,
