@@ -1,3 +1,5 @@
+import { ForkEffect } from 'redux-saga/effects';
+
 export type Asteroid = {
   x: number;
   y: number;
@@ -39,3 +41,4 @@ export type Save = {
 };
 export type Shot = readonly [number, number];
 export type Star = readonly [number, number, number];
+export type WatcherSaga = Generator<ForkEffect<never>, void, unknown>;
