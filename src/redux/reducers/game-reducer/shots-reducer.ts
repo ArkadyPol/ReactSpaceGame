@@ -32,8 +32,7 @@ const shotsReducer = (
 ): ShotsState => {
   switch (action.type) {
     case LOAD_GAME: {
-      const { readyToShoot, shotMagazine, shots } = action.payload;
-      return { ...state, readyToShoot, shotMagazine, shots };
+      return action.payload.shotsState;
     }
     case UPDATE_GAME: {
       let { shots, readyToShoot, shotMagazine } = state;

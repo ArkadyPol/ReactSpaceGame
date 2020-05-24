@@ -32,11 +32,7 @@ const moveReducer = (
 ): MoveState => {
   switch (action.type) {
     case LOAD_GAME:
-      return {
-        ...state,
-        rocketX: action.payload.rocketX,
-        velocity: action.payload.velocity,
-      };
+      return action.payload.move;
     case UPDATE_GAME: {
       let { rocketX } = state;
       const { arrowLeft, arrowRight } = action.payload;

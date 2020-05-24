@@ -54,15 +54,9 @@ const Game: React.FC = () => {
     const { escape, arrowLeft, arrowRight, space } = keyboard;
     if (escape) return;
     requestID.current = requestAnimationFrame(updatePerFrame);
-    const {
-      shotMagazine,
-      passedPath,
-      rocketX,
-      asteroids,
-      health,
-      shots,
-      readyToShoot,
-    } = game;
+    const { passedPath, asteroids, health } = game;
+    const { shotMagazine, shots, readyToShoot } = game.shotsState;
+    const { rocketX } = game.move;
     if (health <= 0) {
       void navigate('/');
       return;

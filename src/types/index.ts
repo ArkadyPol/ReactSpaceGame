@@ -13,15 +13,20 @@ export type Box = {
 export type Game = {
   stars: readonly Star[];
   passedPath: number;
-  rocketX: number;
-  velocity: number;
+  move: {
+    rocketX: number;
+    velocity: number;
+  };
   asteroids: readonly Asteroid[];
-  boxes: readonly Box[];
   health: number;
-  readyToShoot: boolean;
-  shotMagazine: number;
-  shots: readonly Shot[];
+  shotsState: {
+    readyToShoot: boolean;
+    shotMagazine: number;
+    shots: readonly Shot[];
+  };
+  boxes: readonly Box[];
 };
+
 export type RequiredState = {
   arrowLeft: boolean;
   arrowRight: boolean;
