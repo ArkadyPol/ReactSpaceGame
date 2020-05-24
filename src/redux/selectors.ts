@@ -7,5 +7,6 @@ export const getAsteroids = (state: RootState): readonly Asteroid[] =>
   state.game.asteroids;
 export const getShots = (state: RootState): readonly Shot[] =>
   state.game.shotsState.shots;
+export const getRocketX = (state: RootState): number => state.game.move.rocketX;
 
 export const getGame = (state: RootState): Game => state.game;

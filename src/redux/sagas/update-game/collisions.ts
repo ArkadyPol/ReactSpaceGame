@@ -8,10 +8,15 @@ import {
   DestroyShotAction,
   AddAsteroidAction,
   AddBoxdAction,
+  damageRocket,
+  DamageRocketAction,
 } from '../../actions';
-import { getAsteroids, getShots } from '../../selectors';
+import { getAsteroids, getShots, getRocketX } from '../../selectors';
 import { Asteroid, Shot } from '../../../types';
-import { collisionCircles } from '../../../collisions';
+import {
+  collisionCircles,
+  collisionCircleRectangle,
+} from '../../../collisions';
 
 type FindCollisionsWithShots = Generator<
   | SelectEffect
@@ -23,7 +28,7 @@ type FindCollisionsWithShots = Generator<
   readonly Asteroid[] & readonly Shot[]
 >;
 
-export default function* findCollisionsWithShots(): FindCollisionsWithShots {
+export function* findCollisionsWithShots(): FindCollisionsWithShots {
   const asteroids: readonly Asteroid[] = yield select(getAsteroids);
   const shots: readonly Shot[] = yield select(getShots);
   for (let i = 0; i < asteroids.length; i++) {
@@ -56,6 +61,27 @@ export default function* findCollisionsWithShots(): FindCollisionsWithShots {
           yield put(addBox({ x, y, color: 'red' }));
         }
       }
+    }
+  }
+}
+
+type FindCollisionsWithRocket = Generator<
+  | SelectEffect
+  | PutEffect<DestroyAsteroidAction>
+  | PutEffect<DamageRocketAction>,
+  void,
+  readonly Asteroid[] & number
+>;
+
+export function* findCollisionsWithRocket(): FindCollisionsWithRocket {
+  const asteroids: readonly Asteroid[] = yield select(getAsteroids);
+  const rocketX: number = yield select(getRocketX);
+  for (let i = 0; i < asteroids.length; i++) {
+    const { x, y, size, vY: speed } = asteroids[i];
+    if (collisionCircleRectangle([x, y, size], [rocketX - 15, 627, 30, 85])) {
+      yield put(destroyAsteroid(i));
+      const damage = Math.floor((size / 2) * (speed / 10));
+      yield put(damageRocket(damage));
     }
   }
 }

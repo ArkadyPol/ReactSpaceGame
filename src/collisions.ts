@@ -1,7 +1,3 @@
-import { Dispatch } from 'redux';
-import { Asteroid } from './types';
-import { destroyAsteroid, damageRocket } from './redux/actions';
-
 type Circle = [number, number, number];
 type Rectangle = [number, number, number, number];
 
@@ -25,7 +21,7 @@ export const collisionCircles = (
   return sqDistance < (r + r2) ** 2;
 };
 
-const collisionCircleRectangle = (
+export const collisionCircleRectangle = (
   [x, y, r]: Circle,
   [x2, y2, width, height]: Rectangle
 ): boolean => {
@@ -58,19 +54,4 @@ const collisionCircleRectangle = (
     return y - (y2 + height) < r;
   }
   return true;
-};
-
-export const findCollisionsWithRocket = (
-  asteroids: readonly Asteroid[],
-  rocketX: number,
-  dispatch: Dispatch
-): void => {
-  asteroids.forEach((asteroid, indexAsteroid) => {
-    const { x, y, size, vY: speed } = asteroid;
-    if (collisionCircleRectangle([x, y, size], [rocketX - 15, 627, 30, 85])) {
-      dispatch(destroyAsteroid(indexAsteroid));
-      const damage = Math.floor((size / 2) * (speed / 10));
-      dispatch(damageRocket(damage));
-    }
-  });
 };
