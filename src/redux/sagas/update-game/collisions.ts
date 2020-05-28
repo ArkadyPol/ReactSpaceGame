@@ -40,7 +40,7 @@ export function* findCollisionsWithShots(): FindCollisionsWithShots {
         yield put(destroyAsteroid(i));
         if (size >= 10) {
           const newSize = Math.floor(size / 2);
-          const newVY = 0.85 * vY;
+          const newVY = 0.8 * vY;
           yield put(
             addAsteroid({
               x,

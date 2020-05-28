@@ -19,8 +19,8 @@ const generateAsteroid = (): Asteroid => {
   const x = randomInteger(20, 1164);
   const y = -200;
   const size = randomInteger(10, 100);
-  const vX = randomInteger(-2, 2);
-  const vY = randomInteger(4, 10);
+  const vX = randomInteger(-3, 3);
+  const vY = randomInteger(4, 12);
   return {
     x,
     y,

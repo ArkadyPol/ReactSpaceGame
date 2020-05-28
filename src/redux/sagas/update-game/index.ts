@@ -71,7 +71,7 @@ function* updateGameSaga(): UpdateGameSaga {
   if (passedPath % 80 === 0 && shotMagazine < 15) {
     yield put(addShot());
   }
-  if (passedPath % 120 === 0) {
+  if (passedPath % 100 === 0) {
     yield put(generateAsteroid());
   }
   yield call(findCollisionsWithShots);
