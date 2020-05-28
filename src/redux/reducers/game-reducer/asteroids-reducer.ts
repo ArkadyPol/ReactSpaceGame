@@ -16,10 +16,13 @@ import {
 import randomInteger from '../../../logic';
 
 const generateAsteroid = (): Asteroid => {
-  const x = randomInteger(20, 1164);
-  const y = -200;
+  const x = randomInteger(-300, 1484);
+  const y = -300;
   const size = randomInteger(10, 100);
-  const vX = randomInteger(-3, 3);
+  let vX: number;
+  if (x <= 0) vX = randomInteger(1, 6);
+  else if (x >= 1184) vX = randomInteger(-1, -6);
+  else vX = randomInteger(-3, 3);
   const vY = randomInteger(4, 12);
   return {
     x,
