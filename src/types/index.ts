@@ -12,6 +12,11 @@ export type Box = {
   y: number;
   color: string;
 };
+export type DropBox = {
+  x: number;
+  y: number;
+  size: number;
+};
 export type Game = {
   stars: readonly Star[];
   passedPath: number;

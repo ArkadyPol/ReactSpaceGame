@@ -20,8 +20,11 @@ const boxesReducer = (
         })
         .filter((params) => params.y < 800);
     }
-    case DROP_BOX:
-      return [...state, action.payload];
+    case DROP_BOX: {
+      const { x, y } = action.payload;
+      const box: Box = { x, y, color: 'red' };
+      return [...state, box];
+    }
     case RESET:
       return initialState;
     default:

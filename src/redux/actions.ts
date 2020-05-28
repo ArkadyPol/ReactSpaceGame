@@ -1,5 +1,5 @@
 import * as t from './actions-types';
-import { Game, RequiredState, Asteroid, Box } from '../types';
+import { Game, RequiredState, Asteroid, DropBox } from '../types';
 
 export type AddAsteroidAction = {
   type: typeof t.ADD_ASTEROID;
@@ -29,7 +29,7 @@ export type DestroyShotAction = {
 };
 export type DropBoxAction = {
   type: typeof t.DROP_BOX;
-  payload: Box;
+  payload: DropBox;
 };
 export type LoadGameAction = {
   type: typeof t.LOAD_GAME;
@@ -123,7 +123,7 @@ export const destroyShot = (index: number): DestroyShotAction => ({
   type: t.DESTROY_SHOT,
   payload: index,
 });
-export const dropBox = (box: Box): DropBoxAction => ({
+export const dropBox = (box: DropBox): DropBoxAction => ({
   type: t.DROP_BOX,
   payload: box,
 });
