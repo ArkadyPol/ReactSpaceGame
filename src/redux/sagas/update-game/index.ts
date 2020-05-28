@@ -66,12 +66,12 @@ function* updateGameSaga(): UpdateGameSaga {
     void navigate('/');
     yield cancel();
   }
-  if (passedPath % 5 === 0 && !readyToShoot) yield put(readyShoot());
+  if (passedPath % 6 === 0 && !readyToShoot) yield put(readyShoot());
   if (passedPath % 30 === 0) yield put(generateNewStars());
-  if (passedPath % 75 === 0 && shotMagazine < 10) {
+  if (passedPath % 80 === 0 && shotMagazine < 15) {
     yield put(addShot());
   }
-  if (passedPath % 100 === 0) {
+  if (passedPath % 120 === 0) {
     yield put(generateAsteroid());
   }
   yield fork(findCollisionsWithShots);

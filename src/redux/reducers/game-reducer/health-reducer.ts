@@ -2,7 +2,7 @@ import { RESET, LOAD_GAME, DAMAGE_ROCKET } from '../../actions-types';
 import { LoadGameAction, ResetAction, DamageRocketAction } from '../../actions';
 
 const healthReducer = (
-  state = 100,
+  state = 200,
   action: LoadGameAction | ResetAction | DamageRocketAction
 ): number => {
   switch (action.type) {
@@ -12,7 +12,7 @@ const healthReducer = (
       console.log('damage:', action.payload);
       return state - action.payload;
     case RESET:
-      return 100;
+      return 200;
     default:
       return state;
   }

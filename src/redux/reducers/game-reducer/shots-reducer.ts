@@ -16,7 +16,7 @@ import {
 
 const initialState = {
   readyToShoot: true,
-  shotMagazine: 10,
+  shotMagazine: 15,
   shots: [] as readonly Shot[],
 };
 
