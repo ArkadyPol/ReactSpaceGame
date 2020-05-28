@@ -1,13 +1,13 @@
 import {
   takeEvery,
-  fork,
   cancel,
   select,
   put,
   SelectEffect,
   PutEffect,
   CancelEffect,
-  ForkEffect,
+  call,
+  CallEffect,
 } from 'redux-saga/effects';
 import { navigate } from '@reach/router';
 import { SAGA_UPDATE_GAME } from '../../actions-types';
@@ -46,7 +46,7 @@ type UpdateGameSaga = Generator<
   | PutEffect<AddShotAction>
   | PutEffect<GenerateAsteroidAction>
   | PutEffect<UpdateGameAction>
-  | ForkEffect<void>
+  | CallEffect<void>
   | CancelEffect,
   void,
   number & boolean
@@ -74,8 +74,8 @@ function* updateGameSaga(): UpdateGameSaga {
   if (passedPath % 120 === 0) {
     yield put(generateAsteroid());
   }
-  yield fork(findCollisionsWithShots);
-  yield fork(findCollisionsWithRocket);
+  yield call(findCollisionsWithShots);
+  yield call(findCollisionsWithRocket);
   yield put(updateGame({ arrowLeft, arrowRight, rocketX, space }));
 }
 export default function* watchUpdateGame(): WatcherSaga {
