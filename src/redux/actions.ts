@@ -5,10 +5,6 @@ export type AddAsteroidAction = {
   type: typeof t.ADD_ASTEROID;
   payload: Asteroid;
 };
-export type AddBoxdAction = {
-  type: typeof t.ADD_BOX;
-  payload: Box;
-};
 export type AddShotAction = {
   type: typeof t.ADD_SHOT;
 };
@@ -30,6 +26,10 @@ export type DestroyAsteroidAction = {
 export type DestroyShotAction = {
   type: typeof t.DESTROY_SHOT;
   payload: number;
+};
+export type DropBoxAction = {
+  type: typeof t.DROP_BOX;
+  payload: Box;
 };
 export type LoadGameAction = {
   type: typeof t.LOAD_GAME;
@@ -105,10 +105,6 @@ export const addAsteroid = (asteroid: Asteroid): AddAsteroidAction => ({
   type: t.ADD_ASTEROID,
   payload: asteroid,
 });
-export const addBox = (box: Box): AddBoxdAction => ({
-  type: t.ADD_BOX,
-  payload: box,
-});
 export const addShot = (): AddShotAction => ({ type: t.ADD_SHOT });
 export const changeSaveName = (saveName: string): ChangeSaveNameAction => ({
   type: t.CHANGE_SAVE_NAME,
@@ -126,6 +122,10 @@ export const destroyAsteroid = (index: number): DestroyAsteroidAction => ({
 export const destroyShot = (index: number): DestroyShotAction => ({
   type: t.DESTROY_SHOT,
   payload: index,
+});
+export const dropBox = (box: Box): DropBoxAction => ({
+  type: t.DROP_BOX,
+  payload: box,
 });
 export const generateAsteroid = (): GenerateAsteroidAction => ({
   type: t.GENERATE_ASTEROID,

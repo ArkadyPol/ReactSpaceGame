@@ -3,13 +3,13 @@ import {
   destroyShot,
   destroyAsteroid,
   addAsteroid,
-  addBox,
   DestroyAsteroidAction,
   DestroyShotAction,
   AddAsteroidAction,
-  AddBoxdAction,
   damageRocket,
   DamageRocketAction,
+  DropBoxAction,
+  dropBox,
 } from '../../actions';
 import { getAsteroids, getShots, getRocketX } from '../../selectors';
 import { Asteroid, Shot } from '../../../types';
@@ -17,13 +17,14 @@ import {
   collisionCircles,
   collisionCircleRectangle,
 } from '../../../collisions';
+import randomInteger from '../../../logic';
 
 type FindCollisionsWithShots = Generator<
   | SelectEffect
   | PutEffect<DestroyAsteroidAction>
   | PutEffect<DestroyShotAction>
   | PutEffect<AddAsteroidAction>
-  | PutEffect<AddBoxdAction>,
+  | PutEffect<DropBoxAction>,
   void,
   readonly Asteroid[] & readonly Shot[]
 >;
@@ -39,7 +40,7 @@ export function* findCollisionsWithShots(): FindCollisionsWithShots {
         yield put(destroyAsteroid(i));
         if (size >= 10) {
           const newSize = Math.floor(size / 2);
-          const newVY = 0.9 * vY;
+          const newVY = 0.85 * vY;
           yield put(
             addAsteroid({
               x,
@@ -58,7 +59,11 @@ export function* findCollisionsWithShots(): FindCollisionsWithShots {
               vY: newVY,
             })
           );
-          yield put(addBox({ x, y, color: 'red' }));
+          const percent = randomInteger(0, 99);
+          const limit = Math.round(((size - 10) / 90) * 23) + 10;
+          if (percent < limit) {
+            yield put(dropBox({ x, y, color: 'red' }));
+          }
         }
       }
     }

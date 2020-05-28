@@ -1,11 +1,11 @@
 export const ADD_ASTEROID = 'ADD_ASTEROID';
-export const ADD_BOX = 'ADD_BOX';
 export const ADD_SHOT = 'ADD_SHOT';
 export const CHANGE_SAVE_NAME = 'CHANGE_SAVE_NAME';
 export const CLEAR_FPS = 'CLEAR_FPS';
 export const DAMAGE_ROCKET = 'DAMAGE_ROCKET';
 export const DESTROY_ASTEROID = 'DESTROY_ASTEROID';
 export const DESTROY_SHOT = 'DESTROY_SHOT';
+export const DROP_BOX = 'DROP_BOX';
 export const GENERATE_ASTEROID = 'GENERATE_ASTEROID';
 export const GENERATE_NEW_STARS = 'GENERATE_NEW_STARS';
 export const GET_SAVES = 'GET_SAVES';
