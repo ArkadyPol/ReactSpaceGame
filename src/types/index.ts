@@ -11,6 +11,8 @@ export type Box = {
   x: number;
   y: number;
   color: string;
+  raw: string;
+  count: number;
 };
 export type DropBox = {
   x: number;

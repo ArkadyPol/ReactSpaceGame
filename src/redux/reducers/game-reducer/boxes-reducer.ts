@@ -35,12 +35,12 @@ const boxesReducer = (
       const chances = [chance, chance * koef + chance].map((num) =>
         Math.round(num)
       );
-      let color;
+      let raw: Extract<keyof typeof colors, string>;
       const percent = randomInteger(0, 99);
-      if (percent < chances[0]) color = colors.platinum;
-      else if (percent < chances[1]) color = colors.gold;
-      else color = colors.iron;
-      const box: Box = { x, y, color };
+      if (percent < chances[0]) raw = 'platinum';
+      else if (percent < chances[1]) raw = 'gold';
+      else raw = 'iron';
+      const box: Box = { x, y, raw, count: size, color: colors[raw] };
       return [...state, box];
     }
     case RESET:

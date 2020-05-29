@@ -60,7 +60,7 @@ export function* findCollisionsWithShots(): FindCollisionsWithShots {
             })
           );
           const percent = randomInteger(0, 99);
-          const limit = Math.round(((size - 10) / 90) * 23) + 10;
+          const limit = Math.round(((size - 10) / 90) * 25) + 15;
           if (percent < limit) {
             yield put(dropBox({ x, y, size }));
           }
