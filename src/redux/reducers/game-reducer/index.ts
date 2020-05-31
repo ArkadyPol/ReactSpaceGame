@@ -6,6 +6,7 @@ import asteroidsReducer from './asteroids-reducer';
 import healthReducer from './health-reducer';
 import shotsReducer from './shots-reducer';
 import boxesReducer from './boxes-reducer';
+import itemsReducer from './items-reducer';
 
 const gameReducer = combineReducers({
   stars: starsReducer,
@@ -15,6 +16,7 @@ const gameReducer = combineReducers({
   health: healthReducer,
   shotsState: shotsReducer,
   boxes: boxesReducer,
+  items: itemsReducer,
 });
 
 export default gameReducer;

@@ -10,12 +10,15 @@ import {
   DamageRocketAction,
   DropBoxAction,
   dropBox,
+  catchBox,
+  CatchBoxAction,
 } from '../../actions';
-import { getAsteroids, getShots, getRocketX } from '../../selectors';
-import { Asteroid, Shot } from '../../../types';
+import { getAsteroids, getShots, getRocketX, getBoxes } from '../../selectors';
+import { Asteroid, Shot, Box } from '../../../types';
 import {
   collisionCircles,
   collisionCircleRectangle,
+  collisionRectangles,
 } from '../../../collisions';
 import randomInteger from '../../../logic';
 
@@ -73,13 +76,15 @@ export function* findCollisionsWithShots(): FindCollisionsWithShots {
 type FindCollisionsWithRocket = Generator<
   | SelectEffect
   | PutEffect<DestroyAsteroidAction>
-  | PutEffect<DamageRocketAction>,
+  | PutEffect<DamageRocketAction>
+  | PutEffect<CatchBoxAction>,
   void,
-  readonly Asteroid[] & number
+  readonly Asteroid[] & readonly Box[] & number
 >;
 
 export function* findCollisionsWithRocket(): FindCollisionsWithRocket {
   const asteroids: readonly Asteroid[] = yield select(getAsteroids);
+  const boxes: readonly Box[] = yield select(getBoxes);
   const rocketX: number = yield select(getRocketX);
   for (let i = 0; i < asteroids.length; i++) {
     const { x, y, size, vY: speed } = asteroids[i];
@@ -88,5 +93,14 @@ export function* findCollisionsWithRocket(): FindCollisionsWithRocket {
       const damage = Math.floor((size / 2) * (speed / 10));
       yield put(damageRocket(damage));
     }
+  }
+  for (let i = 0; i < boxes.length; i++) {
+    if (
+      collisionRectangles(
+        [boxes[i].x, boxes[i].y, 20, 20],
+        [rocketX - 15, 627, 30, 85]
+      )
+    )
+      yield put(catchBox(i, boxes[i].raw, boxes[i].count));
   }
 }

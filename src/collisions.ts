@@ -55,3 +55,13 @@ export const collisionCircleRectangle = (
   }
   return true;
 };
+export const collisionRectangles = (
+  [x, y, width, height]: Rectangle,
+  [x2, y2, width2, height2]: Rectangle
+): boolean => {
+  if (x2 > x + width) return false;
+  if (x > x2 + width2) return false;
+  if (y2 > y + height) return false;
+  if (y > y2 + height2) return false;
+  return true;
+};

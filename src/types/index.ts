@@ -11,13 +11,18 @@ export type Box = {
   x: number;
   y: number;
   color: string;
-  raw: string;
+  raw: Raw;
   count: number;
 };
 export type DropBox = {
   x: number;
   y: number;
   size: number;
+};
+export type Items = {
+  iron: number;
+  gold: number;
+  platinum: number;
 };
 export type Game = {
   stars: readonly Star[];
@@ -34,8 +39,9 @@ export type Game = {
     shots: readonly Shot[];
   };
   boxes: readonly Box[];
+  items: Items;
 };
-
+export type Raw = 'iron' | 'gold' | 'platinum';
 export type RequiredState = {
   arrowLeft: boolean;
   arrowRight: boolean;

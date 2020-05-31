@@ -1,6 +1,6 @@
 // import { createSelector } from 'reselect';
 import { RootState } from './reducers';
-import { Star, Game, Asteroid, Shot } from '../types';
+import { Star, Game, Asteroid, Shot, Box } from '../types';
 
 export const getStars = (state: RootState): readonly Star[] => state.game.stars;
 export const getAsteroids = (state: RootState): readonly Asteroid[] =>
@@ -20,5 +20,6 @@ export const getArrowLeft = (state: RootState): boolean =>
 export const getArrowRight = (state: RootState): boolean =>
   state.keyboard.arrowRight;
 export const getSpace = (state: RootState): boolean => state.keyboard.space;
+export const getBoxes = (state: RootState): readonly Box[] => state.game.boxes;
 
 export const getGame = (state: RootState): Game => state.game;

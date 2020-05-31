@@ -1,5 +1,5 @@
 import * as t from './actions-types';
-import { Game, RequiredState, Asteroid, DropBox } from '../types';
+import { Game, RequiredState, Asteroid, DropBox, Raw } from '../types';
 
 export type AddAsteroidAction = {
   type: typeof t.ADD_ASTEROID;
@@ -7,6 +7,14 @@ export type AddAsteroidAction = {
 };
 export type AddShotAction = {
   type: typeof t.ADD_SHOT;
+};
+export type CatchBoxAction = {
+  type: typeof t.CATCH_BOX;
+  payload: {
+    index: number;
+    raw: Raw;
+    count: number;
+  };
 };
 export type ChangeSaveNameAction = {
   type: typeof t.CHANGE_SAVE_NAME;
@@ -106,6 +114,18 @@ export const addAsteroid = (asteroid: Asteroid): AddAsteroidAction => ({
   payload: asteroid,
 });
 export const addShot = (): AddShotAction => ({ type: t.ADD_SHOT });
+export const catchBox = (
+  index: number,
+  raw: Raw,
+  count: number
+): CatchBoxAction => ({
+  type: t.CATCH_BOX,
+  payload: {
+    index,
+    raw,
+    count,
+  },
+});
 export const changeSaveName = (saveName: string): ChangeSaveNameAction => ({
   type: t.CHANGE_SAVE_NAME,
   payload: saveName,
