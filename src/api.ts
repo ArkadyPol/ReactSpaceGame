@@ -28,6 +28,9 @@ const api = {
     const game = (await response.json()) as Game;
     return game;
   },
+  deleteSave(saveName: string): void {
+    void fetch(`/saves/${saveName}`, { method: 'DELETE' });
+  },
 };
 
 export default api;

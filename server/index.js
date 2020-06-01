@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { getSaves, loadSave, createSave } = require('./fs-helper');
+const { getSaves, loadSave, createSave, deleteSave } = require('./fs-helper');
 
 const app = express();
 app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -13,6 +13,10 @@ app.get('/saves', (req, res) => {
 });
 app.post('/saves', (req, res) => {
   createSave(req.body);
+  res.end();
+});
+app.delete('/saves/:saveName', (req, res) => {
+  deleteSave(req.params.saveName);
   res.end();
 });
 app.get('/*', (req, res) => {

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteSave } from '../redux/actions';
 
 type Style = {
   left: number;
@@ -17,15 +19,20 @@ const Saves: React.FC<Props> = ({
   handleClick,
   style = { left: 0, top: 0, position: 'static' },
 }) => {
+  const dispatch = useDispatch();
   const buttons = saves.map((save) => (
-    <button
-      type="button"
-      key={save}
-      className="save-button"
-      onClick={handleClick}
-    >
-      {save}
-    </button>
+    <div key={save}>
+      <button type="button" className="save-button" onClick={handleClick}>
+        {save}
+      </button>
+      <button
+        type="button"
+        className="save-delete"
+        onClick={() => dispatch(deleteSave(save))}
+      >
+        X
+      </button>
+    </div>
   ));
   return (
     <div style={style} className="save-overflow">

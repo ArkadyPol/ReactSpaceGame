@@ -27,6 +27,10 @@ export type DamageRocketAction = {
   type: typeof t.DAMAGE_ROCKET;
   payload: number;
 };
+export type DeleteSaveAction = {
+  type: typeof t.DELETE_SAVE;
+  saveName: string;
+};
 export type DestroyAsteroidAction = {
   type: typeof t.DESTROY_ASTEROID;
   payload: number;
@@ -134,6 +138,10 @@ export const clearFPS = (): ClearFPSAction => ({ type: t.CLEAR_FPS });
 export const damageRocket = (damage: number): DamageRocketAction => ({
   type: t.DAMAGE_ROCKET,
   payload: damage,
+});
+export const deleteSave = (saveName: string): DeleteSaveAction => ({
+  type: t.DELETE_SAVE,
+  saveName,
 });
 export const destroyAsteroid = (index: number): DestroyAsteroidAction => ({
   type: t.DESTROY_ASTEROID,

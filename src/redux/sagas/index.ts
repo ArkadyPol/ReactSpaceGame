@@ -5,6 +5,7 @@ import watchSaveGame from './save-game';
 import watchLoadGame from './load-game';
 import fpsTimer, { FpsTimer } from './fps-timer';
 import watchUpdateGame from './update-game';
+import watchDeleteSave from './delete-save';
 
 type RootSaga = Generator<AllEffect<FpsTimer>, void, unknown>;
 
@@ -16,5 +17,6 @@ export default function* rootSaga(): RootSaga {
     watchLoadGame(),
     fpsTimer(),
     watchUpdateGame(),
+    watchDeleteSave(),
   ]);
 }

@@ -22,3 +22,6 @@ exports.createSave = (save) => {
   const name = save.saveName;
   fs.writeFileSync(`saves/${name}.json`, JSON.stringify(save.game, null, 4));
 };
+exports.deleteSave = (saveName) => {
+  fs.unlinkSync(`saves/${saveName}.json`);
+};

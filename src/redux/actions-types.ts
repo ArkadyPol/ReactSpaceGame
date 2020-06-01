@@ -4,6 +4,7 @@ export const CATCH_BOX = 'CATCH_BOX';
 export const CHANGE_SAVE_NAME = 'CHANGE_SAVE_NAME';
 export const CLEAR_FPS = 'CLEAR_FPS';
 export const DAMAGE_ROCKET = 'DAMAGE_ROCKET';
+export const DELETE_SAVE = 'DELETE_SAVE';
 export const DESTROY_ASTEROID = 'DESTROY_ASTEROID';
 export const DESTROY_SHOT = 'DESTROY_SHOT';
 export const DROP_BOX = 'DROP_BOX';

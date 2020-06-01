@@ -25,10 +25,14 @@
   width: 220px;
 }
 .save-button {
-  display: block;
-  width: 100%;
+  width: 85%;
   padding: 5px;
   background-color: rgb(35, 179, 236);
+}
+.save-delete {
+  width: 15%;
+  padding: 5px;
+  background-color: rgb(236, 65, 35);
 }
 #newGame,
 #saveGame {
