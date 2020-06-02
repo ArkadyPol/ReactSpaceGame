@@ -1,6 +1,7 @@
 export const ADD_ASTEROID = 'ADD_ASTEROID';
 export const ADD_SHOT = 'ADD_SHOT';
 export const CATCH_BOX = 'CATCH_BOX';
+export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 export const CHANGE_SAVE_NAME = 'CHANGE_SAVE_NAME';
 export const CLEAR_FPS = 'CLEAR_FPS';
 export const DAMAGE_ROCKET = 'DAMAGE_ROCKET';

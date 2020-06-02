@@ -34,6 +34,13 @@
   padding: 5px;
   background-color: rgb(236, 65, 35);
 }
+.select {
+  position: absolute;
+  background-color: #c7a6a6;
+  top: 20px;
+  left: 1100px;
+  font-size: 18px;
+}
 #newGame,
 #saveGame {
   top: 33%;

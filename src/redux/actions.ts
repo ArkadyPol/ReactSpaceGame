@@ -1,5 +1,12 @@
 import * as t from './actions-types';
-import { Game, RequiredState, Asteroid, DropBox, Raw } from '../types';
+import {
+  Game,
+  RequiredState,
+  Asteroid,
+  DropBox,
+  Raw,
+  Language,
+} from '../types';
 
 export type AddAsteroidAction = {
   type: typeof t.ADD_ASTEROID;
@@ -15,6 +22,10 @@ export type CatchBoxAction = {
     raw: Raw;
     count: number;
   };
+};
+export type ChangeLanguageAction = {
+  type: typeof t.CHANGE_LANGUAGE;
+  payload: Language;
 };
 export type ChangeSaveNameAction = {
   type: typeof t.CHANGE_SAVE_NAME;
@@ -129,6 +140,10 @@ export const catchBox = (
     raw,
     count,
   },
+});
+export const changeLanguage = (lang: Language): ChangeLanguageAction => ({
+  type: t.CHANGE_LANGUAGE,
+  payload: lang,
 });
 export const changeSaveName = (saveName: string): ChangeSaveNameAction => ({
   type: t.CHANGE_SAVE_NAME,

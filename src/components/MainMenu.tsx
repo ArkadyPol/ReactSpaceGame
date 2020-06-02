@@ -5,14 +5,21 @@ import Saves from './Saves';
 import Buttons from './ButtonsMenu';
 import star from '../canvas/star';
 import { getStars } from '../redux/selectors';
-import { toggleDisplay, sagaGetSaves, sagaLoadGame } from '../redux/actions';
+import {
+  toggleDisplay,
+  sagaGetSaves,
+  sagaLoadGame,
+  changeLanguage,
+} from '../redux/actions';
 import '../styles/App.css';
 import { RootState } from '../redux/reducers';
+import { Language } from '../types';
 
 const MainMenu: React.FC = () => {
   const displayForm = useSelector((state: RootState) => state.display);
   const saves = useSelector((state: RootState) => state.saves.saves);
   const stars = useSelector(getStars);
+  const lang = useSelector((state: RootState) => state.lang.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const width = 1184;
@@ -59,6 +66,14 @@ const MainMenu: React.FC = () => {
           handleClick={handleClickForm}
         />
       )}
+      <select
+        value={lang}
+        className="select"
+        onChange={(e) => dispatch(changeLanguage(e.target.value as Language))}
+      >
+        <option value="RU">RU</option>
+        <option value="EN">EN</option>
+      </select>
     </>
   );
 };
