@@ -1,9 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from '@reach/router';
 import { toggleDisplay, reset } from '../redux/actions';
+import { RootState } from '../redux/reducers';
 
 const ButtonsMenu: React.FC = () => {
+  const locale = useSelector((state: RootState) => state.lang.currentLang);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
@@ -19,7 +21,7 @@ const ButtonsMenu: React.FC = () => {
           }, 50);
         }}
       >
-        Новая игра
+        {locale.newGame}
       </button>
       <button
         id="loadGame"
@@ -29,7 +31,7 @@ const ButtonsMenu: React.FC = () => {
           dispatch(toggleDisplay(true));
         }}
       >
-        Загрузить игру
+        {locale.loadGame}
       </button>
     </>
   );

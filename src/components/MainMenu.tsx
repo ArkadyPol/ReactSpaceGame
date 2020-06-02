@@ -71,8 +71,8 @@ const MainMenu: React.FC = () => {
         className="select"
         onChange={(e) => dispatch(changeLanguage(e.target.value as Language))}
       >
-        <option value="RU">RU</option>
         <option value="EN">EN</option>
+        <option value="RU">RU</option>
       </select>
     </>
   );
