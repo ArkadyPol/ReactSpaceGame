@@ -26,7 +26,7 @@ function* fpsTick(): FpsTick {
   }
 }
 export type FpsTimer = Generator<
-  ForkEffect<void> | TakeEffect | CancelEffect,
+  ForkEffect<void> | TakeEffect | CancelEffect | PutEffect<ClearFPSAction>,
   void,
   Task
 >;
@@ -34,6 +34,7 @@ export default function* fpsTimer(): FpsTimer {
   while (yield take(RUN_FPS_TIMER)) {
     const fpsTask: Task = yield fork(fpsTick);
     yield take(STOP_FPS_TIMER);
+    yield put(clearFPS());
     yield cancel(fpsTask);
   }
 }

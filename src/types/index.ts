@@ -19,6 +19,7 @@ export type DropBox = {
   y: number;
   size: number;
 };
+export type Key = 'arrowLeft' | 'arrowRight' | 'escape' | 'space' | 'keyI';
 export type Language = 'RU' | 'EN';
 export type Items = {
   iron: number;

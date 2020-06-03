@@ -25,7 +25,7 @@ function* saveGameSaga({ saveName }: SaveGameAction): SaveGameSaga {
   const save = { saveName, game };
   yield call(api.saveGame.bind(api), save);
   yield fork(getSavesSaga);
-  yield* toggleEscapeSaga({ key: false } as SagaToggleEscapeAction);
+  yield* toggleEscapeSaga({ isOn: false } as SagaToggleEscapeAction);
 }
 export default function* watchSaveGame(): WatcherSaga {
   yield takeEvery(SAVE_GAME, saveGameSaga);

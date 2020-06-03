@@ -6,6 +6,7 @@ import {
   DropBox,
   Raw,
   Language,
+  Key,
 } from '../types';
 
 export type AddAsteroidAction = {
@@ -87,7 +88,7 @@ export type SagaLoadGameAction = {
 };
 export type SagaToggleEscapeAction = {
   type: typeof t.SAGA_TOGGLE_ESCAPE;
-  key: boolean;
+  isOn: boolean;
 };
 export type SagaUpdateGameAction = {
   type: typeof t.SAGA_UPDATE_GAME;
@@ -99,25 +100,16 @@ export type SaveGameAction = {
 export type StopFpsTimerAction = {
   type: typeof t.STOP_FPS_TIMER;
 };
-export type ToggleArrowLeftAction = {
-  type: typeof t.TOGGLE_ARROW_LEFT;
-  payload: boolean;
-};
-export type ToggleArrowRightAction = {
-  type: typeof t.TOGGLE_ARROW_RIGHT;
-  payload: boolean;
-};
 export type ToggleDisplayAction = {
   type: typeof t.TOGGLE_DISPLAY;
   payload: boolean;
 };
-export type ToggleEscapeAction = {
-  type: typeof t.TOGGLE_ESCAPE;
-  payload: boolean;
-};
-export type ToggleSpaceAction = {
-  type: typeof t.TOGGLE_SPACE;
-  payload: boolean;
+export type ToggleKeyAction = {
+  type: typeof t.TOGGLE_KEY;
+  payload: {
+    key: Key;
+    isOn: boolean;
+  };
 };
 export type UpdateGameAction = {
   type: typeof t.UPDATE_GAME;
@@ -198,9 +190,9 @@ export const sagaLoadGame = (saveName: string): SagaLoadGameAction => ({
   type: t.SAGA_LOAD_GAME,
   saveName,
 });
-export const sagaToggleEscape = (key: boolean): SagaToggleEscapeAction => ({
+export const sagaToggleEscape = (isOn: boolean): SagaToggleEscapeAction => ({
   type: t.SAGA_TOGGLE_ESCAPE,
-  key,
+  isOn,
 });
 export const sagaUpdateGame = (): SagaUpdateGameAction => ({
   type: t.SAGA_UPDATE_GAME,
@@ -212,25 +204,16 @@ export const saveGame = (saveName: string): SaveGameAction => ({
 export const stopFpsTimer = (): StopFpsTimerAction => ({
   type: t.STOP_FPS_TIMER,
 });
-export const toggleArrowLeft = (key: boolean): ToggleArrowLeftAction => ({
-  type: t.TOGGLE_ARROW_LEFT,
-  payload: key,
-});
-export const toggleArrowRight = (key: boolean): ToggleArrowRightAction => ({
-  type: t.TOGGLE_ARROW_RIGHT,
-  payload: key,
-});
 export const toggleDisplay = (display: boolean): ToggleDisplayAction => ({
   type: t.TOGGLE_DISPLAY,
   payload: display,
 });
-export const toggleEscape = (payload: boolean): ToggleEscapeAction => ({
-  type: t.TOGGLE_ESCAPE,
-  payload,
-});
-export const toggleSpace = (key: boolean): ToggleSpaceAction => ({
-  type: t.TOGGLE_SPACE,
-  payload: key,
+export const toggleKey = (key: Key, isOn: boolean): ToggleKeyAction => ({
+  type: t.TOGGLE_KEY,
+  payload: {
+    key,
+    isOn,
+  },
 });
 export const updateGame = (payload: RequiredState): UpdateGameAction => ({
   type: t.UPDATE_GAME,

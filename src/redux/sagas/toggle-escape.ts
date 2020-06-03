@@ -2,23 +2,23 @@ import { takeEvery, put, PutEffect } from 'redux-saga/effects';
 import { SAGA_TOGGLE_ESCAPE } from '../actions-types';
 import {
   toggleDisplay,
-  toggleEscape,
-  ToggleEscapeAction,
+  ToggleKeyAction,
   ToggleDisplayAction,
   SagaToggleEscapeAction,
+  toggleKey,
 } from '../actions';
 import { WatcherSaga } from '../../types';
 
 export type ToggleEscapeEffects =
-  | PutEffect<ToggleEscapeAction>
+  | PutEffect<ToggleKeyAction>
   | PutEffect<ToggleDisplayAction>;
 
 type ToggleEscapeSaga = Generator<ToggleEscapeEffects, void, unknown>;
 
 export function* toggleEscapeSaga({
-  key,
+  isOn,
 }: SagaToggleEscapeAction): ToggleEscapeSaga {
-  yield put(toggleEscape(key));
+  yield put(toggleKey('escape', isOn));
   yield put(toggleDisplay(false));
 }
 

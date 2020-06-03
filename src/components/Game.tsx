@@ -2,15 +2,12 @@ import React, { useRef, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import updateCanvas from '../canvas';
 import {
-  clearFPS,
-  toggleArrowLeft,
-  toggleArrowRight,
-  toggleSpace,
   sagaToggleEscape,
   saveGame,
   runFpsTimer,
   stopFpsTimer,
   sagaUpdateGame,
+  toggleKey,
 } from '../redux/actions';
 import Form from './Form';
 import Buttons from './ButtonsGame';
@@ -31,9 +28,9 @@ const Game: React.FC = () => {
   useEffect(() => {
     if (canvas.current) {
       const ctx = canvas.current.getContext('2d');
-      if (ctx) updateCanvas(ctx, game);
+      if (ctx) updateCanvas(ctx, game, keyboard.keyI);
     }
-  }, [game]);
+  }, [game, keyboard.keyI]);
   useEffect(() => {
     dispatch(runFpsTimer());
     return (): void => {
@@ -67,13 +64,13 @@ const Game: React.FC = () => {
     const handleKeyDown = (e: KeyboardEvent): void => {
       switch (e.code) {
         case 'ArrowLeft':
-          dispatch(toggleArrowLeft(true));
+          dispatch(toggleKey('arrowLeft', true));
           break;
         case 'ArrowRight':
-          dispatch(toggleArrowRight(true));
+          dispatch(toggleKey('arrowRight', true));
           break;
         case 'Space':
-          dispatch(toggleSpace(true));
+          dispatch(toggleKey('space', true));
           break;
         case 'Escape':
           if (keyboard.escape) {
@@ -82,7 +79,16 @@ const Game: React.FC = () => {
           } else {
             stopTimers();
             dispatch(sagaToggleEscape(true));
-            dispatch(clearFPS());
+          }
+          dispatch(toggleKey('keyI', false));
+          break;
+        case 'KeyI':
+          if (keyboard.keyI && !keyboard.escape) {
+            runTimers();
+            dispatch(toggleKey('keyI', false));
+          } else {
+            stopTimers();
+            dispatch(toggleKey('keyI', true));
           }
           break;
         default:
@@ -92,13 +98,13 @@ const Game: React.FC = () => {
     const handleKeyUp = (e: KeyboardEvent): void => {
       switch (e.code) {
         case 'ArrowLeft':
-          dispatch(toggleArrowLeft(false));
+          dispatch(toggleKey('arrowLeft', false));
           break;
         case 'ArrowRight':
-          dispatch(toggleArrowRight(false));
+          dispatch(toggleKey('arrowRight', false));
           break;
         case 'Space':
-          dispatch(toggleSpace(false));
+          dispatch(toggleKey('space', false));
           break;
         default:
           break;
@@ -110,7 +116,7 @@ const Game: React.FC = () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
     };
-  }, [dispatch, keyboard.escape, runTimers, stopTimers]);
+  }, [dispatch, keyboard.escape, keyboard.keyI, runTimers, stopTimers]);
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     if (save === '') return;
